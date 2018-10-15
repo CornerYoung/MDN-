@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>递归方法实现深拷贝</title>
+</head>
+<body>
+<h1>递归方法实现深拷贝</h1>
+</body>
+</html>
+<script>
+    //判断需要进行深拷贝的对象的数据类型
+    function checkType(target) {
+        return Object.prototype.toString.call(target, this).slice(8, -1);
+    };
+
+    //深拷贝函数
+    function deepClone(target) {
+        //判断传入的变量是什么类型
+        let result, targetType = checkType(target);
+        if (targetType === 'Array') {
+            result = [];
+        } else if (targetType === 'Object') {
+            result = {};
+        } else {
+            return target;
+        };
+        //循环赋值，如果内部嵌套的有对象或数组，进行递归
+        for (let i in target) {
+            if (checkType(target[i]) === 'Object' || checkType(target[i]) === 'Array') {
+                deepClone(target[i]);
+            } else {
+                result[i] = target[i];
+            };
+        };
+
+        return result;
+    };
+
+    var Lebron = {
+        name: 'james',
+        age: 34,
+        gen: 'famel',
+        speak: function () {
+            console.log('湖人总冠军！')
+        },
+        son: {
+            one: 'Brony',
+            two: 'bron'
+        },
+        mvp: [1, 2, 3]
+    };
+
+    var LebronJames = deepClone(Lebron)
+    LebronJames.speak = function () {
+        alert('湖人总冠军！')
+    };
+    LebronJames.son = { one: 'dhjvgsd' };
+</script>
