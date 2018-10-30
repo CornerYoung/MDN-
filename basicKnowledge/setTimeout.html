@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS运行机制</title>
+</head>
+<body>
+    <h1>JS运行机制</h1>
+</body>
+</html>
+<script>
+    console.log(1);
+    setTimeout(function(){
+        console.log(2)
+    },0);
+    console.log(3);
+
+    for(var i=0;i<5;i++){
+        setTimeout(function(){
+            console.log(i);
+        },1000);
+    };
+
+    for (var i = 0; i < 5; i++) {
+        (function(i){
+            setTimeout(function () {
+                console.log(i);
+            }, 2000);
+        })(i);
+    };
+
+    for (let i = 0; i < 5; i++) {
+        setTimeout(function () {
+            console.log(i);
+        }, 3000);
+    };
+
+    for(var i = 0; i < 5; i++) {
+        var a = function(){
+            var j = i;
+            setTimeout(function () {
+                console.log(j);
+            }, 4000);
+        };
+        a();    
+    };
+</script>
