@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>两数之和</title>
+</head>
+<body>
+<h1>两数之和</h1>
+<p>给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。 你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。 示例: 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1]
+= 2 + 7 = 9 所以返回 [0, 1]
+</p>
+</body>
+</html>
+<script>
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     */
+        var twoSum = function (nums, target) {
+            var arr = [];
+
+            for (var i = 0; i < nums.length; i++) {
+
+                for (var j = nums.length - 1; j > i; j--) {
+
+                    if (nums[i] + nums[j] === target) {
+                        arr.push(i)
+                        arr.push(j)
+                        console.log(nums[i] + nums[j])
+                    } 
+                }
+            }
+
+            if(arr.length){
+                return arr.splice(0, 2)
+            }else{
+                return '不存在'
+            }
+
+        };
+
+        twoSum([2,4,6,7,8,9],9)
+</script>
