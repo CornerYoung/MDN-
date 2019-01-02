@@ -984,6 +984,18 @@ arr[3] = "pink";
 求一组数中的最大值和最小值，以及所在位置
 将字符串数组用|或其他符号分割
 要求将数组中的0项去掉，将不为0的值存入一个新的数组，生成新的数组
+```javascript
+// 杨国宁编写代码
+function noZeroArr () {
+  var newArr = [];
+  for( var i = 0; i < arr.length; i++ ){
+    if( arr[i] != 0 ){
+      newArr.push(arr[i])
+    }
+    return newArr;
+  };
+};
+```
 翻转数组
 冒泡排序，从小到大
 ```
