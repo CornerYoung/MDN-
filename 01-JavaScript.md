@@ -988,7 +988,7 @@ arr[3] = "pink";
 冒泡排序，从小到大
 ```
 ```javascript
-// 杨国宁编写代码
+// ConerYoung编写代码 要求将数组中的0项去掉，将不为0的值存入一个新的数组，生成新的数组
 function noZeroArr () {
   var newArr = [];
   for( var i = 0; i < arr.length; i++ ){
