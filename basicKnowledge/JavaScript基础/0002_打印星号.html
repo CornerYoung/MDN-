@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>打印星号</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        h2{
+            display: inline-block;
+            line-height: 2px;
+            height: 2px;
+            padding: 2px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>打印星号</h1>
+</body>
+</html>
+<script>
+
+    //全排列星号
+    function allStar () {
+        for(var i=0;i<10;i++){
+            for(var j=0;j<10;j++){
+                document.write('<h2>*</h2>')
+            };
+            document.write('<br>')
+        }
+    }
+    allStar();
+
+    //三角形
+    function triStar () {
+        for (var i = 0; i < 10; i++) {
+            for (var j = 0; j < i; j++) {
+                document.write('<h2>*</h2>')
+            };
+            document.write('<br>')
+        }
+    }
+    triStar();
+
+    //倒三角
+    function invTriStar () {
+        for (var i = 10; i > 0; i--) {
+            for (var j = 0; j < i; j++) {
+                document.write('<h2>*</h2>')
+            };
+            document.write('<br>')
+        }
+    };
+    invTriStar();
+</script>
