@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>斐波那契数列</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>斐波那契数列</h1>
+</body>
+<script>
+    //for循环实现斐波那契数列
+    var num1 = 1;
+    var num2 = 1;
+    var sum;
+    for (var i=3;i<=12;i++) {
+        sum = num1 + num2;
+        num1 = num2;
+        num2 = sum;
+    }
+    console.log(sum)
+</script>
+
+</html>
