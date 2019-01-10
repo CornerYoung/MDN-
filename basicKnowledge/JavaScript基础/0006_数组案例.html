@@ -18,13 +18,23 @@
 <script>
     //求数组中的最大值
     var arr1 = [1,23,43,890,46,98,5,6,10];
-    var maxNum = arr1[0];
+    var maxNum1 = arr1 [0];
     for (var i = 0; i <= arr1.length; i++) {
-        if(maxNum<arr1[i]){
-            maxNum = arr1[i]
+        if(maxNum1<arr1[i]){
+            maxNum1 = arr1[i]
         }
     }
-    console.log(maxNum)
+    console.log(maxNum1)
+
+    //求数组中的最大值,方法二
+    var arr2 = [143, 203, 3, 89, 56, 908, 5, 6, 10];
+    var maxNum2 = Number.MIN_VALUE;
+    for(var j=0; j<arr2.length; j++){
+        if(maxNum2<arr2[j]){
+            maxNum2 = arr2[j]
+        }
+    }
+    console.log('最大值是 '+maxNum2)
 </script>
 
 </html>
