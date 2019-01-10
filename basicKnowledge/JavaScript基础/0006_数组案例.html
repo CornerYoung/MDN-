@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组案例</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>数组案例</h1>
+</body>
+<script>
+    //求数组中的最大值
+    var arr1 = [1,23,43,890,46,98,5,6,10];
+    var maxNum = arr1[0];
+    for (var i = 0; i <= arr1.length; i++) {
+        if(maxNum<arr1[i]){
+            maxNum = arr1[i]
+        }
+    }
+    console.log(maxNum)
+</script>
+
+</html>
