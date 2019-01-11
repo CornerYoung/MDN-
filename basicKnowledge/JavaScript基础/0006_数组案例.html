@@ -49,11 +49,21 @@
     var newArr = []
     for (var l=0;l<arr4.length;l++) {
         if(arr4[l] != 0){
-            //newArr.push(arr4[l])
+            //newArr.push(arr4[l]) 
             newArr[newArr.length] = arr4[l]
         }
     }
     console.log(newArr)
+
+    //案例五：反转数组
+    var arr5 = ['鲍尔','英格拉姆','詹姆斯','库兹玛','麦基'];
+    var temp;
+    for (var m=0;m<arr5.length/2;m++) {
+        temp = arr5[m];
+        arr5[m] = arr5[arr5.length-1-m];
+        arr5[arr5.length-1-m] = temp;
+    }
+    console.log(arr5)
 </script>
 
 </html>
