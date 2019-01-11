@@ -64,6 +64,26 @@
         arr5[arr5.length-1-m] = temp;
     }
     console.log(arr5)
+
+    //案例六：提示用户输入班级人数,求总成绩,平均值,最高分,最低分---扩展
+    var personCount = parseInt(prompt('请输入班级人数！'))
+    var scroes = [];
+    var totalScroe = 0;
+    for (var n=0;n<personCount;n++) {
+        scroes[scroes.length] = parseInt(prompt('请输入第'+(n+1)+'位同学的分数！'));
+    }
+    var maxScroe = scroes[0];
+    var minScroe = scroes[0];
+    for (var o = 0; o < scroes.length; o++) {
+        totalScroe += scroes[o];
+        if(maxScroe< scroes[o]){
+            maxScroe = scroes[o]
+        }
+        if (minScroe > scroes[o]) {
+            minScroe = scroes[o]
+        }
+    }
+    console.log('总成绩： '+ totalScroe+' 平均值： '+(totalScroe/ scroes.length)+' 最高分： '+ maxScroe+' 最低分: '+ minScroe)
 </script>
 
 </html>
