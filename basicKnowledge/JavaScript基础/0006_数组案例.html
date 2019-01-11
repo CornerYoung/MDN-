@@ -84,6 +84,20 @@
         }
     }
     console.log('总成绩： '+ totalScroe+' 平均值： '+(totalScroe/ scroes.length)+' 最高分： '+ maxScroe+' 最低分: '+ minScroe)
+
+    //案例七：把一组数据按照一定的顺序排列（从大到小或从小到大）
+    var arr6 = [62,89,90,81,37,27]
+    //外层控制轮数
+    for (var i=0;i<arr6.length;i++) {
+        //内层循环控制比较次数（每一轮比较次数依次递减）
+        for (var j=0;j<arr6.length-1-i;j++) {
+            if (arr6[j]>arr6[j+1]) {}
+            var tempNum = arr6[j];
+            arr6[j] = arr6[j+1];
+            arr6[j+1] = tempNum;
+        }
+    }
+    console.log(arr6)
 </script>
 
 </html>
