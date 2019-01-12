@@ -21,4 +21,14 @@
         return x > y ? x : y;
     }
     console.log(getMax(90,20))
+
+    //案例2: 求三个数中的最大值
+    function getThreeMax (x,y,z) {
+        return x > y ? (x > z ? x : z) : (y > z ? y : z)
+    }
+    var num1 = 1000;
+    var num2 = 25000;
+    var num3 = 100;
+    var result = getThreeMax(num1,num2,num3)
+    console.log(result)
 </script>
