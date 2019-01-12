@@ -87,4 +87,16 @@
     console.log('最大值： ' + getArrMaxAndArrMinAndSum(arr)[0])
     console.log('最小值： ' + getArrMaxAndArrMinAndSum(arr)[1])
     console.log('和： ' + getArrMaxAndArrMinAndSum(arr)[2])
+
+    //案例6: 反转数组
+    function reverseArray (arr) {
+        var temp;
+        for (var i=0;i<arr.length/2;i++) {
+            temp = arr[i];
+            arr[i] = arr[arr.length-1-i];
+            arr[arr.length-1-i] = temp;
+        };
+        return arr
+    }
+    console.log(reverseArray(['詹姆斯','勒布朗','德怀恩','韦德','麦迪']))
 </script>
