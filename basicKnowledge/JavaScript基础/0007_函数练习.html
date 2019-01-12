@@ -102,12 +102,15 @@
 
     //案例7: 函数冒泡排序
     function sortArray (arr) {
+        var temp;
         //外层循环控制循环轮数
         for (var i=0;i<arr.length-1;i++) {
             //内层循环控制每轮循环次数
             for (var j=0;j<arr.length-1-i;j++) {
                 if (arr[i]>arr[i+1]) {
-                    arr[i] = arr[i+1]
+                    temp = arr[i];
+                    arr[i] = arr[i+1];
+                    arr[i+1] = temp;
                 };
             };
         };
