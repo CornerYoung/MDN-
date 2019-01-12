@@ -99,4 +99,19 @@
         return arr
     }
     console.log(reverseArray(['詹姆斯','勒布朗','德怀恩','韦德','麦迪']))
+
+    //案例7: 函数冒泡排序
+    function sortArray (arr) {
+        //外层循环控制循环轮数
+        for (var i=0;i<arr.length-1;i++) {
+            //内层循环控制每轮循环次数
+            for (var j=0;j<arr.length-1-i;j++) {
+                if (arr[i]>arr[i+1]) {
+                    arr[i] = arr[i+1]
+                };
+            };
+        };
+        return arr;
+    }
+    console.log(sortArray([12,90,35,65,78]))
 </script>
