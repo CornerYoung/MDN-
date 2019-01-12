@@ -57,4 +57,34 @@
         return max;
     }
     console.log(getArrayMax([10,20,30,40,50]));
+
+    //案例5: 求一个数组中的最大值、最小值、和
+    /**
+     * 给我一个数组，我返回一个数组（最大值，最小值，和）
+     * @param array 参数是一个数组
+     * @returns {*[]} 返回值是一个数组，第一个元素值是最大值，第二个元素值是最小值，第三个元素值是和
+     * 
+     */
+    function getArrMaxAndArrMinAndSum (arr) {
+        //假设最大值是数组第一个元素
+        var max = arr[0];
+        //假设最小值是数组中第一个元素
+        var min = arr[0];
+        var sum = 0;
+        for (var i=0;i<arr.length;i++) {
+            if (max<arr[i]) {
+                max = arr[i]
+            };
+            if (min>arr[i]) {
+                min = arr[i]
+            };
+            sum += arr[i];
+        };
+        var array = [max,min,sum];
+        return array;
+    }
+    var arr = [20,450,90,300,1000,25]
+    console.log('最大值： ' + getArrMaxAndArrMinAndSum(arr)[0])
+    console.log('最小值： ' + getArrMaxAndArrMinAndSum(arr)[1])
+    console.log('和： ' + getArrMaxAndArrMinAndSum(arr)[2])
 </script>
