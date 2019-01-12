@@ -31,4 +31,17 @@
     var num3 = 100;
     var result = getThreeMax(num1,num2,num3)
     console.log(result)
+
+    //案例3: 求一个数是不是素数（质数）----------不能被2和自身整除
+    //用这个数字和这个数字前面的所有数字整除一遍（没有1，没有自身）
+    function isPrimeNumber (num) {
+        for (var i=2;i<num;i++) {
+            if (num%i == 0) {
+                //如果能够被这个数字之前的数字整除，说明这个数字不是质数，返回false
+                return false;
+            }
+            return true;
+        }
+    }
+    console.log(isPrimeNumber(79)?'是质数':'不是质数')
 </script>
