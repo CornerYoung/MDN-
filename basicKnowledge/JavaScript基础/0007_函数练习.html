@@ -44,4 +44,17 @@
         }
     }
     console.log(isPrimeNumber(79)?'是质数':'不是质数')
+
+    //案例4: 求一组数中的最大值
+    function getArrayMax (array) {
+        //先假设数组中的第一个数是最大值
+        var max = array[0]
+        for (var i=0;i<array.length;i++) {
+            if (max < array[i]) {
+                max = array[i];
+            }
+        }
+        return max;
+    }
+    console.log(getArrayMax([10,20,30,40,50]));
 </script>
