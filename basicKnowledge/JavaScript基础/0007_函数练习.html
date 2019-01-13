@@ -117,4 +117,30 @@
         return arr;
     }
     console.log(sortArray([12,90,35,65,78]))
+
+    //案例8: 求一个数的阶乘
+    function getFactorial (num) {
+        var result = 1;
+        for (var i=1;i<num;i++) {
+            result *= i;
+        }
+        return result;
+    }
+    console.log('阶乘'+getFactorial(5))
+
+    //案例9: 求一个数的斐波那契数列
+    function getFib (num) {
+        // 1 1 2 3 5 8 13 21 34 55 89 144
+        //无论何时，第一个数和第二个数是1都是固定的
+        var num1 = 1;
+        var num2 = 1;
+        var sum;
+        for (var i=2;i<num;i++) {
+            sum = num1 + num2;
+            num1 = num2;
+            num2 = sum;
+        }
+        return sum;
+    }
+    console.log('斐波那契数列'+ getFib(12))
 </script>
