@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>arguments对象伪数组</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>arguments对象伪数组</h1>
+</body>
+<script>
+    //定义一个函数，如果不确定用户是否传入了参数，或者不知道用户传了几个参数，没办法进行计算
+    //但是如果在函数中知道了参数的个数，也知道了每个参数的值，就可以进行计算
+    function fn () {
+        //获取的是函数在调用时，传入参数的个数
+        console.log(arguments.length)
+        console.log(arguments)
+    };
+    fn(1,2,3,4)  // 4
+    fn(12345)  // 1
+</script>
+
+</html>
