@@ -126,7 +126,7 @@
         }
         return result;
     }
-    console.log('阶乘'+getFactorial(5))
+    console.log('阶乘 => '+getFactorial(5))
 
     //案例9: 求一个数的斐波那契数列
     function getFib (num) {
@@ -142,5 +142,33 @@
         }
         return sum;
     }
-    console.log('斐波那契数列'+ getFib(12))
+    console.log('斐波那契数列 => '+ getFib(12))
+
+    //案例10: 输入年、月、日，获取这个日期是这一年的第多少天
+    //先写一个判断是否是闰年的函数（函数之中可以调用函数）
+    function isLeapYear (year) {
+        return year%4==0 && year%100!= 0 || year%400==0
+    }
+    //用户输入年、月、日
+    function getDays (year,month,day) {
+        //定义变量存储对应的天数
+        var days = day;
+        //如果输入的月份是1，没必要接着往下算，直接输出day，return后面不用进行计算
+        if (month == 1) {
+            return days;
+        };
+        //如果代码执行到这里，说明输入的不是一月份
+        //定义一个数组，存储每个月份的天数
+        var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        //i小于的是输入的月份-1
+        for (var i=0;i<month-1;i++) {
+            days += months[i]
+        };
+        //判断输入的年份是不是闰年,以及月份是不是大于2（2000年2月16日，是否是闰年没影响）
+        if (isLeapYear(year)&&month>2) {
+            days++;
+        };
+        return days;
+    }
+    console.log('输入年、月、日，获取这个日期是这一年的第多少天 => ' + getDays(2001,3,23))
 </script>
