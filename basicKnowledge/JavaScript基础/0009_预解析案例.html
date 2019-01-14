@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预解析案例</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>预解析案例</h1>
+</body>
+<script>
+    fn()
+    function fn(){
+        var a=b=c=9;
+        console.log(c)
+        console.log(b)
+        console.log(a)
+    }
+    console.log(c)
+    console.log(b)
+    console.log(a)
+
+    /*
+    fn()
+        function fn(){
+            var a;
+            a = 9; 
+            b = 9; 隐式全局变量
+            c = 9; 隐式全局变量
+            console.log(a)
+            console.log(b)
+            console.log(c)
+        }
+        console.log(a)
+        console.log(b)
+        console.log(c)
+     */
+</script>
+
+</html>
