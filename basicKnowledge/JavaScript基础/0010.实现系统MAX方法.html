@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实现系统MAX方法</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>实现系统MAX方法</h1>
+</body>
+<script>
+    //自定义构造函数
+    function MyMath () {
+        //添加max方法
+        this.max = function () {
+            //假设max是传入参数中的最大值；
+            var max = arguments[0];
+            for (var i=0;i<arguments.length;i++) {
+                if (max < arguments[i]) {
+                    max = arguments[i]
+                };
+            };
+            return max;
+        }
+    };
+
+    //实例化构造函数
+    var myMath = new MyMath();
+    var result = myMath.max(10,20,30,40)
+    console.log(result)
+
+
+</script>
+
+</html>
