@@ -36,6 +36,10 @@
         hour = hour < 10 ? '0'+hour : hour;
         minutes = minutes < 10 ? '0'+minutes : minutes;
         seconds = seconds < 10 ? '0'+seconds : seconds;
+
+        date = year+'年'+month+'月'+date+'日 '+hour+'时'+minutes+'分'+seconds+'秒'
+
+        return date;
     };
 
     var dt = new Date();
