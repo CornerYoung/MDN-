@@ -16,6 +16,11 @@
     <h1>封装格式化日期的函数</h1>
 </body>
 <script>
+    //编写判断数值小于10补零函数
+    function addZero (num) {
+        return num = num < 10 ? '0'+num : num;
+    };
+
     //封装格式化日期的函数
     function getDate (dt) {
         //获取年份
@@ -31,15 +36,13 @@
         //获取秒数
         var seconds = dt.getSeconds();
 
-        month = month < 10 ? '0'+month : month;
-        date = date < 10 ? '0'+date : date;
-        hour = hour < 10 ? '0'+hour : hour;
-        minutes = minutes < 10 ? '0'+minutes : minutes;
-        seconds = seconds < 10 ? '0'+seconds : seconds;
+        month = addZero(month);
+        date = addZero(date);
+        hour = addZero(hour);
+        minutes = addZero(minutes);
+        seconds = addZero(seconds);
 
-        date = year+'年'+month+'月'+date+'日 '+hour+'时'+minutes+'分'+seconds+'秒'
-
-        return date;
+        return date = year+'年'+month+'月'+date+'日 '+hour+'时'+minutes+'分'+seconds+'秒'
     };
 
     var dt = new Date();
