@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装格式化日期的函数</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>封装格式化日期的函数</h1>
+</body>
+<script>
+    //封装格式化日期的函数
+    function getDate (dt) {
+        //获取年份
+        var year = dt.getFullYear();
+        //获取月份
+        var month = dt.getMonth();
+        //获取日子
+        var date = dt.getDate();
+        //获取小时
+        var hour = dt.getHours();
+        //获取分钟
+        var minutes = dt.getMinutes();
+        //获取秒数
+        var seconds = dt.getSeconds();
+
+        month = month < 10 ? '0'+month : month;
+        date = date < 10 ? '0'+date : date;
+        hour = hour < 10 ? '0'+hour : hour;
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        seconds = seconds < 10 ? '0'+seconds : seconds;
+    };
+
+    var dt = new Date();
+    console.log(getDate(dt));
+</script>
+
+</html>
