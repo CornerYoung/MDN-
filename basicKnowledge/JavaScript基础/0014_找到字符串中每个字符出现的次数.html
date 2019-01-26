@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>找到字符串中每个字符出现的次数</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>找到字符串中每个字符出现的次数</h1>
+</body>
+<script>
+    var str = 'AdhkDJAMCOQRIYbmsDGjdBJDAB,csbjkag,JbcjdgsGJSAFHTIcbzkjsgbDGJksMDGGMNCAPhlz';
+    //第一步：先把字符串全部换成小写
+    str = str.toLocaleLowerCase();
+    //第二步：创建一个空对象，目的是为了键名存字母，键值存次数
+    var obj = {};
+    //第三步，遍历字符串
+    for (var i=0;i<str.length;i++) {
+        //声明key存储字符串中的字符
+        var key = str[i];
+        //if-else判断，对象中有，次数加1，没有则在对象中添加
+        if (obj[key]) {
+            obj[key]++;
+        }else{
+            obj[key] = 1;
+        };
+    };
+
+    for (var key in obj) {
+        console.log(key+'出现'+obj[key]+'次');
+    };
+</script>
+
+</html>
