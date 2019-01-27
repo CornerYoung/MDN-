@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Array对象</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Array对象</h1>
+</body>
+<script>
+    
+        /*
+         *
+         * Array.isArray(对象)---->判断这个对象是不是数组
+         * instanceof关键字
+         * .concat(数组,数组,数组,...) 组合一个新的数组
+         * .every(函数)--返回值是布尔类型,函数作为参数使用,函数中有三个参数,第一个参数是元素的值，第二个参数是索引值,第三个参数是原来的数组(没用)
+         * 如果这个数组中的每个元素的值都符合条件,最后才返回的是true
+         *
+         * .filter(函数);返回的是数组中每一个元素都复合条件的元素,组成了一个新的数组
+         *
+         * .push(值);--->把值追加到数组中,加到最后了---返回值也是追加数据之后的数组长度
+         * .pop();--->删除数组中最后一个元素,返回值就是删除的这个值
+         * .shift();--->删除数组中第一个元素,返回值就是删除的这个值
+         * .unshift();--->向数组的第一个元素前面插入一个新的元素,----返回值是插入后的程度
+         * .forEach(函数)方法---遍历数组用---相当于for循环
+         * .indexOf(元素值);返回的是索引,没有则是-1
+         * .join("字符串");----返回的是一个字符串
+         * .map(函数);--->数组中的每个元素都要执行这个函数,把执行后的结果重新的全部的放在一个新的数组中
+         * .reverse();----->反转数组
+         * .sort();---排序的,可能不稳定,如果不稳定,请写MDN中的那个固定的代码
+         * .arr.slice(开始的索引,结束的索引);把截取的数组的值放在一个新的数组中,但是不包含结束的索引对应的元素值
+         * .splice(开始的位置,要删除的个数,替换的元素的值);一般是用于删除数组中的元素,或者是替换元素,或者是插入元素
+         *
+         *
+         * */
+        //构造函数
+        //    var arr1=new Array();
+        //    //字面量的方式
+        //    var arr2=[];
+
+
+        //对象是不是数组类型:两种
+        //1   instanceof
+        //    var obj=[];
+        //    console.log(obj instanceof Array);//false
+        //
+        //    //2 使用数组的
+        //    console.log(Array.isArray(obj));//
+
+
+        //    var arr=["a","b","c"];
+        //    var newArr=Array.from(arr);
+        //    console.log(newArr);
+
+        //    var arr1=[10,20,30];
+        //    var arr2=[40,50,60];
+        //    console.log(arr1.concat(arr2));
+
+        //    var arr=[1000,2000,3000];
+        //    //a----: 元素的值
+        //    //b----: 索引的值
+        //    //c----:谁调用了这个方法,那么c就是谁---->arr
+        //   var flag= arr.every(function (a,b) {
+        //      //console.log(a+"==="+b+"===="+c);
+        //      return a>2000;//数组中的每个元素的值都要大于2000的情况,最后才返回true
+        //    });
+
+
+        //    var arr=["小明明lkko","小曹操674","小白白bd","笑眯眯a"];
+        //   var flag=arr.every(function (ele,index) {
+        //      //数组中的每个元素的长度是不是大于4
+        //      return ele.length>4;
+        //    });
+
+
+        //console.log(flag);
+
+
+        //    var arr=[10,20,30,40,50,60,70,80];
+        //    var newArr=arr.filter(function (ele) {//ele---每个元素
+        //      return ele>40;
+        //    });
+        //    console.log(newArr);
+
+        //    var arr=[10,0,20,0,40,0,60,100];
+        //    var newArr=arr.filter(function (ele) {
+        //      return ele!=0;
+        //    });
+        //    console.log(newArr);
+
+        //    var arr=[10,20,30,40,50];
+        //    var result=arr.unshift(100);
+        //    console.log(result);
+        //    console.log(arr);
+        //
+        //    var arr = [10, 20, 30, 40];
+        //    arr.forEach(function (ele,index) {
+        //      console.log(ele+'======'+index);
+        //    });
+
+        //    var arr=[10,20,30,40];
+        //    var index=arr.indexOf(300);
+        //    console.log(index);
+
+
+        //    var arr=["小白","小黑","小红","小芳","小绿","小苏"];
+        //    var str=arr.join("|");
+        //    console.log(str);
+
+
+        //    var numbers = [1, 4, 9];
+        //    var roots = numbers.map(Math.sqrt);
+        //    console.log(roots);
+
+
+        //    var arr=[10,20,30,40,50];
+        //    arr.reverse();//反转
+        //    console.log(arr);
+
+
+        //    var arr=[1,40,20,10,100];
+        //    //a---arr[j]
+        //    //b---arr[j+1]
+        //    arr.sort(function (a,b) {
+        //      if(a>b){
+        //        return 1;
+        //      }else if(a==b){
+        //        return 0;
+        //      }else{
+        //        return -1;
+        //      }
+        //    });
+        //    console.log(arr);
+
+
+        //
+        //    var arr=[10,20,30,40,50,60,70,80,90,100];
+        //    var newArr= arr.slice(3,7);
+        //    console.log(newArr);
+
+
+        var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+
+        // myFish.splice(2, 0, 'drum'); // 在索引为2的位置插入'drum'
+
+        // myFish 变为 ["angel", "clown", "drum", "mandarin", "sturgeon"]
+
+        myFish.splice(2, 1); // 从索引为2的位置删除一项（也就是'drum'这一项）
+
+        console.log(myFish);
+    // myFish 变为 ["angel", "clown", "mandarin", "sturgeon"]
+
+</script>
+
+</html>
