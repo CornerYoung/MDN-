@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM操作，排他功能</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DOM操作，排他功能</h1>
+    <input type="button" value="没怀孕">
+    <input type="button" value="没怀孕">
+    <input type="button" value="没怀孕">
+    <input type="button" value="没怀孕">
+    <input type="button" value="没怀孕">
+</body>
+<script>
+    //为每个按钮绑定点击事件
+    var btnObjs = document.getElementsByTagName('input');
+    for (var i=0;i<btnObjs.length;i++) {
+        btnObjs[i].onclick = function () {
+            //所有的按钮设置默认值为‘没怀孕’
+            for (var j=0;j<btnObjs.length;j++) {
+                btnObjs[j].value = '没怀孕'
+            };
+            //当前点击的按钮value值设置为‘怀孕了’
+            this.value = '怀孕了'
+        };
+    };
+</script>
+
+</html>
