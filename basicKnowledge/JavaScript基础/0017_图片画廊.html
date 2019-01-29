@@ -73,16 +73,20 @@
 
     var liObjs = $('ul_imgs').getElementsByTagName('li');
     var big_img = $('big_img');
+    var des_p = $('des_p');
+    var img_src;
+    var img_title;
     
-    //给每一个li添加点击事件
     for (var i=0;i<liObjs.length;i++) {
+        //给每一个li添加点击事件
         liObjs[i].onclick = function () {
             //点击哪一个，就把哪一个图片的src、title值赋给下面的大图
-            var img_src = this.getElementsByTagName('img')[0].src;
-            var img_title = this.getElementsByTagName('img')[0].title;
+            //保存被点击小图的src和title
+            img_src = this.getElementsByTagName('img')[0].src;
+            img_title = this.getElementsByTagName('img')[0].title;
             big_img.src = img_src;
             img_src.title = img_title;
-            $('des_p').innerText = img_title;
+            des_p.innerText = img_title;
         }
     }
 </script>
