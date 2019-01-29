@@ -31,12 +31,19 @@
             border: 2px solid #ccc;
             margin-left: 35px;
         }
+        .big-img{
+            width: 100%;
+        }
+        p{
+            font-size: 30px;
+            padding-left: 35px;
+        }
     </style>
 </head>
 
 <body>
     <h1>图片画廊</h1>
-    <ul>
+    <ul id="ul_imgs">
         <li>
             <img src="images/img1.jpg" alt="詹姆斯" title="詹姆斯">
         </li>
@@ -54,13 +61,29 @@
         </li>
     </ul>
     <div>
-        <img src="" alt="">
+        <img class="big-img" id="big_img" src="" alt="">
     </div>
+    <p id="des_p">NBA</p>
 </body>
 <script>
     //封装 $ 函数，便于获取DOM元素
     function $ (id) {
         return document.getElementById(id);
+    }
+
+    var liObjs = $('ul_imgs').getElementsByTagName('li');
+    var big_img = $('big_img');
+    
+    //给每一个li添加点击事件
+    for (var i=0;i<liObjs.length;i++) {
+        liObjs[i].onclick = function () {
+            //点击哪一个，就把哪一个图片的src、title值赋给下面的大图
+            var img_src = this.getElementsByTagName('img')[0].src;
+            var img_title = this.getElementsByTagName('img')[0].title;
+            big_img.src = img_src;
+            img_src.title = img_title;
+            $('des_p').innerText = img_title;
+        }
     }
 </script>
 
