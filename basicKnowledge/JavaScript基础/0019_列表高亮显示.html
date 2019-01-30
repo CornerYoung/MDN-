@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表高亮显示</title>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            height: 160px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            float: left;
+            padding: 20px 35px;
+            color: #555;
+            font-size: 30px;
+            border: 1px solid slategrey;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>列表高亮显示</h1>
+    <ul id="ul">
+        <li>Lebron-James</li>
+        <li>Wade</li>
+        <li>Paul-Jrge</li>
+        <li>McGredy</li>
+        <li>Kobe</li>
+        <li>Ball</li>
+        <li>Kuzzma</li>
+    </ul>
+</body>
+<script>
+    //封装 $ 函数，便于获取DOM元素
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    var list = $('ul').getElementsByTagName('li');
+    for (var i = 0; i < list.length; i++) {
+        //为li注册鼠标进入事件
+        list[i].onmouseover = function () {
+            this.style.backgroundColor = 'red';
+            this.style.color = '#fff';
+        };
+        //为li注册鼠标离开事件
+        list[i].onmouseout = function () {
+            this.style.backgroundColor = '';
+            this.style.color = '';
+        };
+    };
+
+</script>
+
+</html>
