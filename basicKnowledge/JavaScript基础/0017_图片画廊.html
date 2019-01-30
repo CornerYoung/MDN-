@@ -82,10 +82,8 @@
         liObjs[i].onclick = function () {
             //点击哪一个，就把哪一个图片的src、title值赋给下面的大图
             //保存被点击小图的src和title
-            img_src = this.getElementsByTagName('img')[0].src;
-            img_title = this.getElementsByTagName('img')[0].title;
-            big_img.src = img_src;
-            big_img.title = img_title;
+            big_img.src = this.getElementsByTagName('img')[0].src;
+            big_img.title = this.getElementsByTagName('img')[0].title;
             des_p.innerText = img_title;
         }
     }
