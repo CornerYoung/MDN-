@@ -24,6 +24,7 @@
         li {
             float: left;
             padding: 20px 35px;
+            color: #fff;
         }
 
     </style>
@@ -49,10 +50,18 @@
     }
 
     var list = $('ol').getElementsByTagName('li');
+    var flag = true;
     $('btn').onclick = function () {
         for (var i=0;i<list.length;i++) {
-            list[i].style.backgroundColor = i%2 == 0 ? 'red' : 'yellow';
+            if (flag) {
+                list[i].style.backgroundColor = i % 2 == 0 ? 'red' : 'yellow';
+                flag = false;
+            }else{
+                list[i].style.backgroundColor = i % 2 == 0 ? 'blue' : 'green';
+                flag = true;
+            };
         };
+        //flag = !flag;
     };
     
 </script>
