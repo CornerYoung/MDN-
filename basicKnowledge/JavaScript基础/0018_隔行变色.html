@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>隔行变色</title>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+        ul {
+            height: 160px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            float: left;
+            padding: 20px 35px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>隔行变色</h1>
+    <input type="button" value="点击隔行变色" id="btn">
+    <ol id="ol">
+        <li>Lebron-James</li>
+        <li>Wade</li>
+        <li>Paul-Jrge</li>
+        <li>McGredy</li>
+        <li>Kobe</li>
+        <li>Ball</li>
+        <li>Kuzzma</li>
+    </ol>
+</body>
+<script>
+    //封装 $ 函数，便于获取DOM元素
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    var list = $('ol').getElementsByTagName('li');
+    $('btn').onclick = function () {
+        for (var i=0;i<list.length;i++) {
+            list[i].style.backgroundColor = i%2 == 0 ? 'red' : 'yellow';
+        };
+    };
+    
+</script>
+
+</html>
