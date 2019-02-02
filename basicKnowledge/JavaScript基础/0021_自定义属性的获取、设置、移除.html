@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义属性的获取、设置、移除</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        div {
+            width: 500px;
+            height: 300px;
+            border: 1px solid skyblue;
+        }
+        ul{
+            list-style: none;
+            cursor: pointer;
+        }
+        li{
+            font-size: 30px;
+            color: #555;
+        }
+        .li-active{
+            background-color: steelblue;
+            color: #fff;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>自定义属性的获取、设置、移除</h1>
+    <input type="button" value="点击移除自定义属性" id="btn">
+    <ul id="uu">
+        <li class="li-active">好厉害</li>
+        <li class="li-active">猴塞雷</li>
+        <li class="li-active">窜天猴</li>
+        <li class="li-active">开天雷</li>
+        <li class="li-active">二踢脚</li>
+    </ul>
+</body>
+<script src="common.js"></script>
+<script>
+    var list = $('uu').getElementsByTagName('li');
+    //为每一个li标签设置自定义属性
+    for (var i=0;i<list.length;i++) {
+        list[i].setAttribute('index',(i+1)*10);
+        //点击li标签则弹出他的index值
+        list[i].onclick = function () {
+            //alert(this.index) 自定义属性不能使用点语法获取
+            alert(this.getAttribute('index'))
+        };
+    };
+
+    $('btn').onclick = function () {
+        for (var i = 0; i < list.length; i++) {
+            list[i].removeAttribute('index');
+            //removeAttribute 也可以移除 类样式
+            list[i].removeAttribute('class');
+        };
+    };
+</script>
+
+</html>
