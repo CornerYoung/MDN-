@@ -25,7 +25,7 @@ h1 {
 .bd-ul{
     list-style: none;
 }
-.bd-li {
+.bd-ul li {
     height: 350px;
     display: none;
 }
@@ -33,7 +33,7 @@ h1 {
     background-color: sandybrown;
     font-size: 26px;
 }
-.li-active {
+.bd-ul .li-active {
     display: block;
     background-color: steelblue;
     color: #fff;
@@ -54,10 +54,10 @@ h1 {
             <span>潮辣</span>
         </div>
         <ul class="bd-ul">
-            <li class="bd-li li-active">城西银泰</li>
-            <li class="bd-li">竞舟路</li>
-            <li class="bd-li">港澳广场</li>
-            <li class="bd-li">翠苑</li>
+            <li class="li-active">城西银泰</li>
+            <li>竞舟路</li>
+            <li>港澳广场</li>
+            <li>翠苑</li>
         </ul>
     </div>
 </body>
@@ -73,14 +73,24 @@ h1 {
 
     //第一步首先实现hd区域的切换
     for (var i=0;i<spans.length;i++) {
+        //为每一个span标签设置一个自定义属性index，记录它的索引
+        spans[i].setAttribute('index', i);
         //为每一个span标签绑定点击事件
         spans[i].onclick = function () {
             //所有的span标签都移除li-active类样式
             for (var j=0;j<spans.length;j++) {
                 spans[j].removeAttribute('class')
             };
-            //为当前点击的span添加leiyangshi
-            this.setAttribute('class','span-active')
+            //为当前点击的span添加类样式
+            this.setAttribute('class','span-active');
+            console.log(this.getAttribute('index'));
+            //点击当前的span标签，可以获取到自定义属性index，使用index作为下方li标签的索引,控制显示和隐藏
+            for (var k=0;k<list.length;k++) {
+                //再一次实现排他功能，使所有li标签移除class，被点击相应的索引的li标签加上class属性
+                list[k].removeAttribute('class');
+                list[this.getAttribute('index')].setAttribute('class','li-active');
+            };
+
         };
     };
 </script>
