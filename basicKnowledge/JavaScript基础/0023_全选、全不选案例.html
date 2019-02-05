@@ -63,6 +63,7 @@
     //点击全选复选框，获取checked值，根据checked值进行判断
     ckAll.onclick = function () {
         //如果全选复选框被选中，下面所有小复选框的checked值将变为true
+        //代码需要优化
         // if (this.checked) {
         //     for (var i=0;i<cks.length;i++) {
         //         cks[i].checked = true;
@@ -72,12 +73,29 @@
         //         cks[i].checked = false;
         //     };
         // };
-        
+
         for (var i = 0; i < cks.length; i++) {
             cks[i].checked = this.checked;
         };
     };
-    
+
+    //点击下面小复选框，通过判断是否全部被选中，改变上面大复选框的选中状态
+    //为所有小复选框添加点击事件
+    for (var j=0;j<cks.length;j++) {
+        cks[j].onclick = function () {
+            //判断所有小复选框的checked值
+            var flag = true; //默认都被选中了
+            for (var k=0;k<cks.length;k++) {
+                if(!cks[k].checked){
+                    //如果有一个复选框没选中，flag就是false；
+                    flag = false;
+                    break;
+                };
+            };
+            //都选中
+            ckAll.checked = flag;
+        };
+    };
 </script>
 
 </html>
