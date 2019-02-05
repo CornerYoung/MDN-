@@ -63,14 +63,18 @@
     //点击全选复选框，获取checked值，根据checked值进行判断
     ckAll.onclick = function () {
         //如果全选复选框被选中，下面所有小复选框的checked值将变为true
-        if (this.checked) {
-            for (var i=0;i<cks.length;i++) {
-                cks[i].checked = true;
-            };
-        }else{
-            for (var i = 0; i < cks.length; i++) {
-                cks[i].checked = false;
-            };
+        // if (this.checked) {
+        //     for (var i=0;i<cks.length;i++) {
+        //         cks[i].checked = true;
+        //     };
+        // }else{
+        //     for (var i = 0; i < cks.length; i++) {
+        //         cks[i].checked = false;
+        //     };
+        // };
+        
+        for (var i = 0; i < cks.length; i++) {
+            cks[i].checked = this.checked;
         };
     };
     
