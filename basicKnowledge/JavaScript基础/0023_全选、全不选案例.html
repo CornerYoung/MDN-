@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全选、全不选案例</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .table-wrap {
+            width: 500px;
+            height: 300px;
+            margin: 0 auto;
+            border: 1px solid skyblue;
+        }
+        td{
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>全选、全不选案例</h1>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <td><input type="checkbox" name="全选" id="checkbox-all"></td>
+                    <td>姓名</td>
+                    <td>球队</td>
+                </tr>
+            </thead>
+            <tbody id="j_tb">
+                <tr>
+                    <td><input type="checkbox" name="复选" id=""></td>
+                    <td>詹姆斯</td>
+                    <td>湖人</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="复选" id=""></td>
+                    <td>韦德</td>
+                    <td>热火</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="复选" id=""></td>
+                    <td>威斯布鲁克</td>
+                    <td>雷霆</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+<script src="common.js"></script>
+<script>
+    //获取全选的复选框
+    var ckAll = $('checkbox-all');
+    //获取tbody中所有的小复选框
+    var cks = $('j_tb').getElementsByTagName('input');
+    //点击全选复选框，获取checked值，根据checked值进行判断
+    ckAll.onclick = function () {
+        //如果全选复选框被选中，下面所有小复选框的checked值将变为true
+        if (this.checked) {
+            for (var i=0;i<cks.length;i++) {
+                cks[i].checked = true;
+            };
+        }else{
+            for (var i = 0; i < cks.length; i++) {
+                cks[i].checked = false;
+            };
+        };
+    };
+    
+</script>
+
+</html>
