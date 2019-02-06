@@ -35,6 +35,10 @@
         <input type="button" value="点击添加列表2" id="btn2">
         <div class="wrap" id="div2"></div>
     </div>
+    <div class="item">
+        <input type="button" value="点击添加表格" id="btn3">
+        <div class="wrap" id="div3"></div>
+    </div>
 </body>
 <script src="common.js"></script>
 <script>
@@ -61,6 +65,48 @@ $('btn2').onclick = function () {
         ulObj.appendChild(liObj);
     };
     $('div2').appendChild(ulObj)
+};
+
+//动态创建表格
+var arrWeb = [
+    { name: '百度', href: 'http://www.baidu.com' },
+    { name: '谷歌', href: 'www.baidu.com' },
+    { name: '爱奇艺', href: 'www.baidu.com' },
+    { name: '优酷', href: 'www.baidu.com' },
+    { name: '天猫', href: 'www.baidu.com' }
+];
+$('btn3').onclick = function () {
+    //创建table标签，并添加样式
+    var tableObj = document.createElement('table');
+    tableObj.border = '1';
+    tableObj.cellPadding = '0';
+    tableObj.cellSpacing = '0';
+    
+    //创建td标签，并填充arrWeb数据，多行两列
+    for (var i=0;i<arrWeb.length;i++) {
+        //把每两个td放在一个tr中
+        var trObj = document.createElement('tr');
+
+        //td1存放网站名字
+        var td1 = document.createElement('td');
+         td1.innerHTML = arrWeb[i].name;
+
+        //td2存放网站链接
+        //将a标签添加到td2中
+        var td2 = document.createElement('td');
+        var aTag = document.createElement('a');
+        aTag.href = arrWeb[i].href;
+        setInnerText(aTag, arrWeb[i].name)
+        td2.appendChild(aTag);
+       
+        //将td1，td2标签添加到tr中去
+        trObj.appendChild(td1);
+        trObj.appendChild(td2);
+        //将tr添加到table中去
+        tableObj.appendChild(trObj);
+    }
+    
+    $('div3').appendChild(tableObj)
 };
 </script>
 </html>
