@@ -20,3 +20,15 @@ function setInnerText (element,text) {
         element.textContent = text;
     };
 };
+
+//为任意元素绑定任意事件类型，事件处理函数兼容代码
+function addEventListener (element,type,fn) {
+    //判断浏览器是否支持这个方法
+    if (element.addEventListener) {
+        element.addEventListener(type,fn,false);
+    }else if(element.attachEvent){
+        element.attachEvent('on'+type,fn);
+    }else{
+        element['on'+type] = fn;
+    };
+};
