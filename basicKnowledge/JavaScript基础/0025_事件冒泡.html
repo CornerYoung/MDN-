@@ -41,11 +41,15 @@
     $('div1').onclick = function () {
         console.log('第一个')
     };
-    $('div2').onclick = function () {
-        console.log('第二个')
+    $('div2').onclick = function (event) {
+        console.log('第二个');
+        //谷歌、火狐 支持 stopPropagation
+        event.stopPropagation();
     };
     $('div3').onclick = function () {
         console.log('第三个')
+        //谷歌、IE8 支持 cancelBubble
+        window.event.cancelBubble = true;
     };
 
     document.body.onclick = function () {
