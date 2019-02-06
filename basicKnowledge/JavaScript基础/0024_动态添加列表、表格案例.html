@@ -39,6 +39,12 @@
         <input type="button" value="点击添加表格" id="btn3">
         <div class="wrap" id="div3"></div>
     </div>
+    <div class="item">
+        <input type="button" value="点击添加按钮" id="btn4">
+        <input type="button" value="点击删除按钮" id="btn5">
+        <input type="button" value="点击删除全部按钮" id="btn6">
+        <div class="wrap" id="div4"></div>
+    </div>
 </body>
 <script src="common.js"></script>
 <script>
@@ -107,6 +113,30 @@ $('btn3').onclick = function () {
     }
     
     $('div3').appendChild(tableObj)
+};
+
+//元素操作的一些相关方法
+var num = 0;
+//点击添加按钮（insertBefore向前添加）
+$('btn4').onclick = function () {
+    num++;
+    var inputObj = document.createElement('input');
+    inputObj.type = 'button';
+    inputObj.value = '按钮'+num;
+    //$('div4').appendChild(inputObj);
+    $('div4').insertBefore(inputObj,$('div4').firstElementChild) //向前添加
+};
+//点击删除按钮
+$('btn5').onclick = function () {
+    //移除父级元素中的子级元素
+    $('div4').removeChild($('div4').firstElementChild);
+};
+//点击删除全部按钮
+$('btn6').onclick = function () {
+    //如果div中一直存在子元素，则一直要删除
+    while ($('div4').firstElementChild) {
+        $('div4').removeChild($('div4').firstElementChild);
+    }
 };
 </script>
 </html>
