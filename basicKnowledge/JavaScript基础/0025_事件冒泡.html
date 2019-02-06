@@ -25,6 +25,21 @@
             height: 100px;
             background-color: skyblue;
         }
+        #div4 {
+            width: 500px;
+            height: 300px;
+            background-color: rgb(233, 19, 19);
+        }
+        #div5 {
+            width: 300px;
+            height: 200px;
+            background-color: rgb(49, 218, 77);
+        }
+        #div6 {
+            width: 200px;
+            height: 100px;
+            background-color: rgb(72, 26, 240);
+        }
     </style>
 </head>
 
@@ -33,6 +48,11 @@
     <div id="div1">
         <div id="div2">
             <div id="div3"></div>
+        </div>
+    </div>
+    <div id="div4">
+        <div id="div5">
+            <div id="div6"></div>
         </div>
     </div>
 </body>
@@ -55,5 +75,14 @@
     document.body.onclick = function () {
         console.log('点击了body')
     };
+
+    //事件的三个阶段：1.事件捕获阶段（从外向里[查房]）；2.事件目标阶段；3.事件冒泡阶段（从里向外）
+    var objs = [$('div4'),$('div5'),$('div6')];
+    objs.forEach(function(element,index,arr){
+        element.addEventListener('click',function(e){
+            console.log(this.id+'======>'+e.eventPhase)
+        },true)
+        //addEventListener中布尔值决定冒泡还是捕获。false是冒泡，true是捕获
+    })
 </script>
 </html>
