@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>全选、全不选案例</title>
+    <title>动态添加列表、表格案例</title>
     <style>
         h1 {
             text-align: center
+        }
+        .item{
+            float: left;
+            margin-right: 10px;
         }
         ul{
             list-style: none;
@@ -22,10 +26,14 @@
 </head>
 
 <body>
-    <h1>全选、全不选案例</h1>
-    <div>
-      <input type="button" value="点击添加列表" id="btn1">
+    <h1>动态添加列表、表格案例</h1>
+    <div class="item">
+      <input type="button" value="点击添加列表1" id="btn1">
       <div class="wrap" id="div1"></div>
+    </div>
+    <div class="item">
+        <input type="button" value="点击添加列表2" id="btn2">
+        <div class="wrap" id="div2"></div>
     </div>
 </body>
 <script src="common.js"></script>
@@ -40,6 +48,19 @@ $('btn1').onclick = function () {
     };
     str += '</ul>';
     $('div1').innerHTML = str;
+};
+
+//动态添加列表 方法二 创建元素
+$('btn2').onclick = function () {
+    //创建ul标签（元素）
+    var ulObj = document.createElement('ul');
+    for (var i=0;i<arr.length;i++) {
+        var liObj = document.createElement('li');
+        //将数组中的每一项填充进li标签中
+        liObj.innerHTML = arr[i]
+        ulObj.appendChild(liObj);
+    };
+    $('div2').appendChild(ulObj)
 };
 </script>
 </html>
