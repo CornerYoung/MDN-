@@ -32,3 +32,15 @@ function addEventListener (element,type,fn) {
         element['on'+type] = fn;
     };
 };
+
+//解绑事件兼容代码
+function removeEventListener(element, type, fn) {
+    //判断浏览器是否支持这个方法
+    if (element.removeEventListener) {
+        element.removeEventListener(type, fn, false);
+    } else if (element.detachEvent) {
+        element.detachEvent('on' + type, fn);
+    } else {
+        element['on' + type] = null;
+    };
+};
