@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>同一个元素注册不同的事件指向不同的事件处理函数</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>同一个元素注册不同的事件指向不同的事件处理函数</h1>
+    <input type="button" value="按钮" id="btn">
+</body>
+<script src="common.js"></script>
+<script>
+    $('btn').onclick = f1;
+    $('btn').onmouseover = f1;
+    $('btn').onmouseout = f1;
+    function f1 (event) {
+        switch (event.type) {
+            case 'click': 
+                alert('click') 
+                break;
+            case 'mouseover':
+                this.style.backgroundColor = 'red'
+                break;
+            case 'mouseout':
+                this.style.backgroundColor = 'skyblue'
+
+
+        };
+    };
+</script>
+
+</html>
