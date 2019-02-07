@@ -49,8 +49,16 @@
         '厉害了我的锅',
         '厉',
     ];
+    var box = $('box');
     //为文本input注册键盘抬起事件
     $('txt').onkeyup = function () {
+        //每一次的键盘抬起都判断页面中有没有这个div
+        if ($("dv")) {
+            //删除一次
+            box.removeChild($("dv"));
+        }
+
+
         //将搜索框里输入的值保存在变量text中
         var text = this.value;
         //定义临时数组，存储与数组中相同的输入内容
@@ -62,7 +70,42 @@
                 tempArr.push(text)
             };
         };
-        console.log(tempArr);
+        
+        //如果box中有divObj的话，则不再向里面添加
+        //******如果文本框是空的,临时数组是空的,不用创建div*******============>重点
+        if (this.value.length == 0 || tempArr.length == 0) {
+            //如果页面中有这个div,删除这个div
+            if ($("dv")) {
+                box.removeChild($("dv"));
+            }
+            return;
+        }
+
+
+        //将临时数组中的每一元素都添加到input框下面
+        var divObj = document.createElement('div');
+        divObj.id = 'dv';
+        divObj.style.width = '350px';
+        divObj.style.border = '1px solid #555';
+        box.appendChild(divObj);
+
+        //将临时数组中的元素添加到p标签中，再添加到divObj中
+        for (var i=0;i<tempArr.length;i++) {
+            var pObjs = document.createElement('p');
+            pObjs.style.margin = '3px 5px';
+            pObjs.style.padding = '0';
+            pObjs.style.cursor = 'pointer';
+            pObjs.innerHTML = tempArr[i];
+            divObj.appendChild(pObjs);
+            //当鼠标移入时
+            pObjs.onmousemove = function () {
+                this.style.backgroundColor = 'yellowgreen';
+            };
+            //当鼠标移出时
+            pObjs.onmouseout = function () {
+                this.style.backgroundColor = '';
+            };
+        };
     };
 </script>
 </html>
