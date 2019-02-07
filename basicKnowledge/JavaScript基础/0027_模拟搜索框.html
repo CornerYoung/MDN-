@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟搜索框</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        #box {
+            width: 450px;
+            margin: 200px auto;
+        }
+        #txt {
+            width: 350px;
+        }
+        #pop {
+            width: 350px;
+            border: 1px solid red;
+        }
+        #pop ul {
+            margin: 10px;
+            padding: 0px;
+            width: 200px;
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>模拟搜索框</h1>
+    <div id="box">
+        <input type="text" id="txt" value="">
+        <input type="button" value="搜索" id="btn">
+    </div>
+</body>
+<script src="common.js"></script>
+<script>
+    //模拟后台传入数据
+    var searchWords = [
+        '小说',
+        '小说家',
+        '小说家不好当',
+        '传说',
+        '传说中有个庙',
+        '厉害了',
+        '厉害了我的锅',
+        '厉',
+    ];
+    //为文本input注册键盘抬起事件
+    $('txt').onkeyup = function () {
+        //将搜索框里输入的值保存在变量text中
+        var text = this.value;
+        //定义临时数组，存储与数组中相同的输入内容
+        var tempArr = [];
+        //对比输入内容和数组中数据
+        for (var i=0;i<searchWords.length;i++) {
+            if(searchWords[i].indexOf(text) == 0){
+                //如果searchWords数组中的元素开头含有输入内容，则在临时数组中追加输入的内容
+                tempArr.push(text)
+            };
+        };
+        console.log(tempArr);
+    };
+</script>
+</html>
