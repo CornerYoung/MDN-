@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>div渐变</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            background-color: springgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>div渐变</h1>
+    <div id="box"></div>
+    <input type="button" value="渐变" id="btn">
+</body>
+<script src="common.js"></script>
+<script>
+    var btn = document.getElementById('btn');
+    var box = document.getElementById('box');
+    var opacity = 10;
+    btn.onclick = function () {
+        var timer = setInterval(function(){
+            opacity--;
+            box.style.opacity = opacity/10;
+            if (opacity == 0) {
+                clearInterval(timer);
+            };
+        },200);
+    };
+    
+</script>
+
+</html>
