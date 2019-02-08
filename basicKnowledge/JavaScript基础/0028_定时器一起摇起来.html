@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定时器一起摇起来</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        .wrap{
+            position: relative;
+        }
+        #box{
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>定时器一起摇起来</h1>
+    <input type="button" value="开始" id="btn1">
+    <input type="button" value="停止" id="btn2">
+    <div class="wrap">
+        <div id="box">
+            <img src="images/img1.jpg" alt="" srcset="">
+            <img src="images/img2.jpg" alt="" srcset="">
+        </div>
+    </div>
+    
+</body>
+<script src="common.js"></script>
+<script>
+    var timer
+    $('btn1').onclick = function () {
+        //定义定时器
+        timer = setInterval(function(){
+             //随机数，1——100
+            var x = Math.random()*100+1;
+            var y = Math.random()*100+1;
+            $('box').style.left = x+'px';
+            $('box').style.top = y+'px';
+        },500)
+        this.disabled = true;
+    };
+     
+    $('btn2').onclick = function () {
+        clearInterval(timer)
+        $('btn1').disabled = false;
+    };
+</script>
+
+</html>
