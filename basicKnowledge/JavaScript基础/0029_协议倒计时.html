@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>协议倒计时</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>协议倒计时</h1>
+    <textarea name="" id="" cols="30" rows="10">湖人总冠军！</textarea>
+    <input type="button" value="请阅读协议（5s）" id="btn" disabled>
+</body>
+<script src="common.js"></script>
+<script>
+    var btn = document.getElementById('btn');
+    var time = 5;
+    var timer = setInterval(function () {
+        time--;
+        btn.value = '请阅读协议（'+time+'s)';
+        if (time == 0) {
+            btn.value = '同意';
+            btn.disabled = false;
+            clearInterval(timer)
+        };
+    },1000);
+</script>
+
+</html>
