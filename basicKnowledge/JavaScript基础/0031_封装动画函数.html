@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装动画函数</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: springgreen;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>封装动画函数 </h1>
+    <input type="button" value="移动400px" id="btn1">
+    <input type="button" value="移动800px" id="btn2">
+    <div id="box"></div>
+</body>
+<script src="common.js"></script>
+<script>
+    var box = document.getElementById('box');
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    //获取div当前的位置
+    var current;
+    //初始化移动距离
+    var step = 10;
+    btn1.onclick = function () {
+        var timer = setInterval(function(){
+            //定时器开启，div位置不断发生改变
+            current = box.offsetLeft
+            //如果div移动距离大于等于400px时，停止计时器
+            if (current <= 400) {
+                step += 10;
+                box.style.left = step+'px';
+            }else{
+                clearInterval(timer);
+            };
+        },200);
+    };
+    //设置任意的一个元素，移动到指定的目标位置
+    function animate (element,target) {
+
+    };
+</script>
+
+</html>
