@@ -30,26 +30,35 @@
     var box = document.getElementById('box');
     var btn1 = document.getElementById('btn1');
     var btn2 = document.getElementById('btn2');
-    //获取div当前的位置
-    var current;
-    //初始化移动距离
-    var step = 10;
-    btn1.onclick = function () {
-        var timer = setInterval(function(){
-            //定时器开启，div位置不断发生改变
-            current = box.offsetLeft
-            //如果div移动距离大于等于400px时，停止计时器
-            if (current <= 400) {
-                step += 10;
-                box.style.left = step+'px';
-            }else{
-                clearInterval(timer);
-            };
-        },200);
+    btn1.onclick = function(){
+        animate(box,400)
+    };
+    btn2.onclick = function () {
+        animate(box, 800)
     };
     //设置任意的一个元素，移动到指定的目标位置
     function animate (element,target) {
-
+        console.log(this)
+        clearInterval(element.timer);
+        //定时器的id值存储到对象的一个属性中
+        element.timer = setInterval(function(){
+            //获取元素的当前位置
+            var current = element.offsetLeft;
+            //设置元素移动的距离，如果当前位置大于目标位置，step是负数，如果当前位置小于目标位置，step是正数
+            var step = 10;
+            step = current > target ? -step : step;
+            //当前移动到的位置
+            current += step;
+            //只要当前位置和目标位置之间的差的绝对值大于每一步移动的距离，就要一直移动
+            if (Math.abs(current-target)>Math.abs(step)) {
+                element.style.left = current+'px';
+            }else{
+                //清理定时器
+                clearInterval(element.timer);
+                //直接到达目标
+                element.style.left = target+'px';
+            };
+        },20)
     };
 </script>
 
