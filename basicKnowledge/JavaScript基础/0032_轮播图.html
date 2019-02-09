@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            text-align: center;
+        }
+        #box{
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+            border: 1px solid #555;
+            padding: 2px;
+            position: relative;
+        }
+        inner{
+            position: relative;
+        }
+        ul{
+            list-style: none;
+            width: 1000%;
+        }
+        li{
+            float: left;
+        }
+        img{
+            width: 500px;
+            height: 500px;
+        }
+        .square{
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+        }
+        .square span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: snow;
+            color: #555;
+            margin: 0 5px;
+            line-height: 20px;
+            text-align: center;
+        }
+        .square .current{
+            background-color:rgb(255, 0, 34);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>轮播图</h1>
+    <div id="box">
+        <!-- 相框 -->
+        <div class="inner">
+            <ul>
+                <li><a href=""><img src="images/img1.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/img2.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/img3.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/img4.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/img5.jpg" alt=""></a></li>
+            </ul>
+            <div class="square">
+                <span class="current">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="common.js"></script>
+<script>
+//获取最外层div
+var box = document.getElementById('box');
+//获取相框inner
+var inner = box.children[0];
+//获取相框的宽度
+var innerWidth = inner.offsetWidth;
+//获取轮播图ul
+var ulObj = inner.children[0];
+//获取圆点索引span标签
+var spanObjs = inner.children[1].children;
+for (var i=0;i<spanObjs.length;i++) {
+    //为每一个span标签添加自定义属性
+    spanObjs[i].setAttribute('index', i);
+    //排他功能，为每一个span绑定鼠标移入事件，鼠标移入时删除所有样式，触发的那个圆点添加样式
+    spanObjs[i].onmouseover = function () {
+        //清除所有span的样式
+        for (var j=0;j<spanObjs.length;j++) {
+            spanObjs[j].removeAttribute('class');
+        };
+        //为移入的span添加class属性
+        this.setAttribute('class','current');
+        //保存鼠标移入的span索引值
+        var index = this.getAttribute('index');
+        console.log(index)
+    };
+};
+</script>
+</html>
