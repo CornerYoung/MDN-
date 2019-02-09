@@ -116,7 +116,6 @@ for (var i=0;i<spanObjs.length;i++) {
 
     //设置任意的一个元素，移动到指定的目标位置
     function animate(element, target) {
-        console.log(this)
         clearInterval(element.timer);
         //定时器的id值存储到对象的一个属性中
         element.timer = setInterval(function () {
@@ -136,7 +135,7 @@ for (var i=0;i<spanObjs.length;i++) {
                 //直接到达目标
                 element.style.left = target + 'px';
             };
-        }, 20)
+        }, 10)
     };
 </script>
 </html>
