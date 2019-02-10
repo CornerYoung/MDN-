@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝切换轮播图</title>
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        h1 {
+            text-align: center;
+        }
+        #box {
+            width: 520px;
+            height: 280px;
+            padding: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+            margin: 100px auto 0;
+        }
+        .ad {
+            width: 520px;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+        #box img {
+            width: 520px;
+        }
+        .ad ul li {
+            float: left;
+        }
+        .ad ul {
+            position: absolute;
+            top: 0;
+            width: 2940px;
+        }
+        .ad ul li.current {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>焦点轮播图</h1>
+    <div id="box" class="all">
+        <div class="ad">
+            <ul id="imgs">
+                <li>
+                    <img src="images/01.jpg" />
+                </li>
+                <li>
+                    <img src="images/02.jpg" />
+                </li>
+                <li>
+                    <img src="images/03.jpg" />
+                </li>
+                <li>
+                    <img src="images/04.jpg" />
+                </li>
+                <li>
+                    <img src="images/01.jpg" />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="common.js"></script>
+    <script>
+        //获取外层box
+        var box = document.getElementById('box');
+        //获取广告相框
+        var ad = box.children[0];
+        //获取相框宽度
+        var adWidth = ad.offsetWidth;
+        //获取ul元素
+        var ulObj = ad.children[0];
+
+        //无缝切换轮播图函数
+        var step = 0;
+        function tab () {
+            //当出去4张图片的时候（step>每张图片的宽度*图片的数量），把ul的left值重新设置为0
+            if (step < (ulObj.children.length-1)* adWidth) {
+                step += 10;
+                ulObj.style.left = -step+'px';
+            }else{
+                ulObj.style.left = '0px';
+                step = 0;
+            };
+        };
+        
+        var timer = setInterval(tab,20);
+
+        //鼠标移入移出时暂停和开启
+        ad.onmouseover = function () {
+            clearInterval(timer);
+        };
+        ad.onmouseout = function () {
+            timer = setInterval(tab, 20);
+        };
+    </script>
+</body>
+
+</html>
