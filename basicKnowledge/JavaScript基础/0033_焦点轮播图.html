@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>焦点轮播图</title>
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        h1{
+            text-align: center;
+        }
+        #box {
+            width: 520px;
+            height: 280px;
+            padding: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+            margin: 100px auto 0;
+        }
+        .ad {
+            width: 520px;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+        #box img {
+            width: 520px;
+        }
+        .ad ul li {
+            float: left;
+        }
+        .ad ul {
+            position: absolute;
+            top: 0;
+            width: 2940px;
+        }
+        .ad ul li.current {
+            display: block;
+        }
+        #focusD {
+            display: none;
+        }
+        #focusD span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+        #focusD #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+<h1>焦点轮播图</h1>
+<div id="box" class="all">
+    <div class="ad">
+        <ul id="imgs">
+            <li>
+                <img src="images/01.jpg" />
+            </li>
+            <li>
+                <img src="images/02.jpg" />
+            </li>
+            <li>
+                <img src="images/03.jpg" />
+            </li>
+            <li>
+                <img src="images/04.jpg" />
+            </li>
+            <li>
+                <img src="images/05.jpg" />
+            </li>
+        </ul>
+    </div>
+    <!--相框-->
+    <div id="focusD">
+        <span id="left">&lt;</span>
+        <span id="right">&gt;</span>
+    </div>
+</div>
+<script src="common.js"></script>
+<script>
+//获取外层box
+var box = document.getElementById('box');
+//获取广告相框
+var ad = box.children[0];
+//获取相框宽度
+var adWidth = ad.offsetWidth;
+//获取ul元素
+var ulObj = ad.children[0];
+//获取焦点div
+var focusD = box.children[1];
+//获取左焦点
+var left = document.getElementById('left');
+//获取右焦点
+var right = document.getElementById('right');
+
+//鼠标进入相框中时，焦点显示，移开隐藏
+box.onmousemove = function () {
+    focusD.style.display = 'block';
+};
+box.onmouseout = function () {
+    focusD.style.display = 'none';
+};
+
+//点击左右焦点，图片移动
+var index = 0;
+left.onclick = function () {
+    //通过判断index值与图片数量，实现图片滑动到最后一张时不再滑动
+    if (index<ulObj.children.length-1) {
+        index++;
+        animate(ulObj,-index*adWidth);
+    };
+    console.log('left'+index)
+};
+right.onclick = function () {
+    //通过判断index值与图片数量，实现图片滑动到最后一张时不再滑动
+    if (index > 0) {
+        index--;
+        animate(ulObj, -index * adWidth);
+    };
+    console.log('right'+index)
+};
+
+//设置任意的一个元素，移动到指定的目标位置
+function animate(element, target) {
+    clearInterval(element.timer);
+    //定时器的id值存储到对象的一个属性中
+    element.timer = setInterval(function () {
+        //获取元素的当前位置
+        var current = element.offsetLeft;
+        //设置元素移动的距离，如果当前位置大于目标位置，step是负数，如果当前位置小于目标位置，step是正数
+        var step = 10;
+        step = current > target ? -step : step;
+        //当前移动到的位置
+        current += step;
+        //只要当前位置和目标位置之间的差的绝对值大于每一步移动的距离，就要一直移动
+        if (Math.abs(current - target) > Math.abs(step)) {
+            element.style.left = current + 'px';
+        } else {
+            //清理定时器
+            clearInterval(element.timer);
+            //直接到达目标
+            element.style.left = target + 'px';
+        };
+    }, 10)
+};
+</script>
+</body>
+</html>
