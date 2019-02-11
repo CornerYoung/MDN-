@@ -101,7 +101,7 @@
         var step;
         element.timer = setInterval(function () {
             //设置每次移动距离
-            step = Math.ceil(Math.abs(targetLocation - current) / 5); //如果step赋值在定时器外部，将会出现抖动bug
+            step = Math.ceil(Math.abs(targetLocation - current) / 10); //如果step赋值在定时器外部，将会出现抖动bug
             step = targetLocation > current ? step : -step;
             current += step;
             if (Math.abs(targetLocation - current) > Math.abs(step)) {
@@ -110,7 +110,11 @@
                 clearInterval(element.timer);
                 element.style.left = targetLocation + 'px';
             };
-        }, 50);
+                            //测试代码:
+
+            console.log("目标位置: " + targetLocation + ",当前位置: " + current + ",每次移动步数: " + step);
+
+        }, 20);
     };
 </script>
 </html>
