@@ -78,20 +78,20 @@
         //鼠标移入
         liObjs[i].onmouseover = mouseoverHandle;
         //鼠标移出
-        liObjs[i].onmouseout = mouseoutHandle;
-        //鼠标点击
-        liObjs[i].onclick = clickHandle;
+        // liObjs[i].onmouseout = mouseoutHandle;
+        // //鼠标点击
+        // liObjs[i].onclick = clickHandle;
     };
     function mouseoverHandle () {
         animate(cloud,this.getAttribute('index')*liWidth)
         console.log(cloud.offsetLeft)
     };
-    function mouseoutHandle() {
-        console.log(this)
-    };
-    function clickHandle() {
-        console.log(this)
-    };
+    // function mouseoutHandle() {
+    //     console.log(this)
+    // };
+    // function clickHandle() {
+    //     console.log(this)
+    // };
 
     function animate(element, targetLocation) {
         //清理定时器
