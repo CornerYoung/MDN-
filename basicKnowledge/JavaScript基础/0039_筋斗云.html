@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>筋斗云</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        * {
+            margin: 0;
+            padding: 0
+        }
+        ul {
+            list-style: none
+        }
+        body {
+            background-color: #333;
+        }
+        .nav {
+            width: 1150px;
+            height: 42px;
+            margin: 100px auto;
+            background: url(images/rss.png) right center no-repeat;
+            background-color: #fff;
+            border-radius: 10px;
+            position: relative;
+        }
+        .nav li {
+            width: 140px;
+            height: 42px;
+            text-align: center;
+            line-height: 42px;
+            float: left;
+            cursor: pointer;
+        }
+        .nav span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 140px;
+            height: 42px;
+            background: url(images/cloud.gif) no-repeat;
+            background-size: 140px 42px;
+        }
+        ul {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>筋斗云</h1>
+    <div class="nav">
+        <span id="cloud"></span>
+        <ul id="navBar">
+            <li>勒布朗·詹姆斯</li>
+            <li>德怀恩·韦德</li>
+            <li>特雷西·麦克格雷迪</li>
+            <li>阿伦·艾弗森</li>
+            <li>德怀特·霍华德</li>
+            <li>凯文·加内特</li>
+            <li>克里斯·保罗</li>
+            <li>科比·布莱恩特</li>
+        </ul>
+    </div>
+</body>
+<script src="common.js"></script>
+<script>
+    var ul = document.getElementById('navBar');
+    var cloud = document.getElementById('cloud');
+    var liObjs = ul.children;
+    var liWidth = liObjs[0].offsetWidth;
+    for (var i=0;i<liObjs.length;i++) {
+        liObjs[i].setAttribute('index',i)
+        //鼠标移入
+        liObjs[i].onmouseover = mouseoverHandle;
+        //鼠标移出
+        liObjs[i].onmouseout = mouseoutHandle;
+        //鼠标点击
+        liObjs[i].onclick = clickHandle;
+    };
+    function mouseoverHandle () {
+        animate(cloud,this.getAttribute('index')*liWidth)
+        console.log(cloud.offsetLeft)
+    };
+    function mouseoutHandle() {
+        console.log(this)
+    };
+    function clickHandle() {
+        console.log(this)
+    };
+
+    function animate(element, targetLocation) {
+        //清理定时器
+        clearInterval(element.timer);
+        //获取当前位置
+        var current = element.offsetLeft;
+        var step;
+        element.timer = setInterval(function () {
+            //设置每次移动距离
+            step = Math.ceil(Math.abs(targetLocation - current) / 5); //如果step赋值在定时器外部，将会出现抖动bug
+            step = targetLocation > current ? step : -step;
+            current += step;
+            if (Math.abs(targetLocation - current) > Math.abs(step)) {
+                element.style.left = current + 'px';
+            } else {
+                clearInterval(element.timer);
+                element.style.left = targetLocation + 'px';
+            };
+        }, 50);
+    };
+</script>
+</html>
