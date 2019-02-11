@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装getScroll函数</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        body{
+            height: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>封装getScroll函数</h1>
+</body>
+<script src="common.js"></script>
+<script>
+    function getScroll () {
+        var obj = {};
+        var top = window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;
+        var left = window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft||0;
+        obj.top = top;
+        obj.left = left;
+        return obj;
+    };
+
+    function getScroll() {
+        var obj = {};
+        obj.top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        obj.left = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+        return obj;
+    }; 
+    
+    function getScroll() {
+        var obj = {
+            top : window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+            left : window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0
+        };
+        return obj;
+    };  
+
+    function getScroll() {
+        return {
+            top : window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+            left : window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0
+        };
+    };  
+
+    window.onscroll = function () {
+        console.log(getScroll().top)
+    };
+</script>
+</html> 
