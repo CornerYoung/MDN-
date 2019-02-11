@@ -45,7 +45,7 @@
             //获取元素的当前位置
             var current = element.offsetLeft;
             //设置元素移动的距离，如果当前位置大于目标位置，step是负数，如果当前位置小于目标位置，step是正数
-            var step = 10;
+            var step = 10;//如果step赋值在定时器外部，将会出现抖动bug
             step = current > target ? -step : step;
             //当前移动到的位置
             current += step;
