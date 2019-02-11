@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片跟着鼠标移动</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        img{
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>图片跟着鼠标移动</h1>
+    <img src="images/bird.png" id="img" alt="" srcset="">
+</body>
+<script src="common.js"></script>
+<script>
+    var img = document.getElementById('img');
+    document.onmousemove = function (e) {
+        img.style.left = e.clientX + 'px';
+        img.style.top = e.clientY + 'px';
+    };
+</script>
+</html> 
