@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装动画函数</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: springgreen;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>封装动画函数 </h1>
+    <input type="button" value="移动400px" id="btn1">
+    <input type="button" value="移动800px" id="btn2">
+    <div id="box"></div>
+</body>
+<script src="common.js"></script>
+<script>
+    var box = document.getElementById('box');
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    btn1.onclick = function(){
+        animate(box,400)
+    };
+    btn2.onclick = function () {
+        animate(box, 800)
+    };
+
+    function animate (element,targetLocation) {
+        //清理定时器
+        clearInterval(element.timer);
+        //获取当前位置
+        var current = element.offsetLeft;
+        var step;
+        element.timer = setInterval(function(){
+            //设置每次移动距离
+            step = Math.ceil(Math.abs(targetLocation - current)/10); //如果step赋值在定时器外部，将会出现抖动bug
+            step = targetLocation > current ? step : -step;
+            current += step;
+            if (Math.abs(targetLocation-current) > Math.abs(step)) {
+                element.style.left = current + 'px';
+            }else{
+                clearInterval(element.timer);
+                element.style.left = targetLocation + 'px';
+            };
+        },50);
+    };
+</script>
+
+</html>
