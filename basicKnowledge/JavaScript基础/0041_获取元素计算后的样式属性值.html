@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取元素计算后的样式属性值</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: springgreen;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>获取元素计算后的样式属性值</h1>
+    <input type="button" value="移动400px" id="btn1">
+    <input type="button" value="移动800px" id="btn2">
+    <div id="box"></div>
+</body>
+<script src="common.js"></script>
+<script>
+    function getStyle (element,attr) {
+
+        // if (window.getComputedStyle) {
+        //     return window.getComputedStyle(element, null)[attr]
+        // }else{
+        //     return element.currentStyle[attr]
+        // };
+        //代码简化，如下：
+
+        return window.getComputedStyle ? window.getComputedStyle(element,null)[attr] : element.currentStyle[attr];
+    };
+    var box = document.getElementById('box')
+</script>
+</html>
