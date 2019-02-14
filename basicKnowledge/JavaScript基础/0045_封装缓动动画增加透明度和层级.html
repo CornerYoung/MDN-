@@ -17,7 +17,7 @@
             height: 100px;
             background-color: green;
             position: absolute;
-            opacity: 0.2;
+            opacity: 1;
             z-index: 100;
         }
         input{
@@ -37,13 +37,15 @@
             var json = {
                 'width' : 400,
                 'height' : 900,
-                'top' : 10,
-                'left' : 13,
-                'opacity' : 0.8,
-                'z-index' : 200
+                'top' : 200,
+                'left' : 300,
+                'opacity' : 0.1,
+                'z-index' : 50
             };
             $("btn1").onclick = function () {
-                animate($('dv'),json)
+                animate($('dv'),json,function(){
+                    animate($('dv'),{'width':80,"height":50,'top':20,'left':15,'opacity':1,'z-index':200});
+                })
             };
 
             function getStyle(element, attr) {
@@ -70,8 +72,18 @@
                             //step = step > 0 ? Math.ceil(step) : Math.floor(step);
                             current = current/100;
                             current += step;
-                            element.style[attr] = current;
-                            console.log(current)
+                            //element.style[attr] = current/100;
+                            element.style[attr] = current
+                            //===================教程方法：=====================
+                                //获取元素的当前的透明度,当前的透明度放大100倍
+                                //var current = getStyle(element, attr) * 100;
+                                //目标的透明度放大100倍
+                                // var target = json[attr] * 100;
+                                // var step = (target - current) / 10;
+                                // step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                                // current += step;//移动后的值
+                                // element.style[attr] = current / 100;
+                            //===================教程方法：=====================
                         }else{
                             //获取元素的当前位置
                             var current = parseInt( getStyle(element,attr) );
