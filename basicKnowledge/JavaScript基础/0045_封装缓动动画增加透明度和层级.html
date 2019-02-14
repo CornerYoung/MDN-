@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装缓动动画增加透明度和层级</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        div {
+            margin-top: 20px;
+            width: 200px;
+            height: 100px;
+            background-color: green;
+            position: absolute;
+            opacity: 0.2;
+            z-index: 100;
+        }
+        input{
+            z-index: 150;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>封装缓动动画增加透明度和层级</h1>
+    <input type="button" value="移动到400px" id="btn1" />
+    <input type="button" value="移动到800px" id="btn2" />
+    <div id="dv">
+        <script src="common.js"></script>
+        <script>
+            //点击按钮移动div
+            var json = {
+                'width' : 400,
+                'height' : 900,
+                'top' : 10,
+                'left' : 13,
+                'opacity' : 0.8,
+                'z-index' : 200
+            };
+            $("btn1").onclick = function () {
+                animate($('dv'),json)
+            };
+
+            function getStyle(element, attr) {
+                return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[attr];
+            };
+            
+            //缓动动画
+            function animate(element, json, fn) {
+                //清理定时器
+                clearInterval(element.timeId);
+                element.timeId = setInterval(function () {
+                    //设置flag，current == json[attr] 默认值为true,默认全部到达目标
+                    var flag = true;
+                    //循环遍历json对象，将json对象的键名作为要改变的属性，键值作为要改变的属性值
+                    for (var attr in json) {
+                        //判断attr是否是zIndex、opacity或宽高上左
+                        if (attr == 'z-index') {
+                            element.style[attr] = json[attr];
+                        }else if(attr == 'opacity') {
+                            //透明度变速改变
+                            var current = getStyle(element, attr)*100;
+                            var target = json[attr]*100;
+                            var step = (target - current) / 1000;
+                            //step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                            current = current/100;
+                            current += step;
+                            element.style[attr] = current;
+                            console.log(current)
+                        }else{
+                            //获取元素的当前位置
+                            var current = parseInt( getStyle(element,attr) );
+                            //当前的属性对应的目标值
+                            var target = json[attr];
+                            //移动的步数
+                            var step = (target - current) / 10;
+                            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                            current += step;
+                            element.style[attr] = current + "px"; //这里要用中括号，不能用点语法
+                            //flag = current == target ? true : false; 这行注释代码有bug
+                            if (current != target) {
+                                flag = false;
+                            }
+                        };
+                    };
+                    if (flag) {
+                        //清理定时器
+                        clearInterval(element.timeId);
+                        if (fn) {
+                            fn();
+                        };
+                    };
+                }, 20);
+            }
+        </script>
+    </div>
+</body>
+
+</html>
