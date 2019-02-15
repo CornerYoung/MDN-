@@ -94,11 +94,8 @@
                             step = step > 0 ? Math.ceil(step) : Math.floor(step);
                             current += step;
                             element.style[attr] = current + "px"; //这里要用中括号，不能用点语法
-                            //flag = current == target ? true : false; 这行注释代码有bug
-                            if (current != target) {
-                                flag = false;
-                            }
                         };
+                        flag = current == target ? true : false;
                     };
                     if (flag) {
                         //清理定时器
