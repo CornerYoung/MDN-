@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0001_构造函数、实例对象、原型之间的关系</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+    <h1>0001_构造函数、实例对象、原型之间的关系</h1>
+</body>
+<script>
+    function Student (name,age) {
+        this.name = name;
+        this.age = age;
+        this.speak = function () {
+            console.log(this.name)
+        };
+    };
+    var stu1 = new Student('Jack',18);
+    var stu2 = new Student('Rose',17);
+    console.log(stu1.speak == stu2.speak)
+
+
+    function Person (age,sex) {
+        this.age = age;
+        this.sex = sex;
+    };
+    Person.prototype.sayHi = function () {
+        console.log('Hi!')
+    };
+    var per = new Person(18,'男');
+    console.dir(Person);
+    console.dir(per);
+    console.log(per.__proto__ == Person.prototype);
+    console.log(per.__proto__.constructor == Person.prototype.constructor);
+    var per2 = new Person(30,'女');
+    console.log(per.sayHi == per2.sayHi)
+
+    /*
+    * 实例对象中有个属性，__proto__，也是对象，叫原型，不是标准的属性，是浏览器使用的
+    * 构造函数中又一个属性，prototype，也是对象，叫原型，是标准属性，程序员使用
+    *
+    * 原型 ------>  __proto__或者是prototype 都是原型对象，
+    * 原型的作用：共享数据，节省内存空间
+    * 
+    */
+</script>
+</html>
