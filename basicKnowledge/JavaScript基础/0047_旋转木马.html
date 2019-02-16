@@ -146,6 +146,7 @@ var arrow = document.getElementById('arrow');
 var arrLeft = document.getElementById('arrLeft');
 var arrRight = document.getElementById('arrRight');
 var liObjs = slide.children[0].children;
+var flag = true; //假设所有动画执行完毕===========锁
 var config = [
     {
         width: 400,
@@ -185,19 +186,27 @@ var config = [
 ];
 function assign () {
     for (var j=0;j<config.length;j++) {
-        animate(liObjs[j], config[j]);
+        animate(liObjs[j], config[j], function(){
+            flag = true;
+        });
     };
 };
 assign();
 //左边按钮
 arrLeft.onclick = function () {
-    config.unshift(config.pop());
-    assign();
+    if (flag) {
+        flag = false;
+        config.unshift(config.pop());
+        assign();
+    };
 };
 //右边按钮
 arrRight.onclick = function () {
-    config.push(config.shift());
-    assign();
+    if (flag) {
+        flag = false;
+        config.push(config.shift());
+        assign();
+    }
 };
 slide.onmousemove = function () {
     animate(arrow, { 'opacity': 1 });
