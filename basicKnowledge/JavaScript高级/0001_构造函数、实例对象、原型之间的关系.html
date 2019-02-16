@@ -24,7 +24,7 @@
     };
     var stu1 = new Student('Jack',18);
     var stu2 = new Student('Rose',17);
-    console.log(stu1.speak == stu2.speak)
+    console.log(stu1.speak == stu2.speak);
 
 
     function Person (age,sex) {
@@ -41,7 +41,7 @@
     console.log(per.__proto__.constructor == Person.prototype.constructor);
     var per2 = new Person(30,'女');
     console.log(per.sayHi == per2.sayHi)
-
+    per.__proto__.sayHi();
     /*
     * 实例对象中有个属性，__proto__，也是对象，叫原型，不是标准的属性，是浏览器使用的
     * 构造函数中又一个属性，prototype，也是对象，叫原型，是标准属性，程序员使用
