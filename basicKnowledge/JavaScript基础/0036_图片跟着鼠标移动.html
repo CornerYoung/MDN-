@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>图片跟着鼠标移动</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{height: 2000px;}
         h1 {
             text-align: center
         }
@@ -22,9 +27,93 @@
 <script src="common.js"></script>
 <script>
     var img = document.getElementById('img');
-    document.onmousemove = function (e) {
-        img.style.left = e.clientX + 'px';
-        img.style.top = e.clientY + 'px';
-    };
+    //文档的鼠标移动事件
+    //对象   事件   事件处理函数,事件触发了,函数的代码就会执行,执行的时候,函数调用的时候
+    //通过arguments.length，可以得出:事件处理函数中实际上是有一个参数的,这个参数和事件有关系,是一个对象----->事件参数对象
+
+    //谷歌和火狐中都有这个事件参数对象,IE8中没有
+    //事件参数对象:e----在IE8中用window.event来代替
+
+    //方案一
+    // document.onmousemove = function (e) {
+    //     e = e || window.event;
+    //     //console.log(arguments[0])
+    //     img.style.left = e.clientX + 'px';
+    //     img.style.top = e.clientY + 'px';
+    // };
+
+    //方案二
+    // document.onmousemove = function (e) {
+    //     //ie8不支持pageX，pageY
+    //     img.style.left = e.pageX + 'px';
+    //     img.style.top = e.pageY + 'px';
+    // };
+
+    //图片跟着鼠标飞,可以在任何的浏览器中实现
+        //window.event和事件参数对象e的兼容
+        //clientX和clientY单独的使用的兼容代码
+        //scrollLeft和scrollTop的兼容代码
+        //pageX,pageY和clientX+scrollLeft 和clientY+scrollTop
+
+        //把代码封装在一个函数
+
+        //把代码放在一个对象中
+        var evt = {
+            //window.event和事件参数对象e的兼容
+            getEvent: function (evt) {
+                return window.event || evt;
+            },
+            //可视区域的横坐标的兼容代码
+            getClientX: function (evt) {
+                return this.getEvent(evt).clientX;
+            },
+            //可视区域的纵坐标的兼容代码
+            getClientY: function (evt) {
+                return this.getEvent(evt).clientY;
+            },
+            //页面向左卷曲出去的横坐标
+            getScrollLeft: function () {
+                return window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft || 0;
+            },
+            //页面向上卷曲出去的纵坐标
+            getScrollTop: function () {
+                return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
+            },
+            //相对于页面的横坐标(pageX或者是clientX+scrollLeft)
+            getPageX: function (evt) {
+                return this.getEvent(evt).pageX ? this.getEvent(evt).pageX : this.getClientX(evt) + this.getScrollLeft();
+            },
+            //相对于页面的纵坐标(pageY或者是clientY+scrollTop)
+            getPageY: function (evt) {
+                return this.getEvent(evt).pageY ? this.getEvent(evt).pageY : this.getClientY(evt) + this.getScrollTop();
+            }
+
+
+
+        };
+        //最终的代码
+
+        document.onmousemove = function (e) {
+            img.style.left = evt.getPageX(e) + "px";
+            img.style.top = evt.getPageY(e) + "px";
+        };
+
+
+
+//  var obj={
+//    sayHi:function () {
+//      console.log("考尼奇瓦");
+//      this.eat();//this就是obj这个对象
+//    },
+//    eat:function () {
+//      console.log("饭以ok,下来密西吧");
+//    }
+//
+//  };
+//  //调用sayHi方法的同时,调用eat方法,是否可以在一个方法中调用另一个方法?
+//  //在对象的方法中调用另一个方法如何调用?
+//
+//  obj.sayHi();
+
 </script>
 </html> 
