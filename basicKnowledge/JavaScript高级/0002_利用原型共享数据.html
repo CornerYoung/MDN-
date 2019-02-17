@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0002_利用原型共享数据</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+    <h1>0002_利用原型共享数据</h1>
+</body>
+<script>
+    function Student (name,age) {
+        this.name = name;
+        this.age = age;
+        this.speak = function () {
+            console.log(this.name)
+        };
+    };
+
+    //简单的原型写法
+    Student.prototype = {
+        constructor : Student,
+        height : 180,
+        weight : 70,
+        study : function () {
+            console.log('敲代码')
+        }
+    }
+    var stu1 = new Student('Jack',18);
+    stu1.speak();
+    stu1.study();
+    console.dir(Student);
+    console.dir(stu1);
+
+
+    
+    /*
+    * 使用给原型赋值对象的简单原型写法，必须手动修改构造器的指向
+    * 
+    *
+    * 
+    * 
+    * 
+    * 
+    */
+</script>
+</html>
