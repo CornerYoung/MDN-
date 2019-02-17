@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0003_原型中的方法是可以互相访问的</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0003_原型中的方法是可以互相访问的</h1>
+</body>
+<script>
+    function Animal(name, age) {
+        this.name = name;
+        this.age = age;
+    };
+
+    //简单的原型写法
+    Animal.prototype.eat = function () {
+        console.log('动物喜欢吃树叶');
+        this.play();
+    };
+    Animal.prototype.play = function () {
+        console.log('动物喜欢玩球');
+        this.sleep();
+    };
+    Animal.prototype.sleep = function () {
+        console.log('动物喜欢睡觉')
+    };
+    var dog = new Animal('Jack', 18);
+    dog.eat();
+
+
+
+    /*
+    * 原型对象中的方法，可以互相调用。
+    * 
+    * 
+    */
+</script>
+
+</html>
