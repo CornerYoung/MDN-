@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0005_产生随机数对象</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0005_产生随机数对象</h1>
+</body>
+<script>
+    (function (win) {
+        //产生随机数的构造函数
+        function Random () {};
+        //在原型对象中添加方法
+        Random.prototype.getRandom = function (min,max) {
+            return Math.floor(Math.random()*max+min);
+        };
+        //把Random对象暴露给顶级对象window --------> 外部可以直接使用这个对象
+        win.random = new Random();
+    })(window);
+
+    var rm = random.getRandom(10,50)
+    console.log(rm)
+
+    /*
+    * 如何把局部变量变成全局变量？
+    * 把局部变量给window就可以了
+    */
+</script>
+
+</html>
