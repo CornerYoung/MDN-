@@ -52,6 +52,12 @@
     //在Food原型对象上添加初始化食物的函数，创建食物小方块，设置宽高颜色位置加入到map中去（作用：在页面上显示这个食物）
     //因为食物要在地图上显示，所以需要地图这个参数（map--就是页面上的.class=map的这个div）
     Food.prototype.init = function (map) {
+
+        //初始化的时候先删除这个小食物
+        //外部无法访问的函数
+        remove();
+
+
         //创建div，加入到地图中去
         var div = document.createElement('div');
         //设置食物的属性
@@ -74,6 +80,19 @@
 
         //把div加入到数组elements中去
         elements.push(div);
+
+    };
+    
+    //私有函数，外部无法访问，删除食物的作用
+    function remove () {
+        //  elements数组中有这个食物
+        for (var i=0;i<elements.length;i++) {
+            //找到这个子元素（食物）的父元素，从父元素中删除子元素
+            var ele = elements[i];
+            ele.parentNode.removeChild(ele);
+            //在elements数组中也要删掉这个食物
+            elements.splice(i,1)
+        };
     };
 
     //把Food暴露给window，外部可以使用
@@ -83,7 +102,7 @@
 
 //外部测试代码
 var fd = new Food();
-fd.init(document.querySelector('.map'))
+fd.init(document.querySelector('.map'));
 console.log(fd.x+'==========='+fd.y)
    
 
