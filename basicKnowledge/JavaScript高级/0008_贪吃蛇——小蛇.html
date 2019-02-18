@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>0007_贪吃蛇——创建食物</title>
+    <title>0008_贪吃蛇——小蛇</title>
     <style>
         h1 {
             text-align: center
@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <h1>0007_贪吃蛇——创建食物</h1>
+    <h1>0008_贪吃蛇——小蛇</h1>
     <div class="map"></div>
 </body>
 <script>
@@ -93,6 +93,9 @@
 
     //自调用函数---小蛇
     (function(){
+        //用来存放小蛇的身体
+        var elements = [];
+
         //小蛇的构造函数
         function Snake (width,height,direction) {
             //小蛇的每个部分的宽
@@ -109,11 +112,37 @@
             //方向
             this.direction = direction || 'right';
         };
+
+        //添加原型方法，小蛇初始化函数
+        Snake.prototype.init = function (map) {
+            for (var i=0;i<this.body.length;i++) {
+                //保存小蛇每一块身体的位置和颜色值
+                var obj = this.body[i];
+                //创建小蛇div
+                var div = document.createElement('div');
+                div.style.position = 'absolute';
+                div.style.width = this.width+'px';
+                div.style.height = this.height+'px';
+                div.style.left = obj.x*this.width+'px';
+                div.style.top = obj.y*this.height+'px';
+                div.style.backgroundColor = obj.color;
+                //把小蛇身体加入到地图中去
+                map.appendChild(div);
+
+                //把小蛇加入到elements数组中
+                elements.push(div);
+            };
+        };
+
+        //把Snake暴露给window，在外部进行访问
+        window.Snake = Snake;
     }());
 
     //外部测试代码
     var fd = new Food();
     fd.init(document.querySelector('.map'));
+    var snake = new Snake();
+    snake.init(document.querySelector('.map'));
     console.log(fd.x + '===========' + fd.y)
 
 
