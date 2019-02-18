@@ -134,6 +134,34 @@
             };
         };
 
+        //为原型添加方法-------小蛇动起来
+        Snake.prototype.move = function (map,food) {
+            //改变小蛇的身体位置坐标
+            var i = this.body.length-1; //2
+            //倒循环遍历
+            for (;i>0;i--) {
+                //小蛇身体第二块（从右往左数，去掉头）的坐标被第一块的坐标替换掉，第一块坐标被蛇头坐标换掉
+                this.body[i].x = this.body[i-1].x;
+                this.body[i].y = this.body[i-1].y;
+            };
+
+            //通过判断蛇头的方向，确定舌头的横纵坐标
+            switch (this.direction) {
+                case 'right' :
+                    this.body[0].x += 1;
+                    break;
+                case 'left' :
+                    this.body[0].x -= 1;
+                    break;
+                case 'top' :
+                    this.body[0].y -= 1;
+                    break;
+                case 'bottom' :
+                    this.body[0].y += 1;
+                    break;
+            };
+        };
+
         //把Snake暴露给window，在外部进行访问
         window.Snake = Snake;
     }());
