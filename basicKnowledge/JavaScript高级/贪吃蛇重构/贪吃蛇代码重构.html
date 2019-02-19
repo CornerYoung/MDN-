@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇代码重构</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+        .map {
+            width: 800px;
+            height: 600px;
+            background-color: #ccc;
+            position: relative;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>贪吃蛇代码重构，js文件分离</h1>
+    <div class="map"></div>
+</body>
+<script src="food.js"></script>
+<script src="snake.js"></script>
+<script src="game.js"></script>
+<script>
+    var game = new Game(document.querySelector('.map'));
+    game.init();
+</script>
+
+</html>
