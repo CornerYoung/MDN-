@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0001_左右固定，中间自适应</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .layout article div{
+        min-height: 100px;
+    }
+    </style>
+</head>
+<body>
+    <section class="layout float">
+        <style>
+            .layout.float .left{
+                float: left;
+                width: 300px;
+                background-color: powderblue;
+            }    
+            .layout.float .right{
+                float: right;
+                width: 200px;
+                background-color: palegoldenrod;
+            }
+            .center{
+                background-color: orange;
+            }
+        </style>
+        <article class="left-right-center">
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="center">
+                <h1>浮动解决方案</h1>
+                1.这是三栏布局中间部分
+            </div>
+        </article>
+    </section>
+</body>
+</html>
