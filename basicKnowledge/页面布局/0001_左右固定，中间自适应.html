@@ -6,39 +6,178 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>0001_左右固定，中间自适应</title>
     <style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    .layout article div{
-        min-height: 100px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .layout{
+            margin-top: 20px;
+            min-height: 100px;
+        }
+        .layout article div {
+            min-height: 100px;
+        }
     </style>
 </head>
 <body>
+    <!-- 浮动解决方案 -->
     <section class="layout float">
         <style>
-            .layout.float .left{
+            .layout.float .left {
                 float: left;
                 width: 300px;
-                background-color: powderblue;
-            }    
-            .layout.float .right{
+                background-color: salmon;
+            }
+            .layout.float .right {
                 float: right;
                 width: 200px;
-                background-color: palegoldenrod;
+                background-color: greenyellow;
             }
-            .center{
-                background-color: orange;
+            .layout.float .center {
+                background-color: blueviolet;
             }
         </style>
         <article class="left-right-center">
+            <!-- 使用articl标签（作为容器）把这三部分包起来 -->
             <div class="left"></div>
             <div class="right"></div>
             <div class="center">
                 <h1>浮动解决方案</h1>
                 1.这是三栏布局中间部分
             </div>
+        </article>
+    </section>
+
+    <!-- 绝对定位解决方案 -->
+    <section class="layout absolute">
+        <style>
+            .layout.absolute .left-center-right>div{
+                position: absolute;
+            }
+            .layout.absolute .left {
+                width: 300px;
+                left: 0;
+                background-color: powderblue;
+            }
+            .layout.absolute .right {
+                width: 200px;
+                right: 0;
+                background-color: palegoldenrod;
+            }
+            .layout.absolute .center {
+                left: 300px;
+                right: 200px;
+                background-color: orange;
+            }
+        </style>
+        <article class="left-center-right">
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="center">
+                <h1>绝对定位解决方案</h1>
+                1.这是三栏布局中间部分
+            </div>
+        </article>
+    </section>
+
+    <!-- flexbox布局解决方案 -->
+    <section class="layout flex">
+        <style>
+            .layout.flex .left-center-right{
+                display: flex;
+                justify-content: space-between;
+            }
+    
+            .layout.flex .left {
+                width: 300px;
+                background-color: khaki;
+            }
+    
+            .layout.flex .right {
+                width: 200px;
+                background-color: lawngreen;
+            }
+    
+            .layout.flex .center {
+                background-color: royalblue;
+                flex: 1;
+            }
+        </style>
+        <article class="left-center-right">
+            <div class="left"></div>
+            <div class="center">
+                <h1>flexbox布局解决方案</h1>
+                1.这是三栏布局中间部分
+            </div>
+            <div class="right"></div>
+        </article>
+    </section>
+
+    <!-- 表格布局解决方案 -->
+    <section class="layout table">
+        <style>
+            .layout.table .left-center-right {
+                /* 让容器作为一个表格，宽度设置为100%，也就是包容块达到了宽度和页面宽度是相同的 */
+                display: table;
+                width: 100%;
+            }
+            .layout.table .left-center-right>div{
+                display: table-cell;
+                height: 100px;
+            }
+            .layout.table .left {
+                width: 300px;
+                background-color: firebrick;
+            }
+    
+            .layout.table .right {
+                width: 200px;
+                background-color: lightseagreen;
+            }
+    
+            .layout.table .center {
+                background-color: yellow;
+            }
+        </style>
+        <article class="left-center-right">
+            <div class="left"></div>
+            <div class="center">
+                <h1>表格布局解决方案</h1>
+                1.这是三栏布局中间部分
+            </div>
+            <div class="right"></div>
+        </article>
+    </section>
+
+    <!-- 网格布局解决方案 -->
+    <section class="layout grid">
+        <style>
+            .layout.grid .left-center-right {
+                /* 容器声明为网格布局 */
+                display: grid;
+                width: 100%;
+                grid-template-rows: 100px;
+                grid-template-columns: 300px auto 200px;
+            }
+            .layout.grid .left {
+                background-color: hotpink;
+            }
+    
+            .layout.grid .right {
+                background-color: chartreuse;
+            }
+    
+            .layout.grid .center {
+                background-color: navajowhite;
+            }
+        </style>
+        <article class="left-center-right">
+            <div class="left"></div>
+            <div class="center">
+                <h1>网格布局解决方案</h1>
+                1.这是三栏布局中间部分
+            </div>
+            <div class="right"></div>
         </article>
     </section>
 </body>
