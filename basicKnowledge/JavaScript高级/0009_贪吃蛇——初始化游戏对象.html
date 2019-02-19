@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0009_贪吃蛇——初始化游戏对象</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .map {
+            width: 800px;
+            height: 600px;
+            background-color: #ccc;
+            position: relative;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0009_贪吃蛇——初始化游戏对象</h1>
+    <div class="map"></div>
+</body>
+<script>
+    //创建食物,自调用函数
+    (function () {
+        var elements = []; //用来存放每个小方块食物的
+        //食物就是一个对象，有宽，有高，有颜色，有位置（横纵坐标），先定义构造函数，然后创建对象
+        function Food(x, y, width, height, color) {
+            //横纵坐标
+            this.x = x || 0;
+            this.y = y || 0;
+            //宽和高
+            this.width = width || 20;
+            this.height = height || 20;
+            //背景颜色
+            this.color = color || 'green';
+        };
+        //在Food原型对象上添加初始化食物的函数，创建食物小方块，设置宽高颜色位置加入到map中去（作用：在页面上显示这个食物）
+        //因为食物要在地图上显示，所以需要地图这个参数（map--就是页面上的.class=map的这个div）
+        Food.prototype.init = function (map) {
+
+            //初始化的时候先删除这个小食物
+            //外部无法访问的函数
+            remove();
+
+
+            //创建div，加入到地图中去
+            var div = document.createElement('div');
+            //设置食物的属性
+            //横纵坐标先停止-------随机产生
+            // div.style.left = this.x;
+            // div.style.top = this.y;
+            div.style.width = this.width + 'px';
+            div.style.height = this.height + 'px';
+            div.style.backgroundColor = this.color;
+            //先脱离文档流
+            div.style.position = 'absolute';
+            //随机横纵坐标
+            this.x = parseInt(Math.random() * (map.offsetWidth / this.width)) * this.width;
+            this.y = parseInt(Math.random() * (map.offsetHeight / this.height)) * this.height;
+            div.style.left = this.x + 'px';
+            div.style.top = this.y + 'px';
+
+            //把创建好的食物加入到地图中去
+            map.appendChild(div);
+
+            //把div加入到数组elements中去
+            elements.push(div);
+
+        };
+
+        //私有函数，外部无法访问，删除食物的作用
+        function remove() {
+            //  elements数组中有这个食物
+            for (var i = 0; i < elements.length; i++) {
+                //找到这个子元素（食物）的父元素，从父元素中删除子元素
+                var ele = elements[i];
+                ele.parentNode.removeChild(ele);
+                //在elements数组中也要删掉这个食物
+                elements.splice(i, 1)
+            };
+        };
+
+        //把Food暴露给window，外部可以使用
+        window.Food = Food;
+    }());
+
+    //自调用函数---小蛇
+    (function () {
+        //用来存放小蛇的身体
+        var elements = [];
+
+        //小蛇的构造函数
+        function Snake(width, height, direction) {
+            //小蛇的每个部分的宽
+            this.width = width || 20;
+            this.height = height || 20;
+
+            //身体
+            this.body = [{
+                    x: 3,
+                    y: 2,
+                    color: 'red'
+                }, //=======头
+                {
+                    x: 2,
+                    y: 2,
+                    color: 'orange'
+                }, //=====身体
+                {
+                    x: 1,
+                    y: 2,
+                    color: 'orange'
+                } //=====身体
+            ];
+
+            //方向
+            this.direction = direction || 'right';
+        };
+
+        //添加原型方法，小蛇初始化函数
+        Snake.prototype.init = function (map) {
+
+            //在显示新的小蛇时，先删除原来的小蛇，形成小蛇运动的效果
+            remove();
+
+            for (var i = 0; i < this.body.length; i++) {
+                //保存小蛇每一块身体的位置和颜色值
+                var obj = this.body[i];
+                //创建小蛇div
+                var div = document.createElement('div');
+                div.style.position = 'absolute';
+                div.style.width = this.width + 'px';
+                div.style.height = this.height + 'px';
+                div.style.left = obj.x * this.width + 'px';
+                div.style.top = obj.y * this.height + 'px';
+                div.style.backgroundColor = obj.color;
+                //把小蛇身体加入到地图中去
+                map.appendChild(div);
+
+                //把小蛇加入到elements数组中，是为了后面删除
+                elements.push(div);
+            };
+        };
+
+        //为原型添加方法-------小蛇动起来
+        Snake.prototype.move = function (food, map) {
+
+            //改变小蛇的身体位置坐标
+            var i = this.body.length - 1; //2
+            //倒循环遍历
+            for (; i > 0; i--) {
+                //小蛇身体第二块（从右往左数，去掉头）的坐标被第一块的坐标替换掉，第一块坐标被蛇头坐标换掉
+                this.body[i].x = this.body[i - 1].x;
+                this.body[i].y = this.body[i - 1].y;
+            };
+
+            //通过判断蛇头的方向，确定舌头的横纵坐标
+            switch (this.direction) {
+                case 'right':
+                    this.body[0].x += 1;
+                    break;
+                case 'left':
+                    this.body[0].x -= 1;
+                    break;
+                case 'top':
+                    this.body[0].y -= 1;
+                    break;
+                case 'bottom':
+                    this.body[0].y += 1;
+                    break;
+            };
+        };
+
+        //删除旧小蛇函数--------私有函数
+        function remove() {
+            //获取数组
+            var i = elements.length - 1;
+            for (; i >= 0; i--) { //这里 >= 0 是要把蛇头也从地图上删掉
+                //先从当前的子元素中找到该子元素的父级元素，然后再删除这个子元素
+                var ele = elements[i];
+                //从地图上删除这个子元素div
+                ele.parentNode.removeChild(ele);
+                //在数组中也删除这个子元素
+                elements.splice(i, 1)
+            };
+        };
+
+        //把Snake暴露给window，在外部进行访问
+        window.Snake = Snake;
+    }());
+
+    //自调用函数---游戏对象
+    (function () {
+        //准备that，保存指向实例对象的this，用于内部有函数调用的话，指向不变
+        var that = null;
+
+        function Game (map) {
+            this.food = new Food(); //食物对象
+            this.snake = new Snake();//小蛇对象
+            this.map = map;//地图
+            //将实例对象的this保存在that中
+            that = this;
+        };
+
+        Game.prototype.init = function () {
+            
+            //初始化食物
+            this.food.init(this.map);
+            //初始化小蛇
+            this.snake.init(this.map);
+
+            //在setInterval中，this指向顶级对象window，不再是实例对象，应该在setInterval外面把实例对象的this保存下来
+            setInterval(function(){
+                that.snake.move(that.food,that.map);
+                that.snake.init(that.map);
+            },100);
+        };
+
+        window.Game = Game;
+    }());
+
+
+    //外部测试代码
+    var game = new Game(document.querySelector('.map'));
+    game.init();
+</script>
+
+</html>
