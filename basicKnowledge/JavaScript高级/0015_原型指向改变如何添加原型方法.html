@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0015_原型指向改变如何添加原型方法</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0015_原型指向改变如何添加原型方法</h1>
+</body>
+<script>
+    //    //人的构造函数
+    //    function Person(age) {
+    //      this.age=age;
+    //    }
+    //    //人的原型中添加方法
+    //    Person.prototype.eat=function () {
+    //      console.log("人正在吃东西");
+    //    };
+    //    //学生构造函数
+    //    function Student(sex) {
+    //      this.sex=sex;
+    //    }
+    //
+    //    //学生的原型中添加方法----先在原型中添加方法
+    //    Student.prototype.sayHi=function () {
+    //      console.log("您好哦");
+    //    };
+    //    //改变了原型对象的指向
+    //    Student.prototype=new Person(10);
+    //
+    //    var stu=new Student("男");
+    //    stu.eat();
+    //    stu.sayHi();
+    //
+
+
+    //
+    //    //人的构造函数
+    //    function Person(age) {
+    //      this.age=age;
+    //    }
+    //    //人的原型中添加方法
+    //    Person.prototype.eat=function () {
+    //      console.log("人正在吃东西");
+    //    };
+    //    //学生构造函数
+    //    function Student(sex) {
+    //      this.sex=sex;
+    //    }
+    //
+    //    //改变了原型对象的指向
+    //    Student.prototype=new Person(10);
+    //    //学生的原型中添加方法----先在原型中添加方法
+    //    Student.prototype.sayHi=function () {
+    //      console.log("您好哦");
+    //    };
+    //    var stu=new Student("男");
+    //    stu.eat();
+    //    stu.sayHi();
+    //
+    //    console.dir(stu);
+
+    //如果原型指向改变了,那么就应该在原型改变指向之后添加原型方法
+
+
+    function Person(age) {
+        this.age = age;
+    }
+
+    //指向改变了
+    Person.prototype = {
+        eat: function () {
+            console.log("吃");
+        }
+    };
+    //添加原型方法
+    Person.prototype.sayHi = function () {
+        console.log("您好");
+    };
+    var per = new Person(10);
+    per.sayHi();
+</script>
+
+</html>
