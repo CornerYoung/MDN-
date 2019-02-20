@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0017_页面中一个div的原型链</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0017_页面中一个div的原型链</h1>
+</body>
+<script>
+    var divObj = document.getElementById("dv");
+    console.dir(divObj);
+
+    //divObj.__proto__---->HTMLDivElement.prototype的__proto__--->HTMLElement.prototype的__proto__---->Element.prototype的__proto__---->Node.prototype的__proto__---->EventTarget.prototype的__proto__---->Object.prototype没有__proto__,所以,Object.prototype中的__proto__是null
+</script>
+
+</html>
