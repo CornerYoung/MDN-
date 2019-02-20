@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0013_原型指向可以改变及原型链</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0013_原型指向可以改变及原型链</h1>
+</body>
+<script>
+    function Person (age) {
+        this.age = age;
+        //console.log(this);
+    };
+
+    Person.prototype.speak = function () {
+        console.log(this);
+        console.log('speak')
+    };
+
+    //var per = new Person(10);
+    //per.speak();
+    
+    function Animal () {
+        this.name = 'Durent';
+        //console.log(this);
+    };
+
+    Animal.prototype.eat = function () {
+        console.log(this);
+    };
+
+    Animal.prototype = new Person(30);
+
+    var animal = new Animal();
+    animal.speak(); //
+    //animal.eat(); //报错
+    
+
+    /*
+    *
+    * 原型指向可以改变
+    * 实例对象的原型 __proto__ 指向的是该实例对象所在的构造函数的原型对象
+    * 构造函数的原型对象（prototype）指向如果改变了，实例对象的原型（__proto__）指向也会发生改变
+    * 
+    * 实例对象和原型对象之间的关系是通过 __proto__ 原型来联系起来的，这个关系就是原型链
+    * 
+    */
+</script>
+
+</html>
