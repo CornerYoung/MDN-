@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0019_继承案例</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0019_继承案例</h1>
+</body>
+<script>
+function Animal (name,weight) {
+    this.name = name;
+    this.weight = weight;
+};
+Animal.prototype.eat = function () {
+    console.log('吃东西！');
+};
+
+function Dog (color) {
+    this.color = color;
+};
+Dog.prototype = new Animal('啸天犬','50KG');
+Dog.prototype.bitePerson = function () {
+    console.log('咬人！');
+};
+var dog = new Dog('black');
+console.log(dog.name)
+
+function ErHa (sex) {
+    this.sex = sex;
+};
+ErHa.prototype = new Dog('black');
+ErHa.prototype.play = function(){
+    console.log('逗你玩！！！');
+};
+
+var erHa = new ErHa('男');
+    console.log(erHa.name)
+    console.log(erHa.weight)
+    console.log(erHa.color)
+    console.log(erHa.sex)
+    erHa.eat();
+    erHa.bitePerson();
+    erHa.play();
+</script>
+
+</html>
