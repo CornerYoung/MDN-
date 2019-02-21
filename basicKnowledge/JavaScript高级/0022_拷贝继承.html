@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0022_拷贝继承</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0022_拷贝继承</h1>
+</body>
+<script>
+    //拷贝继承；把一个对象中的属性或者方法直接复制到另一个对象中
+
+    //    var obj1={
+    //      name:"James",
+    //      age:20,
+    //      sleep:function () {
+    //       console.log("GOAT!");
+    //      }
+    //    };
+    //
+    //    //改变了地址的指向
+    //    var obj2=obj1;
+    //    console.log(obj2.name,obj2.age);
+    //    obj2.sleep();
+
+
+
+    //    var obj1={
+    //      name:"James",
+    //      age:20,
+    //      sleep:function () {
+    //        console.log("GOAT!");
+    //      }
+    //    };
+    //
+    //
+    //    var obj2={};
+    //    for(var key in obj1){
+    //      obj2[key]=obj1[key];
+    //    }
+    //    console.log(obj2.name);
+
+
+
+    function Person() {}
+    Person.prototype.age = 33;
+    Person.prototype.sex = "男";
+    Person.prototype.height = 100;
+    Person.prototype.play = function () {
+        console.log("GOAT!");
+    };
+    var obj2 = {};
+    //Person的构造中有原型prototype,prototype就是一个对象,那么里面,age,sex,height,play都是该对象中的属性或者方法
+
+    for (var key in Person.prototype) {
+        obj2[key] = Person.prototype[key];
+    }
+    console.dir(obj2);
+    obj2.play();
+</script>
+
+</html>
