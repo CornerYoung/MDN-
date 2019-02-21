@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0024_函数声明和函数表达式的区别</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0024_函数声明和函数表达式的区别</h1>
+</body>
+<script>
+    //函数声明
+    //
+    //    if(true){
+    //      function f1() {
+    //        console.log("哈哈,我又变帅了");
+    //      }
+    //    }else{
+    //      function f1() {
+    //        console.log("小苏好猥琐");
+    //      }
+    //    }
+    //    f1();
+
+
+    //函数表达式
+
+    var ff;
+    if (true) {
+        ff = function () {
+            console.log("哈哈,我又变帅了");
+        };
+    } else {
+        ff = function () {
+            console.log("小苏好猥琐");
+        };
+    }
+    ff();
+
+    //函数声明如果放在if-else的语句中,在IE8的浏览器中会出现问题
+    //以后宁愿用函数表达式,都不用函数声明
+</script>
+
+</html>
