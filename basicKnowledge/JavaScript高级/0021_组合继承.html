@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0021_组合继承</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0021_组合继承</h1>
+</body>
+<script>
+    //原型实现继承
+    //借用构造函数实现继承
+    //组合继承:原型继承+借用构造函数继承
+
+    function Person(name, age, sex) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+    Person.prototype.sayHi = function () {
+        console.log("阿涅哈斯诶呦");
+    };
+
+    function Student(name, age, sex, score) {
+        //借用构造函数:属性值重复的问题
+        Person.call(this, name, age, sex);
+        this.score = score;
+    }
+    //改变原型指向----继承
+    Student.prototype = new Person(); //不传值
+    Student.prototype.eat = function () {
+        console.log("吃东西");
+    };
+    var stu = new Student("小黑", 20, "男", "100分");
+    console.log(stu.name, stu.age, stu.sex, stu.score);
+    stu.sayHi();
+    stu.eat();
+    var stu2 = new Student("小黑黑", 200, "男人", "1010分");
+    console.log(stu2.name, stu2.age, stu2.sex, stu2.score);
+    stu2.sayHi();
+    stu2.eat();
+
+    //属性和方法都被继承了
+</script>
+
+</html>
