@@ -17,41 +17,172 @@
     <h1>0027_apply和call方法的使用</h1>
 </body>
 <script>
-    //函数是对象,对象不一定是函数
+    //apply和call的使用
+    //作用:可以改变this的指向
 
-    //对象中有__proto__原型,是对象
-    //函数中有prototype原型,是对象
-
-    //    function F1() {
+    //    function f1(x,y) {
+    //      console.log("结果是:"+(x+y)+this);
+    //      return "10000";
     //    }
-    //
-    //    console.dir(F1);
-    //
-    //    console.dir(Math);//中有__proto__,但是没有prorotype
-    //
-    //    //对象中有__proto__,函数中应该有prototype
-    //
-    //    如果一个东西里面有prototype，又有__proto__,说明是函数,也是对象
+    //    f1(10,20);//函数的调用
 
-    //
-    //    function F1(name) {
-    //      this.name=name;
+
+    //console.log("========");
+    //此时的f1实际上是当成对象来使用的,对象可以调用方法
+    //apply和call方法也是函数的调用的方式
+    //f1.apply();
+    //f1.call();
+    //console.log("==========");
+    //f1.apply(null);
+    //f1.call(null);
+
+    //apply和call方法中如果没有传入参数,或者是传入的是null,那么调用该方法的函数对象中的this就是默认的window
+
+    //f1.apply(null,[100,200]);
+    //f1.call(null,100,200);
+
+    //apply和call都可以让函数或者方法来调用,传入参数和函数自己调用的写法不一样,但是效果是一样的
+
+    //    var result1=f1.apply(null,[10,20]);
+    //    var result2=f1.call(null,10,20);
+    //    console.log(result1);
+    //    console.log(result2);
+
+
+
+
+
+    //    function f1(x,y) {
+    //      console.log("这个函数是window对象的一个方法:"+(x+y)+this.sex);
     //    }
+    //    window.f1(10,20);
+    //    //obj是一个对象
+    //    var obj={
+    //      age:10,
+    //      sex:"男"
+    //    };
     //
-    //    console.dir(F1);
+    //    window.f1.apply(obj,[10,20]);
+    //    window.f1.call(obj,10,20);
+    //    console.dir(obj);
 
 
-    //所有的函数实际上都是Function的构造函数创建出来的实例对象
-    //    var f1=new Function("num1","num2","return num1+num2");
-    //    console.log(f1(10,20));
-    //    console.log(f1.__proto__==Function.prototype);
-
-    //所以,函数实际上也是对象
-
-    //  console.dir(f1);
+    //apply和call可以改变this的指向
 
 
+    function Person(age, sex) {
+        this.age = age;
+        this.sex = sex;
+    }
+    //通过原型添加方法
+    Person.prototype.sayHi = function (x, y) {
+        console.log("您好啊:" + this.sex);
+        return 1000;
+    };
+    var per = new Person(10, "男");
+    per.sayHi();
+
+    console.log("==============");
+
+    function Student(name, sex) {
+        this.name = name;
+        this.sex = sex;
+    }
+    var stu = new Student("小明", "人妖");
+    var r1 = per.sayHi.apply(stu, [10, 20]);
+    var r2 = per.sayHi.call(stu, 10, 20);
+
+    console.log(r1);
+    console.log(r2);
+
+    //apply和call都可以改变this的指向
+    //函数的调用,改变this的指向
+    //    function f1(x,y) {
+    //      console.log((x+y)+":===>"+this);
+    //      return "这是函数的返回值";
+    //    }
+    //    //apply和call调用
+    //    var r1=f1.apply(null,[1,2]);//此时f1中的this是window
+    //    console.log(r1);
+    //    var r2=f1.call(null,1,2);//此时f1中的this是window
+    //    console.log(r2);
+    //    console.log("=============>");
+    //    //改变this的指向
+    //    var obj={
+    //      sex:"男"
+    //    };
+    //    //本来f1函数是window对象的,但是传入obj之后,f1函数此时就是obj对象的
+    //    var r3=f1.apply(obj,[1,2]);//此时f1中的this是obj
+    //    console.log(r3);
+    //    var r4=f1.call(obj,1,2);//此时f1中的this是obj
+    //    console.log(r4);
+
+
+    //方法改变this的指向
+
+    //    function Person(age) {
+    //      this.age = age;
+    //    }
+    //    Person.prototype.sayHi = function (x, y) {
+    //      console.log((x + y) + ":====>" + this.age);//是实例对象
+    //    };
+    //
+    //    function Student(age) {
+    //      this.age = age;
+    //    }
+    //    var per = new Person(10);//实例对象
+    //    var stu = new Student(100);//实例对象
+    //    //sayHi方法是per实例对象的
+    //    per.sayHi.apply(stu, [10, 20]);
+    //    per.sayHi.call(stu, 10, 20);
+
+
+    //apply和call的使用方法
+    /*
+     * apply的使用语法
+     * 函数名字.apply(对象,[参数1,参数2,...]);
+     * 方法名字.apply(对象,[参数1,参数2,...]);
+     * call的使用语法
+     * 函数名字.call(对象,参数1,参数2,...);
+     * 方法名字.call(对象,参数1,参数2,...);
+     *
+     * 作用:改变this的指向
+     * 不同的地方:参数传递的方式是不一样的
+     *
+     * 只要是想使用别的对象的方法,并且希望这个方法是当前对象的,那么就可以使用apply或者是call的方法改变this的指向
+     *
+     * */
+
+
+    function f1() {
+        console.log(this + ":====>调用了");
+    }
+    //f1是函数,f1也是对象
+    console.dir(f1);
+    //对象调用方法,说明,该对象中有这个方法
+    f1.apply();
+    f1.call();
+    console.log(f1.__proto__ == Function.prototype);
+    //所有的函数都是Function的实例对象
+    console.log(Function.prototype); //ƒ () { [native code] }
     console.dir(Function);
+    //apply和call方法实际上并不在函数这个实例对象中,而是在Function的prototype中
+
+
+    function Person() {
+        this.sayHi = function () {
+            console.log("您好");
+        };
+    }
+    Person.prototype.eat = function () {
+        console.log("吃");
+    };
+
+    var per = new Person();
+    per.sayHi();
+    per.eat();
+    console.dir(per);
+    //实例对象调用方法,方法要么在实例对象中存在,要么在原型对象中存在
 </script>
 
 </html>
