@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0028_bind方法和应用</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0028_bind方法和应用</h1>
+</body>
+<script>
+    function f1(x, y) {
+        console.log((x + y) + ":=====>" + this.age);
+    }
+
+
+    //复制了一份的时候,把参数传入到了f1函数中,x===>10,y===>20,null就是this,默认就是window
+    //bind方法是复制的意思,参数可以在复制的时候传进去,也可以在复制之后调用的时候传入进去
+    //apply和call是调用的时候改变this指向
+    //bind方法,是复制一份的时候,改变了this的指向
+
+
+    //    var ff=f1.bind(null);
+    //    ff(10,20);
+
+
+    //    function Person() {
+    //      this.age = 1000;
+    //    }
+    //    Person.prototype.eat = function () {
+    //      console.log("这个是吃");
+    //    };
+    //    var per = new Person();
+    //
+    //    var ff = f1.bind(per, 10, 20);
+    //    ff();
+
+
+
+
+    function Person(age) {
+        this.age = age;
+    }
+    Person.prototype.play = function () {
+        console.log(this + "====>" + this.age);
+    };
+
+    function Student(age) {
+        this.age = age;
+    }
+    var per = new Person(10);
+    var stu = new Student(20);
+    //复制了一份
+    var ff = per.play.bind(stu);
+    ff();
+    //bind是用来复制一份
+    //使用的语法:
+    /*
+     * 函数名字.bind(对象,参数1,参数2,...);---->返回值是复制之后的这个函数
+     * 方法名字.bind(对象,参数1,参数2,...);---->返回值是复制之后的这个方法
+     *
+     * */
+
+    //通过对象,调用方法,产生随机数
+
+    function ShowRandom() {
+        //1-10的随机数
+        this.number = parseInt(Math.random() * 10 + 1);
+    }
+    //添加原型方法
+    ShowRandom.prototype.show1 = function () {
+        //改变了定时器中的this的指向了,本来应该是window,现在是实例对象了
+        window.setInterval(this.show2.bind(this), 1000);
+    };
+    //添加原型方法
+    ShowRandom.prototype.show2 = function () {
+        //显示随机数--
+        console.log(this.number);
+    };
+    //实例对象
+    var sr = new ShowRandom();
+    //调用方法,输出随机数字
+    //调用这个方法一次,可以不停的产生随机数字
+    sr.show1();
+
+
+    console.dir(Function);
+</script>
+
+</html>
