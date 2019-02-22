@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0029_函数作为返回值使用的案例</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0029_函数作为返回值使用的案例</h1>
+</body>
+<script>
+//获取某个对象的类型是不是你所传入的类型
+//比如 传入 [Object Array] =========>  [10,20,30] 是否相等
+//type是变量 ----- 是参数  -----   “[object Array]”
+//obj是变量 -----  是参数  -----    arr = [10,20,'afj']
+
+function isTypeEqual (type) {
+    console.log(type);
+    return function (obj) {
+        console.log(Object.prototype.toString.call(obj));
+        console.log( Object.prototype.toString.call(obj) === type);
+    };
+};
+
+var arr = [10,20,'afj'];
+var getFun1 = isTypeEqual ('[object Array]');
+var result1 = getFun1(arr);
+
+var date = new Date();
+var getFun2 = isTypeEqual('[object Date]');
+var result2 = getFun2(date);
+</script>
+
+</html>
