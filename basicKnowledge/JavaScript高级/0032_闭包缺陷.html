@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0032_闭包缺陷</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0032_闭包缺陷</h1>
+</body>
+<script>
+    /*
+     * 闭包的概念:函数A中,有一个函数B,函数B中可以访问函数A中定义的变量或者是数据,此时形成了闭包(这句话暂时不严谨)
+     * 闭包的模式:函数模式的闭包,对象模式的闭包
+     * 闭包的作用:缓存数据,延长作用域链
+     * 闭包的优点和缺点:缓存数据
+     * 
+     */
+
+//每次调用都能得到不同的随机数
+function getRandom(){
+    var num = parseInt(Math.random()*10+1);
+    console.log(num);
+};
+getRandom();
+getRandom();
+getRandom();
+
+
+//使用闭包之后每次调用函数都得到一样的随机数
+function showRandom(){
+    var num = parseInt(Math.random()*10+1);
+    return function(){
+        console.log('闭包中的num: '+num);
+    }
+};
+
+var fn = showRandom();
+    fn();
+    fn();
+    fn();
+</script>
+
+</html>
