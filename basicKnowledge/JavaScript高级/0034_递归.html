@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0034_递归</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>0034_递归</h1>
+</body>
+<script>
+    //递归:函数中调用函数自己,此时就是递归,递归一定要有结束的条件
+
+    //求n个数字的累加和
+    var sum = 0;
+    for (var i=0;i<=5;i++) {
+        sum += i;
+    };
+    console.log(sum);
+
+    //使用函数
+    function getSum (num){
+        var sum = 0;
+        for(var i=0;i<=num;i++){
+            sum += i;
+        };
+        console.log('函数累加： '+sum);
+    };
+    getSum(5);
+
+    //使用递归求累加 求n个数字的和  n=5 ------> 5+4+3+2+1 和for循环方式相反，是从大向小加
+    function loopSum (num) {
+        //如果num是1的话，返回1
+        if (num==1){
+            return 1;
+        };
+        //num += loopSum(num-1); 这样写是错的
+        return num+loopSum(num-1);
+    };
+    console.log('递归实现累加： ' +loopSum(5));
+</script>
+
+</html>
