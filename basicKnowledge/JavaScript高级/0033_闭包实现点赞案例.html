@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0033_闭包实现点赞案例</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+         ul {
+      list-style-type: none;
+    }
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+
+    img {
+      width: 200px;
+      height: 180px;
+    }
+
+    input {
+      margin-left: 30%;
+    }
+
+    </style>
+</head>
+
+<body>
+    <h1>0033_闭包实现点赞案例</h1>
+    <ul>
+        <li>
+            <img src="images/img1.jpg" alt="">
+            <br />
+            <input type="button" value="赞(1)">
+        </li>
+        <li>
+            <img src="images/img2.jpg" alt="">
+            <br />
+            <input type="button" value="赞(1)">
+        </li>
+        <li>
+            <img src="images/img3.jpg" alt="">
+            <br />
+            <input type="button" value="赞(1)">
+        </li>
+        <li>
+            <img src="images/img4.jpg" alt="">
+            <br />
+            <input type="button" value="赞(1)">
+        </li>
+    </ul>
+
+</body>
+<script>
+    //获取所有按钮
+    var btnObjs = document.getElementsByTagName('input');
+
+    //点击时会产生bug
+    // for(var i=0;i< btnObjs.length;i++){
+    //     var value = 1;
+    //     btnObjs[i].onclick = function(){
+    //         value++;
+    //         this.value = "赞("+value+")";
+    //     };
+    // };
+
+
+    //闭包缓存数据
+    function getValue() {
+        var value = 1;
+        return function () {
+            //每一次点击的时候,都应该改变当前点击按钮的value值
+            value++;
+            this.value = "赞(" + value + ")";
+        };
+    };
+    for (var i = 0; i < btnObjs.length; i++) {
+        //注册事件
+        btnObjs[i].onclick = getValue();
+    };
+</script>
+
+</html>

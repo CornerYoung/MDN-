@@ -17,7 +17,72 @@
     <h1>0020_借用构造函数继承</h1>
 </body>
 <script>
-    
+    //    function Person(name,age,sex,weight) {
+    //      this.name=name;
+    //      this.age=age;
+    //      this.sex=sex;
+    //      this.weight=weight;
+    //    }
+    //    Person.prototype.sayHi=function () {
+    //      console.log("您好");
+    //    };
+    //    function Student(score) {
+    //      this.score=score;
+    //    }
+    //    //希望人的类别中的数据可以共享给学生---继承
+    //    Student.prototype=new Person("小明",10,"男","50kg");
+    //
+    //    var stu1=new Student("100");
+    //    console.log(stu1.name,stu1.age,stu1.sex,stu1.weight,stu1.score);
+    //    stu1.sayHi();
+    //
+    //    var stu2=new Student("120");
+    //    stu2.name="张三";
+    //    stu2.age=20;
+    //    stu2.sex="女";
+    //    console.log(stu2.name,stu2.age,stu2.sex,stu2.weight,stu2.score);
+    //    stu2.sayHi();
+    //    var stu3=new Student("130");
+    //    console.log(stu3.name,stu3.age,stu3.sex,stu3.weight,stu3.score);
+    //    stu3.sayHi();
+
+
+    //为了数据共享,改变原型指向,做到了继承---通过改变原型指向实现的继承
+    //缺陷:因为改变原型指向的同时实现继承,直接初始化了属性，继承过来的属性的值都是一样的了,所以,这就是问题
+    //只能重新调用对象的属性进行重新赋值,
+
+
+    //解决方案:继承的时候,不用改变原型的指向,直接调用父级的构造函数的方式来为属性赋值就可以了------借用构造函数:把要继承的父级的构造函数拿过来,使用一下就可以了
+
+
+
+    //借用构造函数:构造函数名字.call(当前对象,属性,属性,属性....);
+    //解决了属性继承,并且值不重复的问题
+    //缺陷:父级类别中的方法不能继承
+
+    function Person(name, age, sex, weight) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.weight = weight;
+    }
+    Person.prototype.sayHi = function () {
+        console.log("您好");
+    };
+
+    function Student(name, age, sex, weight, score) {
+        //借用构造函数
+        Person.call(this, name, age, sex, weight);
+        this.score = score;
+    }
+    var stu1 = new Student("小明", 10, "男", "10kg", "100");
+    console.log(stu1.name, stu1.age, stu1.sex, stu1.weight, stu1.score);
+
+    var stu2 = new Student("小红", 20, "女", "20kg", "120");
+    console.log(stu2.name, stu2.age, stu2.sex, stu2.weight, stu2.score);
+
+    var stu3 = new Student("小丽", 30, "妖", "30kg", "130");
+    console.log(stu3.name, stu3.age, stu3.sex, stu3.weight, stu3.score);
 </script>
 
 </html>
