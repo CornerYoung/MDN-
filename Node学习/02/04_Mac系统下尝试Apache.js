@@ -5,14 +5,19 @@ var server = http.createServer();
 
 server.on('request', function (req, res) {
     var url = req.url;
-    fs.readFile('/Users/yangguoning/ygn-study/jquery/img/otter1.jpg', function (error, data) {
+    var wwwDir = '/Users/yangguoning/ygn-study/jquery';
+    var filePath = '/html/jq_animate.html';
+
+    if (url !== '/') {
+        filePath = url;
+    }
+    fs.readFile(wwwDir + filePath, function (error, data) {
         if (error) {
             return res.end('404 Not Found!');
         };
-        res.setHeader('Content-Type', 'image/jpeg');
         res.end(data);
     })
-    console.log('路径: ' + url);
+    console.log('客户端的请求路径是: ' + url);
 });
 
 server.listen(3002, function () {
