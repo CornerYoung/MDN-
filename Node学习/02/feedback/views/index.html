@@ -16,6 +16,8 @@
     等带有 src 或者 href（link） 属性标签（具有外链的资源）的时候，浏览器会自动对这些资源发起新的请求。
    -->
    <!-- 
+      所有服务端技术都是以下的方式：
+
       注意：在服务端中，文件中的路径就不要去写相对路径了。
       因为这个时候所有的资源都是通过 url 标识来获取的
       我的服务器开放了 /public/ 目录
@@ -25,8 +27,8 @@
 
       不要再想文件路径了，把所有的路径都想象成 url 地址
     -->
-  <!-- <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.css"> -->
-  <link rel="stylesheet" href="../node_modules/bootstrap/package.json">
+    <!-- <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.css">
 </head>
 
 <body>
@@ -37,6 +39,7 @@
     </div>
   </div>
   <div class="comments container">
+    <img src="/public/img/img5.jpg" alt="" srcset="">
     <ul class="list-group">
       <!-- {{each comments}}
       <li class="list-group-item">{{ $value.name }}说：{{ $value.message }} <span class="pull-right">{{ $value.dateTime }}</span></li>
