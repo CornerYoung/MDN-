@@ -11,7 +11,14 @@ http
                 };
                 res.end(data);
             });
-        } else if (url.indexOf('/public/') === 0) {
+        } else if (url.indexOf('/post') === 0) {
+            fs.readFile('./views/post.html', function (err, data) {
+                if (err) {
+                    return res.end('404 Not Found!');
+                };
+                res.end(data);
+            });
+        }else if (url.indexOf('/public/') === 0) {
             //在 index.html 页面中需要访问很多外链资源，如果不设置 url 将造成页面阻塞
             //所以把需要访问的静态资源都统一放到 public 文件夹中，当访问的 url 以 /public/ 开头时，就能访问到这些静态资源了
             /**
@@ -24,6 +31,11 @@ http
                 if(err){
                     return res.end('404 Not Found!');
                 };
+                res.end(data);
+            });
+        }else{
+            //其他 url 设置成 404
+            fs.readFile('./views/404.html',function(err,data){
                 res.end(data);
             });
         };
