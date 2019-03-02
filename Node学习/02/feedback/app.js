@@ -49,6 +49,8 @@ http
         } else if (url.indexOf('/public/') === 0) {
             //在 index.html 页面中需要访问很多外链资源，如果不设置 url 将造成页面阻塞
             //所以把需要访问的静态资源都统一放到 public 文件夹中，当访问的 url 以 /public/ 开头时，就能访问到这些静态资源了
+            //public 整个目录中的资源都允许被访问
+            //哪些资源能被用户访问，哪些不能被访问，可以通过代码来灵活控制
             /**
              *  /public/css/main.css
              *  /public/img/img5.jpg
