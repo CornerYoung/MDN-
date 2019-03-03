@@ -74,3 +74,45 @@
   + 而是两者结合来做的
   + 例如京东的商品列表就采用的是服务端渲染，目的了为了 SEO 搜索引擎优化
   + 而它的商品评论列表为了用户体验，而且也不需要 SEO 优化，所以采用是客户端渲染
+
+- 网站开发模型
+  + 黑盒子、哑巴
+  + 写代码让它变得更智能
+  + 按照你设计好的套路供用户使用
+
+- 在 Node 中使用 art-template 模板引擎
+  + 安装
+  + 加载
+  + template.render()
+- 客户端渲染和服务端渲染的区别
+  + 最少两次请求，发起 ajax 在客户端使用模板引擎渲染
+  + 客户端拿到的就是服务端已经渲染好的
+- 处理留言本案例首页数据列表渲染展示
+- 处理留言本案例发表留言功能
+  + 路径
+  + 设计好的请求路径
+  + $GET 直接或查询字符串数据
+  + Node 中需要咱们自己动手来解析
+    * url.parse()
+  + /pinglun?name=jack&message=hello
+  + split('?')
+  + name=jack&message=hello
+  + split('&')
+  + name=jack message=hello
+  + forEach()
+  + name=jack.split('=')
+  + 0 key
+  + 1 value
+- 掌握如何解析请求路径中的查询字符串
+  + url.parse()
+- 如何在 Node 中实现服务器重定向
+  + header('location')
+    * 301 永久重定向 浏览器会记住
+      - a.com b.com
+      - a 浏览器不会请求 a 了
+      - 直接去跳到 b 了
+    * 302 临时重定向 浏览器不记忆
+      - a.com b.com
+      - a.com 还会请求 a
+      - a 告诉浏览器你往 b
+- Node 中的 Console（REPL）使用
