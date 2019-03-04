@@ -5,6 +5,22 @@ var template = require('art-template');
 
 var contents = [];
 
+//补零函数
+function addZro(num) {
+    return num = num > 10 ? num : '0' + num;
+}
+//格式化时间
+function getTime() {
+    var dt = new Date();
+    var year = addZro(dt.getFullYear());
+    var month = addZro(dt.getMonth() + 1);
+    var day = addZro(dt.getDate());
+    var hh = addZro(dt.getHours());
+    var mm = addZro(dt.getMinutes());
+    var ss = addZro(dt.getSeconds());
+    return year + '-' + month + '-' + day + ' ' + hh + ':' + mm + ':' + ss;
+};
+
 // http://127.0.0.1:3000/comment?name=令狐冲&message=独孤九剑、吸星大法、易筋经%0D%0A
 // 表单提交的请求路径，其中具有用户动态填写的内容，所以不能通过去判断完整的 url 路径来处理这个请求
 // 结论：只需要判定，如果请求路径是 /pinglun 的时候，那么就认为用户提交表单的请求过来了
@@ -60,14 +76,8 @@ http
             // 所以接下来要做的就是：
             //    1. 获取表单提交的数据 parseObj.query
             //    2. 将当前时间日期添加到数据对象中，然后存储到数组中
-            var dt = new Date();
-            var year = dt.getFullYear();
-            var month = dt.getMonth()+1;
-            var day = dt.getDate();
-            var hh = dt.getHours();
-            var mm = dt.getMinutes();
-            var ss = dt.getSeconds();
-            parseObj.query.dateTime = year + '-' + month + '-' + day + ' ' + hh + ':' + mm + ':' + ss;
+
+            parseObj.query.dateTime = getTime();
             contents.unshift(parseObj.query);
             //    3. 让用户重定向跳转到首页 /
             //       当用户重新请求 / 的时候，我数组中的数据已经发生变化了，所以用户看到的页面也就变了
