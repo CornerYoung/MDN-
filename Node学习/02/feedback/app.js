@@ -60,7 +60,14 @@ http
             // 所以接下来要做的就是：
             //    1. 获取表单提交的数据 parseObj.query
             //    2. 将当前时间日期添加到数据对象中，然后存储到数组中
-            parseObj.query.dateTime = new Date();
+            var dt = new Date();
+            var year = dt.getFullYear();
+            var month = dt.getMonth()+1;
+            var day = dt.getDate();
+            var hh = dt.getHours();
+            var mm = dt.getMinutes();
+            var ss = dt.getSeconds();
+            parseObj.query.dateTime = year + '-' + month + '-' + day + ' ' + hh + ':' + mm + ':' + ss;
             contents.unshift(parseObj.query);
             //    3. 让用户重定向跳转到首页 /
             //       当用户重新请求 / 的时候，我数组中的数据已经发生变化了，所以用户看到的页面也就变了
