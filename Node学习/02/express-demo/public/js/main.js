@@ -1,0 +1,1 @@
+window.alert('public/js/main.js');
