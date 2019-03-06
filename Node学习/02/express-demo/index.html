@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>exprsss 留言本</title>
+  <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+  <div class="header container">
+    <div class="page-header">
+      <h1>Example page header <small>Subtext for header</small></h1>
+      <a class="btn btn-success" href="/post">发表留言</a>
+    </div>
+  </div>
+  <div class="comments container">
+    <img src="/public/img/img5.jpg" alt="" srcset="">
+    <ul class="list-group">
+      {{each contents}}
+        <li class="list-group-item">{{ $value.name }}说：{{ $value.message }} <span class="pull-right">{{ $value.dateTime }}</span></li>
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+</html>
