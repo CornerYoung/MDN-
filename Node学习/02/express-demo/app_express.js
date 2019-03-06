@@ -10,8 +10,7 @@ app.use('/public/', express.static('./public/'));
 app.engine('html', require('express-art-template'));
 
 app.get('/', function (req, res) {
-    res.send('index.html');
-    console.log('首页已连接！')
+    res.render('index.html');
 });
 
 app.get('/post', function (req, res) {
