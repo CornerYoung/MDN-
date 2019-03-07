@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 
 app.use('/public/', express.static('./public/'));
-
+//要将node_moudle开放出来，页面将加载不到里面所需要的资源
+app.use('/node_modules/', express.static('./node_modules/'))
 // 配置使用 art-template 模板引擎
 // 第一个参数，表示，当渲染以 .art 结尾的文件的时候，使用 art-template 模板引擎（也可以改成任意后缀名）
 // express-art-template 是专门用来在 Express 中把 art-template 整合到 Express 中
@@ -14,7 +15,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/post', function (req, res) {
-    res.send('post.html');
+    res.render('post.html');
 });
 
 app.get('/comment', function (req, res) {
