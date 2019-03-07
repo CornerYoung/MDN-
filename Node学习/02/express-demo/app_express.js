@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var contents=[];
 
 app.use('/public/', express.static('./public/'));
 //要将node_moudle开放出来，页面将加载不到里面所需要的资源
@@ -11,7 +12,9 @@ app.use('/node_modules/', express.static('./node_modules/'))
 app.engine('html', require('express-art-template'));
 
 app.get('/', function (req, res) {
-    res.render('index.html');
+    res.render('index.html',{
+        contents:contents
+    });
 });
 
 app.get('/post', function (req, res) {
@@ -19,7 +22,14 @@ app.get('/post', function (req, res) {
 });
 
 app.get('/comment', function (req, res) {
-    res.send('comment.html');
+    var comment = req.query;
+    comment.dateTime = '2019-03-01 18:12:30'
+    contents.unshift(comment);
+
+    res.redirect('/');
+    // res.statusCode=302;
+    // res.setHeader('location','/');
+    // res.end();
 });
 
 // Express 为 Response 相应对象提供了一个方法：render
