@@ -1,6 +1,8 @@
 var express = require('express');
+//引入中间件 body-parser 用来解析表单提交请求体
+var bodyParser = require('body-parser');
 var app = express();
-var contents=[];
+var contents = [];
 
 app.use('/public/', express.static('./public/'));
 //要将node_moudle开放出来，页面将加载不到里面所需要的资源
@@ -11,9 +13,15 @@ app.use('/node_modules/', express.static('./node_modules/'))
 // 虽然外面这里不需要加载 art-template 但是也必须安装，原因就在于 express-art-template 依赖了 art-template
 app.engine('html', require('express-art-template'));
 
+//配置 body-parser 中间件插件，专门用来解析表单 POST 请求体）
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+app.use(bodyParser.json())
+
 app.get('/', function (req, res) {
-    res.render('index.html',{
-        contents:contents
+    res.render('index.html', {
+        contents: contents
     });
 });
 
@@ -21,16 +29,26 @@ app.get('/post', function (req, res) {
     res.render('post.html');
 });
 
-app.get('/comment', function (req, res) {
-    var comment = req.query;
+//当以 POST 请求 / post 的时候，执行指定的处理函数，这样的话我们就可以利用不同的请求方法让一个请求路径使用多次
+app.post('/post', function (req, res) {
+    // req.query 只能拿 get 请求参数
+    //req.body 能够拿到post方式提交表单的请求体
+    var comment = req.body;
     comment.dateTime = '2019-03-01 18:12:30'
     contents.unshift(comment);
-
     res.redirect('/');
-    // res.statusCode=302;
-    // res.setHeader('location','/');
-    // res.end();
 });
+
+// app.get('/comment', function (req, res) {
+//     var comment = req.query;
+//     comment.dateTime = '2019-03-01 18:12:30'
+//     contents.unshift(comment);
+
+//     res.redirect('/');
+//     // res.statusCode=302;
+//     // res.setHeader('location','/');
+//     // res.end();
+// });
 
 // Express 为 Response 相应对象提供了一个方法：render
 // render 方法默认是不可以使用，但是如果配置了模板引擎就可以使用了
