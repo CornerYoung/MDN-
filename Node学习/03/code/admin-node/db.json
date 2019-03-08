@@ -1,0 +1,45 @@
+{
+    "players": [{
+            "id": 0,
+            "name": "詹姆斯",
+            "team": "湖人",
+            "level": 10,
+            "gener": 0
+        },
+        {
+            "id": 1,
+            "name": "韦德",
+            "team": "热火",
+            "level": 10,
+            "gener": 0
+        },
+        {
+            "id": 2,
+            "name": "艾弗森",
+            "team": "76人",
+            "level": 8,
+            "gener": 0
+        },
+        {
+            "id": 3,
+            "name": "奥尼尔",
+            "team": "湖人",
+            "level": 9,
+            "gener": 0
+        },
+        {
+            "id": 4,
+            "name": "加内特",
+            "team": "森林狼",
+            "level": 8,
+            "gener": 0
+        },
+        {
+            "id": 5,
+            "name": "麦迪",
+            "team": "魔术",
+            "level": 7,
+            "gener": 0
+        }
+    ]
+}
