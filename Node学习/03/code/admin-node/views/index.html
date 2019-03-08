@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,12 +15,13 @@
     <!-- Custom styles for this template -->
     <link href="/public/css/main.css" rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -101,13 +103,13 @@
                 <h1 class="page-header">Dashboard</h1>
 
                 <div class="row placeholders">
-                    {{each player}}
-                        <div class="col-xs-6 col-sm-3 placeholder">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive"
-                                alt="Generic placeholder thumbnail">
-                            <h4>{{$value}}</h4>
-                            <span class="text-muted">Something else</span>
-                        </div>
+                    {{each firuts}}
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                            width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                        <h4>{{$value}}</h4>
+                        <span class="text-muted">Something else</span>
+                    </div>
                     {{/each}}
                 </div>
                 <h2 class="sub-header">Section title</h2>
@@ -117,34 +119,22 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
-                                <th>Header</th>
+                                <th>Name</th>
+                                <th>Team</th>
+                                <th>Level</th>
+                                <th>gener</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {{each players}}
                             <tr>
-                                <td>1,001</td>
-                                <td>Lorem</td>
-                                <td>ipsum</td>
-                                <td>dolor</td>
-                                <td>sit</td>
+                                <td>{{$value.id}}</td>
+                                <td>{{$value.name}}</td>
+                                <td>{{$value.team}}</td>
+                                <td>{{$value.level}}</td>
+                                <td>{{$value.gener}}</td>
                             </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>amet</td>
-                                <td>consectetur</td>
-                                <td>adipiscing</td>
-                                <td>elit</td>
-                            </tr>
-                            <tr>
-                                <td>1,015</td>
-                                <td>sodales</td>
-                                <td>ligula</td>
-                                <td>in</td>
-                                <td>libero</td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>
@@ -152,4 +142,5 @@
         </div>
     </div>
 </body>
+
 </html>
