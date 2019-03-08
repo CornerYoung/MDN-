@@ -1,6 +1,7 @@
+var fs = require('fs');
 //将路由函数暴露出去，在入口文件 app.js 中引入
 module.exports = function (app) {
-    var fs = require('fs');
+    
     app.get('/players', function (req, res) {
         //readFile 的第二个参数是可选的，传入 utf8 可以使读取到的文件按照 utf8 编码进行字符转换
         //除了这样来转换，也可以通过 data.toString（）的方式
