@@ -1,23 +1,80 @@
+/**
+ * router.js 路由模块
+ * 职责：
+ *   处理路由
+ *   根据不同的请求方法+请求路径设置具体的请求处理函数
+ * 模块职责要单一，不要乱写
+ * 我们划分模块的目的就是为了增强项目代码的可维护性
+ * 提升开发效率
+ */
+
 var fs = require('fs');
+var Players = require('./players');
 
 //=============路由文件最优方案==============
 var express = require('express');
+
 //1.创建一个路由容器
 var router = express.Router();
+
 //2.把路由都挂载到 router 路由容器中去
+
+/*
+ * 渲染球员列表页面
+ */
 router.get('/players', function (req, res) {
-    fs.readFile('./db.json', 'utf8', function (err, data) {
+    // fs.readFile('./db.json', 'utf8', function (err, data) {
+    //     if (err) {
+    //         return res.status(500).send('Server error.');
+    //     };
+    //     res.render('index.html', {
+    //         players: JSON.parse(data).players,
+    //         firuts: ['香蕉', '西瓜', '苹果']
+    //     });
+    // });
+
+    //调用 players 模块中的 find 方法，并传入回调函数，拿到其中读取到的数据
+    Players.find(function (err, players) {
         if (err) {
             return res.status(500).send('Server error.');
         };
         res.render('index.html', {
-            players: JSON.parse(data).players,
-            firuts: ['香蕉', '西瓜', '苹果']
+            players: players,
+            firuts: ['韦德', '詹姆斯', '威斯布鲁克']
         });
     });
 });
+
+router.get('/players/new', function (req, res) {
+    res.render('new.html');
+});
+
+router.post('/players/new', function (req, res) {
+    //1.获取表单数据
+    //2.处理
+    //      将填写的数据保存到 db.json 文件中 用以持久化
+    //3.发送响应
+    //      拿到 db.json 文件中的字符串数据，将字符串转为对象，
+    //      再向对象数组中添加填写的数据，
+    //      最后将对象转化成字符串更新写入 db.json 文件
+
+});
+
+router.get('/players/edit', function (req, res) {
+    res.send('new');
+});
+
+router.post('/players/edit', function (req, res) {
+    res.send('new');
+});
+
+router.get('/players/delete', function (req, res) {
+    res.send('new');
+});
+
 //3.把路由文件导出，使 app.js 能够接收
 module.exports = router;
+
 //=============路由文件最优方案==============
 
 
