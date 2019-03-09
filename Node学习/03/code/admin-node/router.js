@@ -1,9 +1,10 @@
 var fs = require('fs');
 
 //=============路由文件最优方案==============
-var express=require('express');
-var router=express.Router();
-
+var express = require('express');
+//1.创建一个路由容器
+var router = express.Router();
+//2.把路由都挂载到 router 路由容器中去
 router.get('/players', function (req, res) {
     fs.readFile('./db.json', 'utf8', function (err, data) {
         if (err) {
@@ -15,7 +16,7 @@ router.get('/players', function (req, res) {
         });
     });
 });
-
+//3.把路由文件导出，使 app.js 能够接收
 module.exports = router;
 //=============路由文件最优方案==============
 
