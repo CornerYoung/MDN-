@@ -103,6 +103,10 @@
                 <h3>编辑球员</h3>
                 <!-- form标签中要写明发送方式 -->
                 <form method="post">
+                    <!-- 
+                        用来放置不希望被用户看见，但是需要提交到服务端的数据
+                     -->
+                    <input type="hidden" name="id" value="{{player.id}}">
                     <div class="form-group">
                         <label for="exampleInputText">Name</label>
                         <input type="text" class="form-control" id="nameInput" name="name" placeholder="Name" value="{{player.name}}">
