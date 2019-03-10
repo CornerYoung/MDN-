@@ -55,7 +55,10 @@ router.post('/players/new', function (req, res) {
     //2.处理
     //      将填写的数据保存到 db.json 文件中 用以持久化
     //3.发送响应
-    Players.save(newPlayer,function(err,data){
+    Players.save(newPlayer, function (err, data) {
+        if (err) {
+            return res.status(500).send('Server error.');
+        };
         res.redirect('/players');
     });
     //      拿到 db.json 文件中的字符串数据，将字符串转为对象，
@@ -65,11 +68,26 @@ router.post('/players/new', function (req, res) {
 });
 
 router.get('/players/edit', function (req, res) {
-    res.send('new');
+    Players.findById(parseInt(req.query.id), function (err, data) {
+        if (err) {
+            return res.status(500).send('Server error.');
+        };
+        res.render('edit.html', {
+            player: data
+        });
+    });
 });
 
 router.post('/players/edit', function (req, res) {
-    res.send('new');
+    //1.获取表单数据 req.body
+    //2.更新  exports.updateById()
+    //3，发送响应
+    Players.updateById(req.body,function(err){
+        if (err) {
+            return res.status(500).send('Server error.');
+        };
+        res.redirect('/players');
+    });
 });
 
 router.get('/players/delete', function (req, res) {
