@@ -51,9 +51,13 @@ router.get('/players/new', function (req, res) {
 
 router.post('/players/new', function (req, res) {
     //1.获取表单数据
+    var newPlayer = req.body;
     //2.处理
     //      将填写的数据保存到 db.json 文件中 用以持久化
     //3.发送响应
+    Players.save(newPlayer,function(err,data){
+        res.redirect('/players');
+    });
     //      拿到 db.json 文件中的字符串数据，将字符串转为对象，
     //      再向对象数组中添加填写的数据，
     //      最后将对象转化成字符串更新写入 db.json 文件
