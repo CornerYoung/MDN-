@@ -2,13 +2,12 @@
  * players.js
  * 数据操作文件模块
  * 职责：操作文件中的数据，只处理数据，不关心业务
- * 这里才是我们学习 Node 的精华部分：奥义之所在
- * 封装异步 API
+ * Node 的精华部分：封装异步 API
  */
 var fs = require('fs');
 var dbPath = './db.json';
 /**
- * 获取学生列表
+ * 获取球员列表
  * @param  {Function} callback 回调函数
  * return []
  * 
@@ -30,24 +29,43 @@ exports.find = function (callback) {
 };
 
 /**
- * 根据 id 获取学生信息对象
- * @param  {Number}   id       学生 id
+ * 根据 id 获取球员信息对象
+ * @param  {Number}   id       球员 id
  * @param  {Function} callback 回调函数
  */
 
 /**
- * 添加保存学生
- * @param  {Object}   student  学生对象
+ * 添加保存球员
+ * @param  {Object}   student  球员对象
  * @param  {Function} callback 回调函数
  */
-exports.save = function () {};
+exports.save = function (player,callback) {
+    fs.readFile(dbPath, 'utf8', function (err, data) {
+        if (err) {
+            return callback(err);
+        };
+        data = JSON.parse(data);
+        var players = data.players;
+        player.id = players.length;
+        //将添加 id 后的新增 player 追加到 players 中去
+        players.push(player);
+        data = JSON.stringify(data);
+        //向 db.json 中写入新增数据
+        fs.writeFile(dbPath, data,function(err,data){
+            if(err){
+                return callback(err);
+            };
+            callback(null);
+        });
+    });
+};
 
 /**
- * 更新学生
+ * 更新球员
  */
 exports.update = function () {};
 
 /**
- * 删除学生
+ * 删除球员
  */
 exports.delete = function () {};
