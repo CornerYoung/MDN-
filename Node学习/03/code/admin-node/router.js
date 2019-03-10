@@ -82,7 +82,7 @@ router.post('/players/edit', function (req, res) {
     //1.获取表单数据 req.body
     //2.更新  exports.updateById()
     //3，发送响应
-    Players.updateById(req.body,function(err){
+    Players.updateById(req.body, function (err) {
         if (err) {
             return res.status(500).send('Server error.');
         };
@@ -91,7 +91,15 @@ router.post('/players/edit', function (req, res) {
 });
 
 router.get('/players/delete', function (req, res) {
-    res.send('new');
+    //1.获取要删除的 id
+    //2.根据 id 执行删除操作
+    //3.根据操作结果发送响应数据 (先写调用，再写封装，应对不熟练)
+    Players.deleteById(req.query.id, function (err) {
+        if (err) {
+            return res.status(500).send('Server error.');
+        };
+        res.redirect('/players');
+    });
 });
 
 //3.把路由文件导出，使 app.js 能够接收
