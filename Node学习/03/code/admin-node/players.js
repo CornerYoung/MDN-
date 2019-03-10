@@ -33,37 +33,122 @@ exports.find = function (callback) {
  * @param  {Number}   id       球员 id
  * @param  {Function} callback 回调函数
  */
+exports.findById = function (playerId, callback) {
+    fs.readFile(dbPath, 'utf8', function (err, data) {
+        if (err) {
+            return callback(err);
+        };
+        var players = JSON.parse(data).players;
+        var ret = players.find(function (item) {
+            return item.id === parseInt(playerId);
+        });
+        callback(null, ret);
+    });
+};
 
 /**
  * 添加保存球员
  * @param  {Object}   student  球员对象
  * @param  {Function} callback 回调函数
  */
-exports.save = function (player,callback) {
+exports.save = function (player, callback) {
     fs.readFile(dbPath, 'utf8', function (err, data) {
         if (err) {
             return callback(err);
         };
+        //将拿到的数据，从字符串类型转化成对象类型进行操作
         data = JSON.parse(data);
+        //提取其中的 players
         var players = data.players;
+        // 添加 id ，唯一不重复
         player.id = players.length;
         //将添加 id 后的新增 player 追加到 players 中去
         players.push(player);
+        //将修改后的 data 转为字符串用于写入 db.json
         data = JSON.stringify(data);
         //向 db.json 中写入新增数据
-        fs.writeFile(dbPath, data,function(err,data){
-            if(err){
+        fs.writeFile(dbPath, data, function (err, data) {
+            if (err) {
+                return callback(err);
+            };
+            callback(null);
+        });
+    });
+    //===================第二种写法===================
+    // fs.readFile(dbPath, 'utf8', function (err, data) {
+    //     if (err) {
+    //         return callback(err)
+    //     }
+    //     var players = JSON.parse(data).players
+
+    //     // 添加 id ，唯一不重复
+    //     player.id = players[players.length - 1].id + 1
+
+    //     // 把用户传递的对象保存到数组中
+    //     players.push(player)
+
+    //     // 把对象数据转换为字符串
+    //     var fileData = JSON.stringify({
+    //         players: players
+    //     })
+
+    //     // 把字符串保存到文件中
+    //     fs.writeFile(dbPath, fileData, function (err) {
+    //         if (err) {
+    //             // 错误就是把错误对象传递给它
+    //             return callback(err)
+    //         }
+    //         // 成功就没错，所以错误对象是 null
+    //         callback(null)
+    //     })
+    // })
+    //===================第二种写法===================
+};
+
+/**
+ * 更新球员
+ * 
+ * 期望的调用方式
+ * updateById({
+ *      id:1,
+ *      name:xxx,
+ *      level
+ * },function(err){
+ *      
+ * });
+ */
+exports.updateById = function (player, callback) {
+    fs.readFile(dbPath, 'utf8', function (err, data) {
+        if (err) {
+            return callback(err);
+        };
+        var players = JSON.parse(data).players;
+        //注意：这里要把 id 统一转换为数字类型
+        player.id = parseInt(player.id);
+        //想修改谁，就需要把谁找出来
+        var plaRet = players.find(function (item) {
+            //这里如果写成了一个等于号将出现bug
+            return item.id === player.id;
+        });
+        
+        for (var key in player) {
+            plaRet[key] = player[key]
+        };
+
+        //把对象转化成字符串
+        var fileData = JSON.stringify({
+            players: players
+        });
+
+        //把字符串保存到文件中
+        fs.writeFile(dbPath, fileData, function (err, data) {
+            if (err) {
                 return callback(err);
             };
             callback(null);
         });
     });
 };
-
-/**
- * 更新球员
- */
-exports.update = function () {};
 
 /**
  * 删除球员
