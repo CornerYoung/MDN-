@@ -123,6 +123,7 @@
                                 <th>Team</th>
                                 <th>Level</th>
                                 <th>gener</th>
+                                <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -133,6 +134,10 @@
                                 <td>{{$value.team}}</td>
                                 <td>{{$value.level}}</td>
                                 <td>{{$value.gener}}</td>
+                                <td>
+                                    <a href="/players/edit?id={{$value.id}}">编辑</a>
+                                    <a href="/players/delete?id={{$value.id}}">删除</a> 
+                                </td>
                             </tr>
                             {{/each}}
                         </tbody>
