@@ -59,9 +59,10 @@ exports.save = function (player, callback) {
         //将拿到的数据，从字符串类型转化成对象类型进行操作
         data = JSON.parse(data);
         //提取其中的 players
-        var players = data.players;
+        var players = data.players; 
         // 添加 id ，唯一不重复
-        player.id = players.length;
+        //player.id = players.length; //如果这样写的话，会出现 id 重复的缺陷
+        player.id = players[players.length - 1].id + 1
         //将添加 id 后的新增 player 追加到 players 中去
         players.push(player);
         //将修改后的 data 转为字符串用于写入 db.json
