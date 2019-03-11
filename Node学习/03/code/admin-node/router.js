@@ -45,10 +45,16 @@ router.get('/players', function (req, res) {
     });
 });
 
+/**
+ * 点击添加球员信息
+ */
 router.get('/players/new', function (req, res) {
     res.render('new.html');
 });
 
+/**
+ * 添加球员信息操作完成后重定向
+ */
 router.post('/players/new', function (req, res) {
     //1.获取表单数据
     var newPlayer = req.body;
@@ -67,6 +73,9 @@ router.post('/players/new', function (req, res) {
 
 });
 
+/**
+ * 点击编辑球员信息
+ */
 router.get('/players/edit', function (req, res) {
     Players.findById(parseInt(req.query.id), function (err, data) {
         if (err) {
@@ -78,6 +87,9 @@ router.get('/players/edit', function (req, res) {
     });
 });
 
+/**
+ * 编辑操作完成后路由重定向
+ */
 router.post('/players/edit', function (req, res) {
     //1.获取表单数据 req.body
     //2.更新  exports.updateById()
@@ -90,6 +102,9 @@ router.post('/players/edit', function (req, res) {
     });
 });
 
+/**
+ * 删除球员信息
+ */
 router.get('/players/delete', function (req, res) {
     //1.获取要删除的 id
     //2.根据 id 执行删除操作
