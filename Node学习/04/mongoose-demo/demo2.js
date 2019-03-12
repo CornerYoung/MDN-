@@ -41,3 +41,18 @@ const userSchema = new Schema({
 var User = mongoose.model('User', userSchema);
 
 //4.当有了模型构造函数之后，就可以使用这个构造函数对 users 集合中的数据进行增删改查操作了
+var admin = new User({
+    username:'admin',
+    password:'123456',
+    email:'admin@admin.com'
+});
+
+//数据持久化
+admin.save(function(err,ret){
+    if(err){
+        console.log('保存失败！');
+    }else{
+        console.log('保存成功');
+        console.log('ret: '+ret);
+    }
+});
