@@ -19,10 +19,10 @@ const kitty = new Cat({
 kitty.save().then(() => console.log('meow'));
 
 //持久化保存 kitty 实例
-kitty.save(function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('meow!');
-    };
-});
+// kitty.save(function (err) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log('meow!');
+//     };
+// });
