@@ -41,10 +41,14 @@ const userSchema = new Schema({
 var User = mongoose.model('User', userSchema);
 
 //4.当有了模型构造函数之后，就可以使用这个构造函数对 users 集合中的数据进行增删改查操作了
+
+// ***********************
+// #region /新增数据 
+// ***********************
 var admin = new User({
-    username:'admin',
-    password:'123456',
-    email:'admin@admin.com'
+    username:'lisi',
+    password:'123456890',
+    email:'lisi@admin.com'
 });
 
 //数据持久化
@@ -56,3 +60,32 @@ admin.save(function(err,ret){
         console.log('ret: '+ret);
     }
 });
+// ***********************
+// #endregion /新增数据 
+// ***********************
+
+// ***********************
+// #region /查询数据 
+// ***********************
+User.find(function(err,ret){
+    if(err){
+        console.log('查询失败！');
+    }else{
+        console.log('查询成功！');
+        console.log(ret);
+    }
+});
+
+User.findOne({
+    username:'lisi'
+},function (err, ret) {
+    if (err) {
+        console.log('查询失败！');
+    } else {
+        console.log('查询成功！');
+        console.log(ret);
+    }
+});
+// ***********************
+// #endregion /查询数据
+// ***********************
