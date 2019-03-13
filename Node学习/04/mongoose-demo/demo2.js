@@ -45,21 +45,21 @@ var User = mongoose.model('User', userSchema);
 // ***********************
 // #region /新增数据 
 // ***********************
-var admin = new User({
-    username:'lisi',
-    password:'123456890',
-    email:'lisi@admin.com'
-});
+// var admin = new User({
+//     username:'lisi',
+//     password:'123456890',
+//     email:'lisi@admin.com'
+// });
 
-//数据持久化
-admin.save(function(err,ret){
-    if(err){
-        console.log('保存失败！');
-    }else{
-        console.log('保存成功');
-        console.log('ret: '+ret);
-    }
-});
+// //数据持久化
+// admin.save(function(err,ret){
+//     if(err){
+//         console.log('保存失败！');
+//     }else{
+//         console.log('保存成功');
+//         console.log('ret: '+ret);
+//     }
+// });
 // ***********************
 // #endregion /新增数据 
 // ***********************
@@ -70,25 +70,25 @@ admin.save(function(err,ret){
 // ***********************
 // #region /查询数据 
 // ***********************
-User.find(function(err,ret){
-    if(err){
-        console.log('查询失败！');
-    }else{
-        console.log('查询成功！');
-        console.log(ret);
-    }
-});
+// User.find(function(err,ret){
+//     if(err){
+//         console.log('查询失败！');
+//     }else{
+//         console.log('查询成功！');
+//         console.log(ret);
+//     }
+// });
 
-User.findOne({
-    username:'lisi'
-},function (err, ret) {
-    if (err) {
-        console.log('查询失败！');
-    } else {
-        console.log('查询成功！');
-        console.log(ret);
-    }
-});
+// User.findOne({
+//     username:'lisi'
+// },function (err, ret) {
+//     if (err) {
+//         console.log('查询失败！');
+//     } else {
+//         console.log('查询成功！');
+//         console.log(ret);
+//     }
+// });
 // ***********************
 // #endregion /查询数据
 // ***********************
@@ -100,15 +100,34 @@ User.findOne({
 // ***********************
 // #region /删除数据 
 // ***********************
-User.remove({
-    username : 'zs'
+// User.remove({
+//     username : 'zs'
+// },function(err,ret){
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log(ret);
+//     }
+// });
+// ***********************
+// #endregion /删除数据
+// ***********************
+
+
+
+
+// ***********************
+// #region /更新数据 
+// ***********************
+User.findByIdAndUpdate('5c891250c46b7337055a679f',{
+    password : '0987654'
 },function(err,ret){
     if(err){
-        console.log(err);
+        console.log('更新失败！');
     }else{
-        console.log(ret);
+        console.log('更新成功！');
     }
 });
 // ***********************
-// #endregion /删除数据
+// #endregion /更新数据
 // ***********************
