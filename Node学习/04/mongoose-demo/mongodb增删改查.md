@@ -58,9 +58,7 @@ User.remove({
 ### 更新数据 
 
 ```javascript
-User.remove({
-    username : 'zs'
-},function(err,ret){
+User.findByIdAndUpdate('id',updatestr,function(err,ret){
     if(err){
         console.log(err);
     }else{
