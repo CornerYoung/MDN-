@@ -14,8 +14,13 @@ var app=express();
 app.use('/publick/', express.static(path.join(__dirname,'./publick/')));
 app.use('/node_modules/',express.static(path.join(__dirname,'./node_modules/')));
 
+app.engine('html',require('express-art-template'));
+app.set('views',path.join(__dirname,'./views/')); //默认就是 ./views 目录，再写一次是为了以后想改的话方便修改
+
 app.get('/',function(req,res){
-    res.send('hello world!'+__dirname+__filename);
+    res.render('index.html',{
+        name:'杨国宁'
+    });
 });
 
 app.listen(8888,function(){
