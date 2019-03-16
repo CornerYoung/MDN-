@@ -44,8 +44,10 @@
   <script src="/node_modules/jquery/dist/jquery.js"></script>
   <script>
     $('#register_form').on('submit', function (e) {
-      e.preventDefault()
-      var formData = $(this).serialize()
+      //阻止表单默认事件
+      e.preventDefault();
+      //数据序列化
+      var formData = $(this).serialize();
       $.ajax({
         url: '/register',
         type: 'post',
