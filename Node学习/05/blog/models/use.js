@@ -25,29 +25,29 @@ var userSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    avater:{
-        type:String,
-        default:'/public/img/avatar-default.png'
+    avater: {
+        type: String,
+        default: '/public/img/avatar-default.png'
     },
-    bio:{
-        type:String,
-        default:''
+    bio: {
+        type: String,
+        default: ''
     },
-    gender:{
-        type:Number,
-        enum:[-1,0,1], //在-1，0，1之间枚举
-        default:-1
+    gender: {
+        type: Number,
+        enum: [-1, 0, 1], //在-1，0，1之间枚举
+        default: -1
     },
-    birthday:{
-        type:Date
+    birthday: {
+        type: Date
     },
-    status:{
-        type:Number,
+    status: {
+        type: Number,
         //0 没有权限限制
         //1 不可以评论
         //2 不可以登录
-        enum:[0,1,2],
-        default:0
+        enum: [0, 1, 2],
+        default: 0
     }
 });
 
