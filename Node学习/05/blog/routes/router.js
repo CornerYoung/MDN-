@@ -4,7 +4,10 @@ var md5 = require('blueimp-md5');
 var router = express.Router();
 
 router.get('/', function (req, res) {
-    res.render('index.html');
+    //console.log(req.session.user)
+    res.render('index.html', {
+        user: req.session.user
+    });
 });
 
 router.get('/login', function (req, res) {
@@ -22,7 +25,7 @@ router.get('/register', function (req, res) {
 router.post('/register', function (req, res) {
     //1.获取表单提交数据
     var body = req.body;
-    console.log(body)
+
     //2.操作数据库
     //      判断该用户是否存在，如果已存在，不允许注册，如果不存在，注册新建用户
     User.findOne({
@@ -49,8 +52,10 @@ router.post('/register', function (req, res) {
         };
 
         //使用md5对密码进行二层加密
-        body.password=md5(md5(body.password));
+        body.password = md5(md5(body.password));
+
         new User(body).save(function (err, user) {
+
             if (err) {
                 return res.status(500).json({
                     err_code: 500,
@@ -58,11 +63,14 @@ router.post('/register', function (req, res) {
                 });
             };
 
+            //注册成功，使用 session 记录用户的登录状态
+            req.session.user = user;
+
             //Express 提供了一个响应方法： json
             //该方法接收一个对象作为参数，它会自动帮你把对象转为字符串在发送给浏览器
             res.status(200).json({
-                err_code:0,
-                message:'注册成功！'
+                err_code: 0,
+                message: '注册成功！'
             });
         });
     });
