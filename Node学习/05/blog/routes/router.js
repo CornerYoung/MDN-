@@ -117,4 +117,8 @@ router.get('/logout', function (req, res) {
     res.redirect('/login');
 });
 
+router.get('/settings/profile',function(req,res,next){
+    res.render('settings/profile.html');
+});
+
 module.exports = router;
