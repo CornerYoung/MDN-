@@ -121,4 +121,20 @@ router.get('/settings/profile',function(req,res,next){
     res.render('settings/profile.html');
 });
 
+router.get('/settings/admin', function (req, res, next) {
+    res.render('settings/admin.html');
+});
+
+router.get('/topics/123', function (req, res, next) {
+    res.render('topic/show.html');
+});
+
+router.get('/topics/new', function (req, res, next) {
+    res.render('topic/new.html');
+});
+
+router.post('/topics/new', function (req, res, next) {
+    res.redirect('/');
+});
+
 module.exports = router;
