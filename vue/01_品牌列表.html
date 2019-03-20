@@ -71,33 +71,34 @@
                     }
                 ]
             },
-            methods:{
-                 addBrand:function(){
-                     this.list.push({
-                         id:this.id,
-                         name:this.name,
-                         ctime: new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDate()
-                     });
-                 },
-                 deleteBrand:function(index){
-                     this.list.splice(index,1);
-                 },
-                 deleteBrandById (id) {
-                     this.list.some( (item,i) => {
-                         if(item.id === id){
-                             this.list.splice(i,1);
-                             return true;
-                         }
-                     });
-                 },
-                 deleteBrandByFindIndex (id) {
-                     var index =  this.list.findIndex(item => {
-                         if(item.id === id){
-                             return true;
-                         }
-                     });
-                     this.list.splice(index,1);
-                 }
+            methods: {
+                addBrand: function () {
+                    this.list.push({
+                        id: this.id,
+                        name: this.name,
+                        ctime: new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date()
+                            .getDate()
+                    });
+                },
+                deleteBrand: function (index) {
+                    this.list.splice(index, 1);
+                },
+                deleteBrandById(id) {
+                    this.list.some((item, i) => {
+                        if (item.id === id) {
+                            this.list.splice(i, 1);
+                            return true;
+                        }
+                    });
+                },
+                deleteBrandByFindIndex(id) {
+                    var index = this.list.findIndex(item => {
+                        if (item.id === id) {
+                            return true;
+                        }
+                    });
+                    this.list.splice(index, 1);
+                }
             }
         });
     </script>
