@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 // 连接数据库
 mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
-console.log('mongoose安装有缺陷，暂时移动到modu文件夹中，目前使用的node_modules文件夹是旧有文件夹');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
