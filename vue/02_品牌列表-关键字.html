@@ -47,7 +47,8 @@
                     现在，我们自定义了一个 search 方法，同时把所有关键字，通过传参的形式传递给了 search 方法
                     在 search 方法内部，通过执行 for 循环，把所有符合搜索关键字的数据都渲染出来
                 -->
-                <tr v-for="(item,index) in search(keywords)" :key="item.id">
+                <!-- <tr v-for="(item,index) in search(keywords)" :key="item.id"> -->
+                <tr v-for="(item,index) in listComputed" :key="item.id"></tr>
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.ctime}}</td>
@@ -69,6 +70,7 @@
                 name: '',
                 keywords: '',
                 time: new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDate(),
+                newListWatch:[],
                 list: [{
                         id: 1,
                         name: '奔驰',
@@ -77,6 +79,16 @@
                     {
                         id: 2,
                         name: '宝马',
+                        ctime: this.time
+                    },
+                    {
+                        id: 3,
+                        name: '宝骏',
+                        ctime: this.time
+                    },
+                    {
+                        id: 4,
+                        name: '奔奔',
                         ctime: this.time
                     }
                 ]
@@ -112,20 +124,36 @@
                 },
                 search(keywords){
                     // var newList = [];
-                    // this.list.forEach((item,index) => {
+                    // this.list.forEach((item,index) => { 
+                    //初始化页面时搜索框里的内容为空字符串，它能够匹配数组中的任意 item.name，所以会全部渲染出来
                     //     if(item.name.indexOf(keywords) != -1) {
                     //         newList.push(item);
                     //     }
                     // });
                     // return newList;
 
-                    //新方法
+                    //新方法，使用数组过滤函数，可以将符合匹配条件的元素返回出来
                     return this.list.filter(item => {
                         if(item.name.includes(keywords)){
                             return item;
                         }
                     });
 
+                }
+            },
+            watch:{
+                keywords:function(){
+                    this.list.forEach(element => {
+                        if(element.name.includes(this.keywords)){
+                            this.newListWatch.push(element);
+                        }
+                    });
+                    console.log(this.newListWatch)
+                }
+            },
+            computed:{
+                listComputed:function(){
+                    return this.list
                 }
             }
         });
