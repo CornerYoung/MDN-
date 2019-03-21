@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06_客户端JSONP页面</title>
+</head>
+<body>
+    <script>
+        //1.简单调用
+        // function show(){
+        //     console.log('ok')
+        // }; 
+
+        //2.不把函数名写死，把函数名通过 url 传递过去
+        // function showInfo(){
+        //   console.log('ok')
+        // };
+
+        //3.最终版，拿回想要的数据
+        function showInfo(data) {
+            console.log(data)
+        };
+    </script>
+
+    <!-- <script src="http://127.0.0.1:3000/getscript"></script> -->
+    <script src="http://127.0.0.1:3000/getscript?callback=showInfo"></script>
+</body>
+</html>
