@@ -23,7 +23,7 @@
                 </label>
                 <label for="">
                     Name:
-                    <input type="text" name="" id="" class="form-control" v-model="name">
+                    <input type="text" name="" id="" class="form-control" v-model="name" @keyup.enter="addBrand">
                 </label>
                 <input type="button" value="添加" class="btn btn-primary" @click="addBrand">
             </div>
@@ -50,6 +50,11 @@
         </table>
     </div>
 
+
+    <div id="app2">
+        <h3 v-color="'pink'" v-fontweight="900" v-fontsize="50">{{ dt | dateFormat }}</h3>
+    </div>
+
     <script>
         // 全局的过滤器， 进行时间的格式化
         // 所谓的全局过滤器，就是所有的VM实例都共享的
@@ -57,15 +62,15 @@
             // 根据给定的时间字符串，得到特定的时间
             var dt = new Date(timeStr);
             var year = dt.getFullYear();
-            var month = dt.getMonth()+1;
-            var day = dt.getDate();
+            var month = (dt.getMonth()+1).toString().padStart(2,'0');
+            var day = dt.getDate().toString().padStart(2, '0');
             
             if(pattern.toLowerCase()==='yyyy-mm-dd'){
                 return `${year}-${month}-${day}`;
             }else{
-                var hh = dt.getHours();
-                var mm = dt.getMinutes();
-                var ss = dt.getSeconds();
+                var hh = dt.getHours().toString().padStart(2, '0');
+                var mm = dt.getMinutes().toString().padStart(2, '0');
+                var ss = dt.getSeconds().toString().padStart(2, '0');
                 return `${year}-${month}-${day} ${hh}:${mm}:${ss}`;
             };
         });
@@ -113,6 +118,36 @@
                 }
             }
         });
+
+        var vm2 = new Vue({
+                el: '#app2',
+                data: {
+                    dt: new Date()
+                },
+                methods: {},
+                filters: { // 定义私有过滤器    过滤器有两个 条件  【过滤器名称 和 处理函数】
+                    // 过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器名称一致了，这时候 优先调用私有过滤器
+                    dateFormat: function (dateStr, pattern = '') {
+                        // 根据给定的时间字符串，得到特定的时间
+                        var dt = new Date(dateStr)
+
+                        //   yyyy-mm-dd
+                        var y = dt.getFullYear()
+                        var m = (dt.getMonth() + 1).toString().padStart(2, '0')
+                        var d = dt.getDate().toString().padStart(2, '0')
+
+                        if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                            return `${y}-${m}-${d}`
+                        } else {
+                            var hh = dt.getHours().toString().padStart(2, '0')
+                            var mm = dt.getMinutes().toString().padStart(2, '0')
+                            var ss = dt.getSeconds().toString().padStart(2, '0')
+
+                            return `${y}-${m}-${d} ${hh}:${mm}:${ss} ~~~~~~~`
+                        }
+                    }
+                }
+            })
     </script>
 </body>
 
