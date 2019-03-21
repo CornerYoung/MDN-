@@ -56,22 +56,22 @@
 
 
     <div id="app2">
-        <h3 v-color="'skyblue'" v-fontweight="900" v-fontsize="50">{{ dt | dateFormat }}</h3>
+        <h3 v-color="'skyblue'" v-fontweight="900" v-fontsize="'50px'">{{ dt | dateFormat }}</h3>
     </div>
 
     <script>
         // 全局的过滤器， 进行时间的格式化
         // 所谓的全局过滤器，就是所有的VM实例都共享的
-        Vue.filter('timeFormat',function(timeStr,pattern=''){
+        Vue.filter('timeFormat', function (timeStr, pattern = '') {
             // 根据给定的时间字符串，得到特定的时间
             var dt = new Date(timeStr);
             var year = dt.getFullYear();
-            var month = (dt.getMonth()+1).toString().padStart(2,'0');
+            var month = (dt.getMonth() + 1).toString().padStart(2, '0');
             var day = dt.getDate().toString().padStart(2, '0');
-            
-            if(pattern.toLowerCase()==='yyyy-mm-dd'){
+
+            if (pattern.toLowerCase() === 'yyyy-mm-dd') {
                 return `${year}-${month}-${day}`;
-            }else{
+            } else {
                 var hh = dt.getHours().toString().padStart(2, '0');
                 var mm = dt.getMinutes().toString().padStart(2, '0');
                 var ss = dt.getSeconds().toString().padStart(2, '0');
@@ -85,7 +85,7 @@
         //自定义全局指令
         // 其中：参数1：指令的名称，注意:在定义的时候，指令的名称前面，不需要加 v- 前缀, 但是在调用的时候，必须在指令名称前加上 v- 前缀来进行调用
         // 参数2：是一个对象，这个对象身上，有一些指令相关的函数，这些函数可以在特定的阶段，执行相关的操作
-        Vue.directive('focus',{
+        Vue.directive('focus', {
             bind: function (el) {
                 // 每当指令绑定到元素上的时候，会立即执行这个 bind 函数，只执行一次
                 // 注意： 在每个 函数中，第一个参数，永远是 el ，表示被绑定了指令的那个元素，这个 el 参数，是一个原生的JS对象
@@ -93,7 +93,7 @@
                 // 因为，一个元素，只有插入DOM之后，才能获取焦点
                 // el.focus()
             },
-            inserted: function (el) { 
+            inserted: function (el) {
                 // inserted 表示元素 插入到DOM中的时候，会执行 inserted 函数【触发1次】
                 // 和JS行为有关的操作，最好在 inserted 中去执行，放置 JS行为不生效
                 el.focus();
@@ -105,15 +105,15 @@
 
         // 自定义一个 设置字体颜色的 指令
         Vue.directive('color', {
-                // 样式，只要通过指令绑定给了元素，不管这个元素有没有被插入到页面中去，这个元素肯定有了一个内联的样式
-                // 将来元素肯定会显示到页面中，这时候，浏览器的渲染引擎必然会解析样式，应用给这个元素
-                bind: function (el,binding) {
-                    // 和样式相关的操作，一般都可以在 bind 执行
-                    el.style.color = binding.value;
-                    //el.style.fontSize = '30px';
-                    console.log(binding.value)
-                }
-            });
+            // 样式，只要通过指令绑定给了元素，不管这个元素有没有被插入到页面中去，这个元素肯定有了一个内联的样式
+            // 将来元素肯定会显示到页面中，这时候，浏览器的渲染引擎必然会解析样式，应用给这个元素
+            bind: function (el, binding) {
+                // 和样式相关的操作，一般都可以在 bind 执行
+                el.style.color = binding.value;
+                //el.style.fontSize = '30px';
+                console.log(binding.value)
+            }
+        });
 
 
         var vm = new Vue({
@@ -121,7 +121,7 @@
             data: {
                 id: '',
                 name: '',
-                keywords:'',
+                keywords: '',
                 time: new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDate(),
                 list: [{
                         id: 1,
@@ -162,34 +162,50 @@
         });
 
         var vm2 = new Vue({
-                el: '#app2',
-                data: {
-                    dt: new Date()
-                },
-                methods: {},
-                filters: { // 定义私有过滤器    过滤器有两个 条件  【过滤器名称 和 处理函数】
-                    // 过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器名称一致了，这时候 优先调用私有过滤器
-                    dateFormat: function (dateStr, pattern = '') {
-                        // 根据给定的时间字符串，得到特定的时间
-                        var dt = new Date(dateStr)
+            el: '#app2',
+            data: {
+                dt: new Date()
+            },
+            methods: {},
+            filters: { // 定义私有过滤器    过滤器有两个 条件  【过滤器名称 和 处理函数】
+                // 过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器名称一致了，这时候 优先调用私有过滤器
+                dateFormat: function (dateStr, pattern = '') {
+                    // 根据给定的时间字符串，得到特定的时间
+                    var dt = new Date(dateStr)
 
-                        //   yyyy-mm-dd
-                        var y = dt.getFullYear()
-                        var m = (dt.getMonth() + 1).toString().padStart(2, '0')
-                        var d = dt.getDate().toString().padStart(2, '0')
+                    //   yyyy-mm-dd
+                    var y = dt.getFullYear()
+                    var m = (dt.getMonth() + 1).toString().padStart(2, '0')
+                    var d = dt.getDate().toString().padStart(2, '0')
 
-                        if (pattern.toLowerCase() === 'yyyy-mm-dd') {
-                            return `${y}-${m}-${d}`
-                        } else {
-                            var hh = dt.getHours().toString().padStart(2, '0')
-                            var mm = dt.getMinutes().toString().padStart(2, '0')
-                            var ss = dt.getSeconds().toString().padStart(2, '0')
+                    if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                        return `${y}-${m}-${d}`
+                    } else {
+                        var hh = dt.getHours().toString().padStart(2, '0')
+                        var mm = dt.getMinutes().toString().padStart(2, '0')
+                        var ss = dt.getSeconds().toString().padStart(2, '0')
 
-                            return `${y}-${m}-${d} ${hh}:${mm}:${ss} ~~~~~~~`
-                        }
+                        return `${y}-${m}-${d} ${hh}:${mm}:${ss} ~~~~~~~`
                     }
                 }
-            })
+            },
+            directives: { //自定义私有指令
+                'fontweight': { // 设置字体粗细的
+                    bind: function (el, binding) {
+                        el.style.fontWeight = binding.value;
+                    }
+                },
+                // 'fontsize': {
+                //     bind: function (el, binding) {
+                //         el.style.fontSize = binding.value+'px';
+                //     }
+                // }
+                'fontsize': function (el, binding) { // 注意：这个 function 等同于 把 代码写到了 bind 和 update 中去
+                    console.log(binding.value)
+                    el.style.fontSize = parseInt(binding.value) + 'px';
+                }
+            }
+        })
     </script>
 </body>
 
