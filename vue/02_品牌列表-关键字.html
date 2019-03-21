@@ -47,8 +47,9 @@
                     现在，我们自定义了一个 search 方法，同时把所有关键字，通过传参的形式传递给了 search 方法
                     在 search 方法内部，通过执行 for 循环，把所有符合搜索关键字的数据都渲染出来
                 -->
-                <!-- <tr v-for="(item,index) in search(keywords)" :key="item.id"> -->
-                <tr v-for="(item,index) in listComputed" :key="item.id"></tr>
+                <tr v-for="(item,index) in search(keywords)" :key="item.id">
+                <!-- <tr v-for="(item,index) in listComputed" :key="item.id"></tr>
+                <tr v-for="(item,index) in list" :key="item.id"></tr> -->
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.ctime}}</td>
@@ -138,7 +139,9 @@
                             return item;
                         }
                     });
-
+                },
+                replaceArr () {
+                    this.list = this.newListWatch;
                 }
             },
             watch:{
@@ -147,8 +150,8 @@
                         if(element.name.includes(this.keywords)){
                             this.newListWatch.push(element);
                         }
+                        this.replaceArr();
                     });
-                    console.log(this.newListWatch)
                 }
             },
             computed:{
