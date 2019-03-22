@@ -45,6 +45,9 @@
     </div>
 
     <script>
+        //如果通过全局配置了请求的数据接口根域名，则在每次单独发起 http 请求的时候，请求的 url 路径应以相对路径开头，前面不能带 / 
+        Vue.http.options.root = 'https://api.apiopen.top/';
+
         Vue.directive('width',{
             bind:function(el){
                 el.style.width = '30px'
@@ -58,7 +61,7 @@
             },
             methods:{
                 add () {
-                    this.$http.get('https://api.apiopen.top/musicBroadcasting').then(function (res) {
+                    this.$http.get('musicBroadcasting').then(function (res) {
                         var data = res.body.result[0].channellist;
                         console.log(data);
                         this.list = data;
