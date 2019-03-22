@@ -9,4 +9,7 @@ var hello = async (ctx,next) => {
     await next();
 };
 
-module.exports = hello;
+module.exports = {
+    //'GET':hello
+    'GET /hello/:name': hello
+};

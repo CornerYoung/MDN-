@@ -29,6 +29,8 @@ var fn_signin = async (ctx, next) => {
 };
 
 module.exports = {
-    'GET':fn_login,
-    'POST':fn_signin
+    // 'GET':fn_login,
+    // 'POST':fn_signin
+    'GET /': fn_login,
+    'POST /signin': fn_signin
 };
