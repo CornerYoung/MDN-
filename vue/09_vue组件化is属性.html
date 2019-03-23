@@ -14,13 +14,12 @@
         .v-enter,
         .v-leave-to {
             opacity: 0;
-            /* transform: translateX(800px) */
-            transform: translateY(100px)
+            transform: translateX(200px)
         }
 
         .v-enter-active,
         .v-leave-active {
-            transition: all 0.8s;
+            transition: all 0.8s ease-in-out;
         }
 
         /* 固定写法 实现列表后续元素过渡自然 */
@@ -39,7 +38,12 @@
     <div id="app">
         <a href="" class="btn btn-info" @click.prevent="comName='login'">登录</a>
         <a href="" class="btn btn-default" @click.prevent="comName='register'">注册</a>
-        <component :is="comName"></component>
+
+        <!-- <transition> -->
+        <transition mode="out-in">
+            <component :is="comName"></component>
+        </transition>
+        
         <!-- <login></login>
         <register></register> -->
     </div>
@@ -53,7 +57,7 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                comName: ''
+                comName: 'login'
             }
         });
     </script>
