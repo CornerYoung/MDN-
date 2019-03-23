@@ -163,6 +163,9 @@
                     done();
                 },
                 afterEnter(el) {
+                    //这个函数，第一个功能是控制小球的显示和隐藏
+                    //第二个功能：直接跳过后半场动画，让 flag 标识符直接变为 false
+                    //当第二次点击的时候，flag  false --------> true
                     this.flag = !this.flag;
                 }
             }
