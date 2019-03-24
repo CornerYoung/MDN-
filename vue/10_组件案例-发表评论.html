@@ -14,6 +14,7 @@
 
 <body>
     <div id="app">
+        <!-- 父组件自定义了事件 @func，调用函数是在父组件中定义的 loadComment，子组件可以通过 this.$emit 触发父组件的自定义事件 func -->
         <comment @func="loadComment"></comment>
         <ul class="list-group" v-for="(item,index) in comment" :key="item.id">
             <li class="list-group-item">
