@@ -70,6 +70,7 @@
                     localStorage.setItem('cmts',JSON.stringify(list));
                     this.name = this.msg = '';
 
+                    //当用户进行发表评论的操作后，调用一下父组件的加载评论函数，进行页面的更新渲染
                     // this.loadComments() // ?????
                     this.$emit('func');
                 }
@@ -90,6 +91,7 @@
                 }
             },
             created(){
+                //当页面进入时，用户不做任何操作，使用生命周期函数现将 localStorage 中的数据渲染出来
                 this.loadComment();
             }
         });
