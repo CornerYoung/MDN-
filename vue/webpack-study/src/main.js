@@ -8,7 +8,7 @@ import $ from 'jquery';
 
 $(function(){
     $('li:odd').css('backgroundColor','lightblue');
-    $('li:even').css('backgroundColor', 'lightpink');
+    $('li:even').css('backgroundColor', 'skyblue');
 });
 
 // Webpack 可以做什么事情？？？
