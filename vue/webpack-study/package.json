@@ -11,8 +11,5 @@
     "node"
   ],
   "author": "Young",
-  "license": "ISC",
-  "dependencies": {
-    "jquery": "^3.3.1"
-  }
+  "license": "ISC"
 }
