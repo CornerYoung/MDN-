@@ -11,5 +11,8 @@
     "node"
   ],
   "author": "Young",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-dev-server": "^3.2.1"
+  }
 }
