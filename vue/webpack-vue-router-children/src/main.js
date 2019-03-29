@@ -18,6 +18,7 @@ var router = new VueRouter({
         {
             path: '/account',
             component: account,
+            //在Account组件下面配置登录和注册的嵌套路由
             children: [{
                     path: 'login',
                     component: login
