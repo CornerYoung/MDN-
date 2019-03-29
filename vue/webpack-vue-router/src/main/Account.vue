@@ -11,9 +11,9 @@ export default {
 </script>
 
 <style>
-h2{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: cyan;
+h2 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: cyan;
 }
 </style>
 
