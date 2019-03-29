@@ -24,6 +24,10 @@ import Vue from 'vue';
 
 import login from './login.vue'
 import register from './register.vue'
+// 默认，webpack 无法打包 .vue 文件，需要安装 相关的loader： 
+//  cnpm i vue-loader vue-template-compiler -D
+//  在配置文件中，新增loader配置项 { test:/\.vue$/, use: 'vue-loader' }
+
 var vm = new Vue({
     el:'#app',
     data:{
@@ -33,8 +37,9 @@ var vm = new Vue({
         login
     },
     // render:function(creatElements){
-    //     //vue 中，render方法会置空整个页面，只渲染render返回的内容
+    //     vue 中，render方法会置空整个页面，只渲染render返回的内容
     //     return creatElements(register)
+    //     在 runtime-only里面，可以使用 render 函数来渲染一个组件
     // }
     render:c => c(register) //es6 语法，简化版
 });
@@ -46,3 +51,8 @@ var vm = new Vue({
 // 5. 使用 import login from './login.vue' 导入这个组件
 // 6. 创建 vm 的实例 var vm = new Vue({ el: '#app', render: c => c(login) })
 // 7. 在页面中创建一个 id 为 app 的 div 元素，作为我们 vm 实例要控制的区域；
+
+
+import m222, { title as title123, content } from './test.js'
+console.log(m222)
+console.log(title123 + ' --- ' + content)
