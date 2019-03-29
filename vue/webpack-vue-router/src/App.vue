@@ -13,7 +13,6 @@
 // import account from './main/Account.vue';
 // import goodslist from './main/GoodsList.vue'
 
-
 // export default {
 //     name : 'app',
 //     components:{
@@ -24,9 +23,9 @@
 </script>
 
 <style>
-h1{
-    color: gray;
-    font-family: Arial, Helvetica, sans-serif;
+h1 {
+  color: gray;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
 
