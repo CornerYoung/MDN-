@@ -430,7 +430,7 @@ p2.sayName() // => Mike
 
 我们注意到，`Person()` 中的代码与 `createPerson()` 有以下几点不同之处：
 
-- 没有显示的创建对象
+- 没有显式的创建对象
 - 直接将属性和方法赋给了 `this` 对象
 - 没有 `return` 语句
 - 函数名使用的是大写的 `Person`
@@ -617,7 +617,7 @@ Person.prototype.sayName = function () {
   console.log(this.name)
 }
 
-var p1 = new Person(...)
+var p1 = new Person(...)  
 var p2 = new Person(...)
 
 console.log(p1.sayName === p2.sayName) // => true
@@ -1285,6 +1285,13 @@ console.log(s1.type) // => human
 s1.sayName() // => hello 张三
 ```
 
+### 构造函数,原型对象，实例对象的关系图解
+<img src="./media/原型及原型链.png" width="400" alt="">
+<img src="./media/原型指向后的图解.png" width="400" alt="">
+<img src="./media/原型最终的指向.png" width="400" alt="">
+<img src="./media/原型链的图解.png" width="400" alt="">
+<img src="./media/原型链指向改变.png" width="400" alt="">
+
 ---
 
 ## 函数进阶
@@ -1362,12 +1369,12 @@ if (true) {
 函数的调用方式决定了 `this` 指向的不同：
 
 | 调用方式   | 非严格模式   | 备注                |
-| ------ | ------- | ----------------- |
+| ----------| ------- | ----------------- |
 | 普通函数调用 | window  | 严格模式下是 undefined  |
 | 构造函数调用 | 实例对象    | 原型方法中 this 也是实例对象 |
 | 对象方法调用 | 该方法所属对象 | 紧挨着的对象            |
 | 事件绑定方法 | 绑定事件对象  |                   |
-| 定时器函数  | window  |                   |
+| 定时器函数   | window  |                   |
 
 这就是对函数内部 this 指向的基本整理，写代码写多了自然而然就熟悉了。
 
