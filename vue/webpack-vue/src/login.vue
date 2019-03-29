@@ -9,7 +9,7 @@ export default {
   name: "login",
   data() {
     return {
-      msg: "login 组件的msg"
+      msg: "login 组件"
     };
   }
 };
