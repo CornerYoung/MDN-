@@ -1733,3 +1733,279 @@ module: { // 用来配置第三方loader模块的
 ## 相关文章
 [babel-preset-env：你需要的唯一Babel插件](https://segmentfault.com/p/1210000008466178)
 [Runtime transform 运行时编译es6](https://segmentfault.com/a/1190000009065987)
+
+## 注意：
+
+有时候使用`npm i node-sass -D`装不上，这时候，就必须使用 `cnpm i node-sass -D`
+
+
+
+## 在普通页面中使用render函数渲染组件
+
+
+
+## 在webpack中配置.vue组件页面的解析
+
+1. 运行`cnpm i vue -S`将vue安装为运行依赖；
+
+2. 运行`cnpm i vue-loader vue-template-compiler -D`将解析转换vue的包安装为开发依赖；
+
+3. 运行`cnpm i style-loader css-loader -D`将解析转换CSS的包安装为开发依赖，因为.vue文件中会写CSS样式；
+
+4. 在`webpack.config.js`中，添加如下`module`规则：
+
+```
+
+module: {
+
+    rules: [
+
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+
+      { test: /\.vue$/, use: 'vue-loader' }
+
+    ]
+
+  }
+
+```
+
+5. 创建`App.js`组件页面：
+
+```
+
+    <template>
+
+      <!-- 注意：在 .vue 的组件中，template 中必须有且只有唯一的根元素进行包裹，一般都用 div 当作唯一的根元素 -->
+
+      <div>
+
+        <h1>这是APP组件 - {{msg}}</h1>
+
+        <h3>我是h3</h3>
+
+      </div>
+
+    </template>
+
+
+
+    <script>
+
+    // 注意：在 .vue 的组件中，通过 script 标签来定义组件的行为，需要使用 ES6 中提供的 export default 方式，导出一个vue实例对象
+
+    export default {
+
+      data() {
+
+        return {
+
+          msg: 'OK'
+
+        }
+
+      }
+
+    }
+
+    </script>
+
+
+
+    <style scoped>
+
+    h1 {
+
+      color: red;
+
+    }
+
+    </style>
+
+```
+
+6. 创建`main.js`入口文件：
+
+```
+
+    // 导入 Vue 组件
+
+    import Vue from 'vue'
+
+
+
+    // 导入 App组件
+
+    import App from './components/App.vue'
+
+
+
+    // 创建一个 Vue 实例，使用 render 函数，渲染指定的组件
+
+    var vm = new Vue({
+
+      el: '#app',
+
+      render: c => c(App)
+
+    });
+
+```
+
+## 在使用webpack构建的Vue项目中使用模板对象？
+1. 在`webpack.config.js`中添加`resolve`属性：
+```
+resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  }
+```
+
+
+
+## ES6中语法使用总结
+
+1. 使用 `export default` 和 `export` 导出模块中的成员; 对应ES5中的 `module.exports` 和 `export`
+
+2. 使用 `import ** from **` 和 `import '路径'` 还有 `import {a, b} from '模块标识'` 导入其他模块
+
+3. 使用箭头函数：`(a, b)=> { return a-b; }`
+
+
+
+## 在vue组件页面中，集成vue-router路由模块
+
+[vue-router官网](https://router.vuejs.org/)
+
+1. 导入路由模块：
+
+```
+
+import VueRouter from 'vue-router'
+
+```
+
+2. 安装路由模块：
+
+```
+
+Vue.use(VueRouter);
+
+```
+
+3. 导入需要展示的组件:
+
+```
+
+import login from './components/account/login.vue'
+
+import register from './components/account/register.vue'
+
+```
+
+4. 创建路由对象:
+
+```
+
+var router = new VueRouter({
+
+  routes: [
+
+    { path: '/', redirect: '/login' },
+
+    { path: '/login', component: login },
+
+    { path: '/register', component: register }
+
+  ]
+
+});
+
+```
+
+5. 将路由对象，挂载到 Vue 实例上:
+
+```
+
+var vm = new Vue({
+
+  el: '#app',
+
+  // render: c => { return c(App) }
+
+  render(c) {
+
+    return c(App);
+
+  },
+
+  router // 将路由对象，挂载到 Vue 实例上
+
+});
+
+```
+
+6. 改造App.vue组件，在 template 中，添加`router-link`和`router-view`：
+
+```
+
+    <router-link to="/login">登录</router-link>
+
+    <router-link to="/register">注册</router-link>
+
+
+
+    <router-view></router-view>
+
+```
+
+
+
+## 组件中的css作用域问题
+
+
+
+## 抽离路由为单独的模块
+
+
+
+## 使用 饿了么的 MintUI 组件
+
+[Github 仓储地址](https://github.com/ElemeFE/mint-ui)
+
+[Mint-UI官方文档](http://mint-ui.github.io/#!/zh-cn)
+
+1. 导入所有MintUI组件：
+
+```
+
+import MintUI from 'mint-ui'
+
+```
+
+2. 导入样式表：
+
+```
+
+import 'mint-ui/lib/style.css'
+
+```
+
+3. 在 vue 中使用 MintUI中的Button按钮和Toast弹框提示：
+
+```
+
+Vue.use(MintUI)
+
+```
+
+4. 使用的例子：
+
+```
+
+<mt-button type="primary" size="large">primary</mt-button>
+
+```
+
+
