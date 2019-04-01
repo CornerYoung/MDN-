@@ -1286,11 +1286,11 @@ s1.sayName() // => hello 张三
 ```
 
 ### 构造函数,原型对象，实例对象的关系图解
-<img src="./media/原型及原型链.png" width="400" alt="">
-<img src="./media/原型指向后的图解.png" width="400" alt="">
-<img src="./media/原型最终的指向.png" width="400" alt="">
-<img src="./media/原型链的图解.png" width="400" alt="">
-<img src="./media/原型链指向改变.png" width="400" alt="">
+<img src="./media/原型及原型链.png" width="800" alt="">
+<img src="./media/原型指向后的图解.png" width="800" alt="">
+<img src="./media/原型最终的指向.png" width="800" alt="">
+<img src="./media/原型链的图解.png" width="800" alt="">
+<img src="./media/原型链指向改变.png" width="800" alt="">
 
 ---
 
