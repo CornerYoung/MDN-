@@ -6,6 +6,11 @@ var express = require('express');
 var router = express.Router();
 
 //2.把路由都挂载到 router 路由容器中去
+router.get('/', (req, res) => {
+    res.setHeader('Content-Type', 'text/plain;charset=utf-8');
+    res.end(`之前这里没有为'/'设置页面，页面会显示 Cannot GET /。我以为是哪里配置错了，看了看才知道是没有渲染内容`);
+})
+
 router.get('/players', function (req, res) {
     //调用 players 模块中的 find 方法，并传入回调函数，拿到其中读取到的数据
     Players.find(function (err, players) {
