@@ -1,12 +1,3 @@
----
-学习目标:
-  - 掌握API和Web API的概念
-  - 掌握常见的浏览器提供的API的调用方式
-  - 能通过API开发常见的页面交互功能
-  - 能够利用搜索引擎解决问题
-typora-copy-images-to: media
----
-
 # Web API
 
 ## Web API介绍
@@ -296,7 +287,7 @@ getChildren(doc);
 
 ### 为什么要获取页面元素
 
-例如：我们想要操作页面上的某部分(显示/隐藏，动画)，需要先获取到该部分对应的元素，才进行后续操作
+例如：想要操作页面上的某部分(显示/隐藏，动画)，需要先获取到该部分对应的元素，才进行后续操作
 
 ### 根据id获取元素
 
@@ -351,19 +342,6 @@ for (var i = 0; i < boxes.length; i++) {
   var box = boxes[i];
   console.log(box);
 }
-```
-
-- 总结
-
-```
-掌握
-	getElementById()
-	getElementsByTagName()
-了解
-	getElementsByName()
-	getElementsByClassName()
-	querySelector()
-	querySelectorAll()
 ```
 
 ## 事件
@@ -553,7 +531,7 @@ body.replaceChild(text, div);
 
 ### 节点层级
 
-重点讲父子属性，兄弟属性画图讲解
+重点父子属性，兄弟属性
 
 ```javascript
 var box = document.getElementById('box');
@@ -717,17 +695,6 @@ console.log(box.scrollHeight)
 ```
 
 ![1498743288621](media/1498743288621.png)
-
-### 案例 
-
-- 匀速动画函数
-- 变速动画函数
-- 回到顶部
-- 无缝轮播图
-- 模拟滚动条
-- 拖拽案例
-- 放大镜案例
-
 
 ## 附录
 
