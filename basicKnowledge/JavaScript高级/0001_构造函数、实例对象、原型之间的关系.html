@@ -24,7 +24,7 @@
     };
     var stu1 = new Student('Jack',18);
     var stu2 = new Student('Rose',17);
-    console.log(stu1.speak == stu2.speak);
+    console.log(stu1.speak == stu2.speak); //false
 
 
     function Person (age,sex) {
@@ -35,12 +35,12 @@
         console.log('Hi!')
     };
     var per = new Person(18,'男');
-    console.dir(Person);
-    console.dir(per);
-    console.log(per.__proto__ == Person.prototype);
-    console.log(per.__proto__.constructor == Person.prototype.constructor);
+    console.dir(Person); //ƒ Person(age,sex)
+    console.dir(per); //Person
+    console.log(per.__proto__ == Person.prototype); //true
+    console.log(per.__proto__.constructor == Person.prototype.constructor); //true
     var per2 = new Person(30,'女');
-    console.log(per.sayHi == per2.sayHi)
+    console.log(per.sayHi == per2.sayHi)  //true
     per.__proto__.sayHi();
     /*
     * 实例对象中有个属性，__proto__，也是对象，叫原型，不是标准的属性，是浏览器使用的
