@@ -21,6 +21,7 @@
         this.speak = function () {
             console.log(this.name)
         };
+        // return this 默认把 this 返回给实例对象
     };
     var stu1 = new Student('Jack',18);
     var stu2 = new Student('Rose',17);
@@ -126,5 +127,31 @@
      *
      * */
 
+        console.log(typeof 123); //number
+        console.log(typeof '123'); //string
+        console.log(typeof true); //boolean
+        console.log(typeof undefined); //undefined
+        console.log(typeof {}); //object
+        console.log(typeof [1,2,3]); //object
+        console.log(typeof null); //object
+        console.log(function(){}); //function
+
+        /**@description*
+         * 
+         * 1.简单数据类型可以使用 typeof 来进行判断 【number、string、boolean、undefined】，除此还要注意：null是简单数据类型，但是也不能识别出
+         *  引用数据类型则不能使用 typeof 来进行判断，数组和对象都是引用类型，都是 object 类型，函数也是引用类型，判断得出 function
+         * 
+         * 2.数组和对象的字面量形式都是使用的 Array 和 Object 的语法糖
+         *  var arr = new Array();  var obj = new Object();  var fn = new Function();
+         *  数组、对象、函数都具有对象拓展属性，都可以使用点语法添加属性和方法
+         * 
+         * 3.引用类型的数据可以通过 instanceof 来进行类型的判断
+         *  arr instanceof Array //true
+         *  arr instanceof Object //true
+         * 
+         * 
+         * 
+         * 
+         */
 </script>
 </html>
