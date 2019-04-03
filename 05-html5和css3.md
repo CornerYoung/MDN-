@@ -125,20 +125,6 @@
 </script>
 ~~~
 
-##### 完成八屏页面动画
-
-- 模块一: 标题(title)
-- 模块二: 商品列表(list)
-- 模块三: 选购(buy)
-- 模块四: 填写信息(info)
-- 模块五: 付款(payment)
-- 模块六: 送货(delivery)
-- 模块七: 评价(appraise)
-- 模块八: 购物(shopping)
-
-具体需求参照示例
-
-
 ##### Stellar插件
 - 描述
     + 视差滚动（Parallax Scrolling）指网页滚动过程中，
@@ -224,21 +210,6 @@
 | data-stellar-background-ratio           | 该配置项用在单个元素中，其值为一个正数，用来改变被设置元素的影响速度。 例如 值为0.3时，则表示背景的滚动速度为正常滚动速度的0.3倍。如果值为小数时最好在样式表中设置 |
 
 
-##### 完成视觉滚动差页面开发
-
-- 模块一: 导航(nav)
-- 模块二: 宣传(banner)
-- 模块三: 语音聊天(sound)
-- 模块四: 文件传输(file)
-- 模块五: 兴趣部落(interest)
-- 模块六: 底部(footer)
-
-具体需求参照示例
-
-
-### H5-dom扩展
-
-
 ##### 获取元素
 
 ~~~javascript
@@ -270,19 +241,19 @@ Node.classList.contains('class');
 
 ##### 自定义属性
 
-> 在HTML5中我们可以自定义属性，其格式如下data-*=""
+> 在HTML5中可以自定义属性，其格式如下data-*=""
 
 ~~~html
 
 <div id="demo" data-my-name="itcast" data-age="10">
 <script>
 /*
-  Node.dataset是以对象形式存在的，当我们为同一个DOM节点指定了多个自定义属性时，
+  Node.dataset是以对象形式存在的，当为同一个DOM节点指定了多个自定义属性时，
   Node.dataset则存储了所有的自定义属性的值。
   */
 var demo = document.querySelector(反馈);
 //获取
-//注：当我们如下格式设置时，则需要以驼峰格式才能正确获取
+//注：当如下格式设置时，则需要以驼峰格式才能正确获取
 var name = demo.dataset['myName'];
 var age = demo.dataset['age'];
 //设置
@@ -385,7 +356,7 @@ demo.dataset['name'] = 'web developer';
 ##### 地理定位
 
 >在HTML规范中，增加了获取用户地理信息的API，
->这样使得我们可以基于用户位置开发互联网应用，
+>这样可以基于用户位置开发互联网应用，
 >即基于位置服务 (Location Base Service)
 
 - 获取当前地理信息
@@ -427,7 +398,7 @@ navigator. geolocation.watchPosition(successCallback, errorCallback)
     - clear() 清空所有存储内容
 
 ##### 历史管理
->提供window.history，对象我们可以管理历史记录，
+>提供 window.history，可以管理历史记录，
 >可用于单页面应用，Single Page Application，可以无刷新改变网页内容。
 
 - pushState(data, title, url) 追加一条历史记录  
