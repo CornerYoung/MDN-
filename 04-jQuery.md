@@ -1,9 +1,3 @@
-# jQuery基本概念
-
-> 学习目标：学会如何使用jQuery，掌握jQuery的常用api，能够使用jQuery实现常见的效果。
-
-
-
 ## 为什么要学习jQuery？
 
 【01-让div显示与设置内容.html】
@@ -49,12 +43,6 @@ $(document).ready(function () {
 5. 代码简单、粗暴。
 ```
 
-
-
-> 没有对比，就没有伤害，有了对比，处处戳中要害。
-
-
-
 ## 什么是jQuery?
 
 > jQuery的官网 [http://jquery.com/](http://jquery.com/) 
@@ -64,7 +52,7 @@ js库：把一些常用到的方法写到一个单独的js文件，使用的时�
 
 
 
-我们知道了，jQuery其实就是一个js文件，里面封装了一大堆的方法方便我们的开发，其实就是一个加强版的common.js，因此我们学习jQuery，其实就是学习jQuery这个js文件中封装的一大堆方法。
+jQuery其实就是一个js文件，里面封装了一大堆的方法方便开发，其实就是一个加强版的common.js，学习jQuery，其实就是学习jQuery这个js文件中封装的一大堆方法。
 
 
 
@@ -72,28 +60,6 @@ js库：把一些常用到的方法写到一个单独的js文件，使用的时�
 
 > 官网下载地址：[http://jquery.com/download/](http://jquery.com/download/)
 > jQuery版本有很多，分为1.x 2.x 3.x
-
-
-
-大版本分类：
-
-```javascript
-1.x版本：能够兼容IE678浏览器
-2.x版本：不兼容IE678浏览器
-1.x和2.x版本jquery都不再更新版本了，现在只更新3.x版本。
-
-3.x版本：不兼容IE678，更加的精简（在国内不流行，因为国内使用jQuery的主要目的就是兼容IE678）
-```
-
-
-
-关于压缩版和未压缩版
-
-```javascript
-jquery-1.12.4.min.js:压缩版本，适用于生产环境，因为文件比较小，去除了注释、换行、空格等东西，但是基本没有颗阅读性。
-jquery-1.12.4.js:未压缩版本，适用于学习与开发环境，源码清晰，易阅读。
-```
-
 
 
 ## jQuery的入口函数
@@ -152,7 +118,6 @@ var $obj = $(domObj);
 ```
 
 
-
 jQuery对象转换成DOM对象：
 
 ```javascript
@@ -163,11 +128,6 @@ $li[0]
 $li.get(0)
 
 ```
-
-
-
-【练习：隔行变色案例.html】
-
 
 
 # 选择器
@@ -217,7 +177,6 @@ jQuery选择器虽然很多，但是选择器之间可以相互替代，就是�
 | :odd       | $(“li:odd”).css(“color”, ”red”);   | 获取到的li元素中，选择索引号为奇数的元素              |
 | :even      | $(“li:even”).css(“color”, ”red”);  | 获取到的li元素中，选择索引号为偶数的元素              |
 
-【案例：隔行变色】
 
 ##  筛选选择器(方法)
 
@@ -233,9 +192,3 @@ jQuery选择器虽然很多，但是选择器之间可以相互替代，就是�
 | next()             | $(“li”).next()              | 找下一个兄弟                     |
 | prev()             | $(“li”).prev()              | 找上一次兄弟                     |
 
-```javascript
-【案例：下拉菜单】this+children+mouseenter+mouseleave
-【案例：突出展示】siblings+find
-【案例：手风琴】next+parent
-【案例：淘宝精品】index+eq
-```
