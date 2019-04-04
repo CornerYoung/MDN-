@@ -2293,6 +2293,107 @@ console.log([].slice.call(obj))
 
 ---
 
+## 性能优化
+
+### 资源合并
+
+- 使用压缩工具，webpack、gulp
+
+### 使用缓存
+
+- 通过链接的名称控制缓存
+```javascript
+<script src="abc_1.js"></script>
+```
+只有内容改变时，链接名称才会改变
+
+```javascript
+<script src="abc_2.js"></script>
+```
+
+### 使用CDN
+
+- 在CDN上使用资源肯定要比在自己的服务器上使用要快得多
+
+### 使用SSR后端渲染
+
+- 现在 Vue React 提出了这样的概念
+  + 不通过 ajax 请求，直接从服务端传递数据到 html 中，直接拿到，直接渲染。
+
+- 其实jsp php asp 都属于后端渲染
+
+### 懒加载
+```html
+<img id="img1" src="small.png" data-realsrc="big.png">
+```
+
+```javascript
+  var img1 = document.getElementById('img1');
+  img1.src = img1.getAttribute('data-realsrc');
+```
+
+### 缓存 DOM 查询
+```javascript
+//未缓存 DOM 查询
+  var i
+  for(i=0;i<document.getElementByTagName('p').length;i++){
+    //todo
+  }
+
+// 缓存 DOM 查询
+  var pList = document.getElementByTagName('p')
+  var i
+  for(i=0;i<pList.length;i++){
+    //todo
+  }
+```
+
+### 合并 DOM 插入
+
+```javascript
+var listNode = document.getElementById('list');
+
+//要插入 10 个 li 标签
+var flag = docment.creatDocumentFragment();
+var x,li;
+for(x=0;x<10;i++){
+  li = document.creatElement('li');
+  li.innerHTML = 'List item'+x;
+  frag.appendChild(li);
+};
+listNode.appendChild(frag);
+```
+
+### 事件节流
+
+```javascript
+var textarea = document.getElementById('text');
+var timerId;
+textarea.addEventListener('keyup',function(){
+  if(timerId){
+    clearTimeout(timerId)
+  };
+  timerId = setTimeout(function(){
+    //触发事件
+  },100);
+});
+```
+
+### 尽早操作
+
+```javascript
+window.addEventListener('load',function(){
+  //页面的全部资源加载完才会执行，包括图片、资源等
+});
+
+document.addEventListener('DOMContentLoaded',function(){
+  //DOM 渲染完即可执行，此时图片、视频还可能没有加载完
+});
+```
+
+
+
+
 ## 附录
 
 ### A 代码规范
