@@ -17,7 +17,7 @@ export default class MyAppMovies extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to React Native!杨国宁
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
