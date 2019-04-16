@@ -9,11 +9,20 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
+var MOCKED_MOVIES_DATA = [
+  {
+    title: "标题",
+    year: "2015",
+    posters: { thumbnail: "https://tpc.googlesyndication.com/daca_images/simgad/2820795734590792458" }
+  }
+];
 
 export default class MyAppMovies extends Component {
   render() {
+    var movie = MOCKED_MOVIES_DATA[0];
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -26,6 +35,13 @@ export default class MyAppMovies extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <Text>
+          {movie.title}
+        </Text>
+        <Text>
+          {movie.year}
+        </Text>
+        <Image source={{ uri: movie.posters.thumbnail }} style={styles.thumbnail}/>
       </View>
     );
   }
@@ -39,15 +55,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 22,
     textAlign: 'center',
-    margin: 10,
+    margin: 12,
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
+    color: '#555',
     marginBottom: 5,
   },
+  thumbnail: {
+    width: 500,
+    height: 70
+  }
 });
 
 AppRegistry.registerComponent('MyAppMovies', () => MyAppMovies);
