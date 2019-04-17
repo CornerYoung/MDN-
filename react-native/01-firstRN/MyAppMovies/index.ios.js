@@ -35,12 +35,14 @@ export default class MyAppMovies extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
-        <Text>
-          {movie.title}
-        </Text>
-        <Text>
-          {movie.year}
-        </Text>
+        <View style={styles.rightContainer}>
+          <Text>
+            {movie.title}
+          </Text>
+          <Text>
+            {movie.year}
+          </Text>
+        </View>
         <Image source={{ uri: movie.posters.thumbnail }} style={styles.thumbnail}/>
       </View>
     );
@@ -63,6 +65,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#555',
     marginBottom: 5,
+  },
+  rightContainer: {flexDirection: 'row',
+    flexDirection: 'row',
+    flex: 1,
   },
   thumbnail: {
     width: 500,
