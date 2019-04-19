@@ -25,24 +25,8 @@ export default class MyAppMovies extends Component {
     var movie = MOCKED_MOVIES_DATA[0];
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!杨国宁
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-        <View style={styles.rightContainer}>
-          <Text>
-            {movie.title}
-          </Text>
-          <Text>
-            {movie.year}
-          </Text>
-        </View>
+        <Text>{movie.title}</Text>
+        <Text>{movie.year}</Text>
         <Image source={{ uri: movie.posters.thumbnail }} style={styles.thumbnail}/>
       </View>
     );
@@ -52,27 +36,13 @@ export default class MyAppMovies extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 22,
-    textAlign: 'center',
-    margin: 12,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#555',
-    marginBottom: 5,
-  },
-  rightContainer: {flexDirection: 'row',
-    flexDirection: 'row',
-    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
   },
   thumbnail: {
-    width: 500,
-    height: 70
+    width: 53,
+    height: 81
   }
 });
 
