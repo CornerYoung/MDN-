@@ -12,13 +12,14 @@ import {
   View,
   Image
 } from 'react-native';
-var MOCKED_MOVIES_DATA = [
+const MOCKED_MOVIES_DATA = [
   {
     title: "标题",
     year: "2015",
     posters: { thumbnail: "https://tpc.googlesyndication.com/daca_images/simgad/2820795734590792458" }
   }
 ];
+const REQUEST_URL = "https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json";
 
 export default class MyAppMovies extends Component {
   render() {
