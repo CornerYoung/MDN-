@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class TodoItem extends Component {
+class TodoItem extends Component {
 
   constructor(props) {
       super(props);
@@ -8,14 +9,24 @@ export default class TodoItem extends Component {
   }  
 
   render() {
+    const { content } = this.props;
     return (
-      <div key={this.props.index} onClick={this.handleClick}>
-        {this.props.content}
+      <div onClick={this.handleClick}>
+        {content}
       </div>
     )
   }
 
   handleClick() {
-      this.props.deleteItem(this.props.index);
+      const { deleteItem, index } = this.props;
+      deleteItem(index);
   }
 }
+
+TodoItem.propTypes = {
+    content: PropTypes.string,
+    deleteItem: PropTypes.func,
+    index: PropTypes.number
+}
+
+export default TodoItem;
