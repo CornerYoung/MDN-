@@ -9,10 +9,10 @@ class TodoItem extends Component {
   }  
 
   render() {
-    const { content } = this.props;
+    const { content, test } = this.props;
     return (
       <div onClick={this.handleClick}>
-        {content}
+        {test} - {content}
       </div>
     )
   }
@@ -24,9 +24,15 @@ class TodoItem extends Component {
 }
 
 TodoItem.propTypes = {
+    test: PropTypes.string.isRequired,
+    //content: PropTypes.arrayOf(PropTypes.number, PropTypes.string),
     content: PropTypes.string,
     deleteItem: PropTypes.func,
     index: PropTypes.number
+}
+
+TodoItem.defaultProps = {
+    test: 'hello'
 }
 
 export default TodoItem;
