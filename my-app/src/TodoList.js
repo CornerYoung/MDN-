@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
-import Test from './Test';
+//import Test from './Test';
 
 class TodoList extends Component {
 
@@ -20,16 +20,25 @@ class TodoList extends Component {
         return (
             <Fragment>
                 <div>
-                    <input 
+                    <label htmlFor="insertArea">输入内容</label>
+                    <input
+                        id="insertArea"
                         value={this.state.inputValue}
                         onChange={this.handleInputChange}
+                        ref={(input) => { this.input = input }}
                     />
                     <button
                         onClick={this.handleBtnClick}
                     >提交</button>
                 </div>
-                <ul>{this.getTodoItem()}</ul>
-                <Test content={this.state.inputValue}/>
+                <ul 
+                    ref={(ul) => {this.ul = ul}}
+                >
+                    {this.getTodoItem()}
+                </ul>
+                {
+                    //<Test content={this.state.inputValue}/>
+                }
             </Fragment>
         )
     }
@@ -61,7 +70,8 @@ class TodoList extends Component {
         // })
         //使用es6语法进行代码优化，箭头函数返回对象的话不用return，直接用一个括号包起来
         //需要把e.target.value赋值给value，否则会报错
-        const value = e.target.value;
+        // const value = e.target.value; 可以使用 ref 替代 e.target 直接操作dom节点，但不推荐这么使用，会出问题
+        const value = this.input.value;
         this.setState(()=>({
             inputValue: value
         }))
@@ -75,7 +85,11 @@ class TodoList extends Component {
         this.setState((prevState)=>({
             list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        }))
+        }),()=>{
+            console.log(this.ul.querySelectorAll('div').length);
+        });
+        //由于setState是一个异步函数，所以会先打印 this.ul.querySelectorAll('div').length，会造成数据错误
+        //console.log(this.ul.querySelectorAll('div').length)
     }
 
     handleItemDelete(index) {
