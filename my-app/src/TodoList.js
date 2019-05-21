@@ -16,7 +16,20 @@ class TodoList extends Component {
         this.handleBtnClick = this.handleBtnClick.bind(this);
     }
 
+    componentWillMount() {
+        console.log('componentWillMount 组件在挂载之前执行')
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount 组件在挂载之后执行')
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate 当数据更新完毕后执行')
+    }
+
     render() {
+        console.log('render')
         return (
             <Fragment>
                 <div>
