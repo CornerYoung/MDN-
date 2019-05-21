@@ -19,6 +19,10 @@ class TodoItem extends Component {
     )
   }
 
+  componentWillUnmount() {
+      console.log('child componentWillUnmount 当组件被移除时执行')
+  }
+
   handleClick() {
       const { deleteItem, index } = this.props;
       deleteItem(index);
