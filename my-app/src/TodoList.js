@@ -1,14 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
+import Test from './Test';
 
 class TodoList extends Component {
 
     constructor(props) {
         super(props);
+        // 当组件的 state 或者 props 发生改变时，render 函数就会重新执行
         this.state = {
             inputValue: '',
             list: []
         }
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleItemDelete = this.handleItemDelete.bind(this);
+        this.handleBtnClick = this.handleBtnClick.bind(this);
     }
 
     render() {
@@ -17,13 +22,14 @@ class TodoList extends Component {
                 <div>
                     <input 
                         value={this.state.inputValue}
-                        onChange={this.handleInputChange.bind(this)}
+                        onChange={this.handleInputChange}
                     />
                     <button
-                        onClick={this.handleBtnClick.bind(this)}
+                        onClick={this.handleBtnClick}
                     >提交</button>
                 </div>
                 <ul>{this.getTodoItem()}</ul>
+                <Test content={this.state.inputValue}/>
             </Fragment>
         )
     }
@@ -35,7 +41,7 @@ class TodoList extends Component {
                     <TodoItem
                         content={item}
                         index={index}
-                        deleteItem={this.handleItemDelete.bind(this)}
+                        deleteItem={this.handleItemDelete}
                     />
                     {
                         //key值要写在循环的最外层上
