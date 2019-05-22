@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
 import axios from 'axios';
+import { Input } from 'antd';
+import 'antd/dist/antd.css';
 //import Test from './Test';
 
 class TodoList extends Component {
@@ -25,8 +27,8 @@ class TodoList extends Component {
         //ajax请求最好放在componentDidMount里面使用
         console.log('componentDidMount 组件在挂载之后执行')
         axios.get('/api/todolist')
-            .then(() => alert('请求成功'))
-            .catch(() => alert('请求失败'))
+            .then(() => console.log('请求成功'))
+            .catch(() => console.log('请求失败'))
     }
 
     componentDidUpdate() {
@@ -40,6 +42,9 @@ class TodoList extends Component {
             <Fragment>
                 <div>
                     <label htmlFor="insertArea">输入内容</label>
+                    <Input 
+                        placeholder="Basic usage" 
+                    />
                     <input
                         id="insertArea"
                         value={this.state.inputValue}
