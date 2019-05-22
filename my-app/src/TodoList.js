@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 //import Test from './Test';
 
 class TodoList extends Component {
@@ -21,10 +22,15 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
+        //ajax请求最好放在componentDidMount里面使用
         console.log('componentDidMount 组件在挂载之后执行')
+        axios.get('/api/todolist')
+            .then(() => alert('请求成功'))
+            .catch(() => alert('请求失败'))
     }
 
     componentDidUpdate() {
+        
         console.log('componentDidUpdate 当数据更新完毕后执行')
     }
 
