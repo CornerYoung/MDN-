@@ -16,30 +16,30 @@ class TodoList extends Component {
         //     list: []
         // }
         this.state = store.getState();
-        console.log(this.state)
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleItemDelete = this.handleItemDelete.bind(this);
         this.handleBtnClick = this.handleBtnClick.bind(this);
+        this.handleStoreChange = this.handleStoreChange.bind(this);
+        store.subscribe(this.handleStoreChange);
     }
 
     componentWillMount() {
-        console.log('componentWillMount 组件在挂载之前执行')
+        //console.log('componentWillMount 组件在挂载之前执行')
     }
 
     componentDidMount() {
         //ajax请求最好放在componentDidMount里面使用
-        console.log('componentDidMount 组件在挂载之后执行')
+        //console.log('componentDidMount 组件在挂载之后执行')
         axios.get('/api/todolist')
             .then(() => console.log('请求成功'))
             .catch(() => console.log('请求失败'))
     }
 
     componentDidUpdate() {
-        console.log('componentDidUpdate 当数据更新完毕后执行')
+        //console.log('componentDidUpdate 当数据更新完毕后执行')
     }
 
     render() {
-        console.log('render')
         return (
             <Fragment>
                 <div>
@@ -103,6 +103,12 @@ class TodoList extends Component {
         this.setState(()=>({
             inputValue: value
         }))
+
+        const action = {
+            type:'change_input_value',
+            value:e.target.value
+        }
+        store.dispatch(action);
     }
 
     handleBtnClick() {
@@ -110,14 +116,20 @@ class TodoList extends Component {
         //     list: [...this.state.list, this.state.inputValue],
         //     inputValue: ''
         // })
-        this.setState((prevState)=>({
-            list: [...prevState.list, prevState.inputValue],
-            inputValue: ''
-        }),()=>{
-            console.log(this.ul.querySelectorAll('div').length);
-        });
+
+        // this.setState((prevState)=>({
+        //     list: [...prevState.list, prevState.inputValue],
+        //     inputValue: ''
+        // }),()=>{
+        //     console.log(this.ul.querySelectorAll('div').length);
+        // });
         //由于setState是一个异步函数，所以会先打印 this.ul.querySelectorAll('div').length，会造成数据错误
         //console.log(this.ul.querySelectorAll('div').length)
+        /*********** 应用Redux ***********/
+        const action = {
+            type:'add_todo_item'
+        };
+        store.dispatch(action);
     }
 
     handleItemDelete(index) {
@@ -133,6 +145,10 @@ class TodoList extends Component {
             list.splice(index, 1);
             return {list}
         })
+    }
+
+    handleStoreChange() {
+        this.setState(store.getState());
     }
 };
 
