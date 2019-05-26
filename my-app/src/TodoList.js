@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
+import store from './store/'
 import axios from 'axios';
 import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
@@ -10,10 +11,12 @@ class TodoList extends Component {
     constructor(props) {
         super(props);
         // 当组件的 state 或者 props 发生改变时，render 函数就会重新执行
-        this.state = {
-            inputValue: '',
-            list: []
-        }
+        // this.state = {
+        //     inputValue: '',
+        //     list: []
+        // }
+        this.state = store.getState();
+        console.log(this.state)
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleItemDelete = this.handleItemDelete.bind(this);
         this.handleBtnClick = this.handleBtnClick.bind(this);
@@ -32,7 +35,6 @@ class TodoList extends Component {
     }
 
     componentDidUpdate() {
-        
         console.log('componentDidUpdate 当数据更新完毕后执行')
     }
 
