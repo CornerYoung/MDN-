@@ -29,7 +29,7 @@ class TodoList extends Component {
     componentDidMount() {
         //ajax请求最好放在componentDidMount里面使用
         //console.log('componentDidMount 组件在挂载之后执行')
-        axios.get('/api/todolist')
+        fetch('/api/todolist')
             .then(() => console.log('请求成功'))
             .catch(() => console.log('请求失败'))
     }
