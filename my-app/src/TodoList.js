@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
 import store from './store/'
 import axios from 'axios';
-import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
 //import Test from './Test';
 
@@ -44,11 +43,6 @@ class TodoList extends Component {
             <Fragment>
                 <div>
                     <label htmlFor="insertArea">输入内容</label>
-                    <Input 
-                        placeholder="todo info" 
-                        style={{width:'300px'}}
-                    />
-                    <Button type="primary">TodoList</Button>
                     <input
                         id="insertArea"
                         value={this.state.inputValue}
