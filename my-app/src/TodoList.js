@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
 import store from './store/'
 import axios from 'axios';
-import 'antd/dist/antd.css';
+import { Button } from 'antd';
+import './App.css';
 //import Test from './Test';
 
 class TodoList extends Component {
@@ -49,9 +50,10 @@ class TodoList extends Component {
                         onChange={this.handleInputChange}
                         ref={(input) => { this.input = input }}
                     />
-                    <button
+                    <Button
+                        type="primary"
                         onClick={this.handleBtnClick}
-                    >提交</button>
+                    >提交</Button>
                 </div>
                 <ul 
                     ref={(ul) => {this.ul = ul}}
