@@ -1,62 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-//import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React,{Component} from 'react'
+import {render} from 'react-dom'
 
-
-//let App = <div><h1>welcome!react</h1><h2>hello!world!!</h2></div>;
-//react rend方法探索，第一个参数传一个element，这个element可以赋值给一个变量，当作render的第一个参数（注意element不是字符串，如果有多个，需要使用div包裹起来）
-class App{
-    constructor(name,age){
-        this.name = name;
-        this.age = age;
-    }
-
-    say(){
-        return this.name+':'+this.age;
-    };
-    render(){
+class App extends Component {
+    render() {
         return (
-            <div><h1>welcome!react</h1><h2>hello!world!!</h2></div>
-        );
-    };
-};
-// ReactDOM.render(<App />, document.getElementById('root'));
-// ReactDOM.render( <h1>welcome!react</h1> , document.getElementById('root'));
-//ReactDOM.render(App, document.getElementById('root'));
+            React.createElement(
+                'div',
+                {
+                    className: 'app',
+                    id: 'app'
+                },
+                React.createElement(
+                    'h1',
+                    {
+                        className: 'title'
+                    },
+                    'Hello World!!'
+                ),
+                React.createElement(
+                    'p',
+                    null,
+                    'React is good!'
+                )
+            )
+        )
+    }
+}
 
-console.log(new App().render());
-ReactDOM.render(new App().render(), document.getElementById('root'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+render(<App />, document.querySelector('#root'))
 
 
 
 
 
 
+//使用类的方式创建一个组件，但这个组件使用的是JSX语法，不是合法的js语法
+//所以React在真正运行时会把JSX语法的代码编译成使用React.createElement方法的样子来运行，这样是合法的js语法
 
 
 
-
-
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-//serviceWorker.unregister();
