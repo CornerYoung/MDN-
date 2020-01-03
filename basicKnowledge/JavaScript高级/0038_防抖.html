@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防抖函数</title>
+</head>
+<body>
+    <input type="text" id="ipt">
+</body>
+<script>
+//获取 input 元素
+let ipt = document.querySelector('#ipt');
+
+//需要触发的函数
+function handleInput(outputVal){
+    console.log(outputVal)
+};
+
+//设置定时的防抖函数，传入两个参数，一个需要执行的函数，一个延迟的时间
+function debounce(fn,delay){
+    //设置定时器
+    let timer;
+    //使用闭包，保证每次使用的定时器都是同一个
+    return (val)=>{
+        clearTimeout(timer);
+        timer = setTimeout(()=>{
+            fn(val)
+            //结束之后清除定时器
+            clearTimeout(timer)
+        },delay)
+    }
+};
+
+//获取经过防抖处理的需要执行的函数
+let inputByDebounce = debounce(handleInput,1000)
+
+ipt.addEventListener('keyup',(e)=>{
+    inputByDebounce(e.target.value)
+});
+</script>
+</html>
